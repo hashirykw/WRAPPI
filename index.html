@@ -16,6 +16,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
 document.documentElement.classList.add('js');
+/* 3D only where WebGL exists and the visitor hasn't asked to save data */
+try{var cv=document.createElement('canvas'),nc=navigator.connection;if((cv.getContext('webgl2')||cv.getContext('webgl'))&&!(nc&&(nc.saveData||/2g/.test(nc.effectiveType||''))))document.documentElement.classList.add('can3d')}catch(e){}
 /* any photo that isn't in the folder yet turns into a labelled placeholder */
 function ph(i){var f=i.closest('[data-ph]')||i.parentNode;if(f)f.classList.add('ph');i.remove();}
 </script>
@@ -502,6 +504,26 @@ html:not(.js) .loader,html:not(.js) .loader__n,html:not(.js) .loader__blade{disp
 @keyframes sheen{from{transform:translateX(-300px)}to{transform:translateX(1050px)}}
 .loader__w span{will-change:transform}
 
+
+/* ───────── 3D (added when WebGL is available) ───────── */
+.c3d{position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none;transition:opacity 1.2s var(--ease-out)}
+.c3d canvas{display:block;width:100%!important;height:100%!important;touch-action:pan-y;cursor:grab;-webkit-tap-highlight-color:transparent}
+.c3d canvas:active{cursor:grabbing}
+html.is-3d .c3d{opacity:1;pointer-events:auto}
+html.is-3d .hero__car,html.is-3d #studioCar{visibility:hidden}
+html.is-3d .hero__stage{pointer-events:none}
+html.can3d .hero__stage{min-height:clamp(280px,46svh,600px);display:grid;align-items:center}
+.hero.has-video .c3d{display:none}
+.hero__inner,.hero__now,.scroll-cue{z-index:2}
+.bay__view{position:relative}
+html.can3d .bay__view{aspect-ratio:16/9;display:grid;align-items:center}
+.bay__views{position:absolute;left:0;right:0;bottom:6px;z-index:3;display:none;flex-wrap:wrap;justify-content:center;gap:6px;pointer-events:none}
+.bay__views .chip{pointer-events:auto;height:30px;padding:0 11px;font-size:10px}
+.bay__views .chip[aria-pressed="true"]{background:var(--color-glow);color:var(--color-ink);border-color:var(--color-glow)}
+html.is-3d .bay__views{display:flex}
+@media (max-width:980px){html.can3d .bay__view{aspect-ratio:16/10}}
+@media (max-width:520px){html.can3d .hero__stage{min-height:clamp(240px,38svh,380px)}.bay__views{gap:4px;bottom:2px}.bay__views .chip{height:26px;padding:0 8px;font-size:9px;letter-spacing:.08em}}
+
 /* reduced motion */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
@@ -556,6 +578,7 @@ html:not(.js) .loader,html:not(.js) .loader__n,html:not(.js) .loader__blade{disp
 <!-- HERO -->
 <section class="hero" id="top" aria-label="Wrappi — car wrapping, PPF, polishing and ceramic coating in Oslo">
   <div class="hero__lights" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="c3d c3d--hero" id="hero3d" aria-hidden="true"></div>
   <!-- drop hero.mp4 (a 10–20 s reel) into the folder and it replaces the car scene automatically -->
   <video class="hero__video" muted loop playsinline preload="auto" aria-hidden="true">
     <source src="hero.mp4" type="video/mp4">
@@ -714,7 +737,13 @@ html:not(.js) .loader,html:not(.js) .loader__n,html:not(.js) .loader__blade{disp
   <div class="wrap studio__grid">
     <div class="bay rv" aria-label="Car preview">
       <div class="bay__lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      <div id="studioCar"></div>
+      <div class="bay__view">
+        <div id="studioCar"></div>
+        <div class="c3d c3d--bay" id="bay3d"></div>
+        <div class="bay__views" role="group" aria-label="3D views">
+          <button class="chip" data-v3="threeq" aria-pressed="true">3/4</button><button class="chip" data-v3="front" aria-pressed="false">Front</button><button class="chip" data-v3="side" aria-pressed="false">Side</button><button class="chip" data-v3="rear" aria-pressed="false">Rear</button><button class="chip" data-v3="top" aria-pressed="false">Top</button><button class="chip" id="bay3dSpin" aria-pressed="false">Spin 360°</button>
+        </div>
+      </div>
       <div class="bay__read"><span class="bay__name" id="bayName">Gloss · Wrappi red</span><span class="mono" id="bayHint">Full colour wrap</span></div>
     </div>
     <div class="panel">
@@ -919,7 +948,7 @@ html:not(.js) .loader,html:not(.js) .loader__n,html:not(.js) .loader__blade{disp
         <a href="#top">Top ↑</a>
       </nav>
     </div>
-    <div class="foot__legal mono"><span>© <span id="yr">2026</span> Wrappi · Wrapping Art Design · Oslo, Norway</span><a href="https://nexlyr.solutions" target="_blank" rel="noopener">Site by Nexlyr Solutions</a></div>
+    <div class="foot__legal mono"><span>© <span id="yr">2026</span> Wrappi · Wrapping Art Design · Oslo, Norway</span><span>3D demo car: Ferrari 458 Italia by vicent091036 (CC BY 4.0)</span><a href="https://nexlyr.solutions" target="_blank" rel="noopener">Site by Nexlyr Solutions</a></div>
   </div>
 </footer>
 
@@ -1060,6 +1089,7 @@ $('#studioCar').innerHTML = carSVG('s', 'Preview of the car with the chosen wrap
 function wrapTo(u, color, finish, dur = 1.15) {
   const svg = $('#car-' + u), wipe = $('#' + u + '-wipe'), sq = $('.sq', svg), nw = $('.paint-new', svg), old = $('.paint-old', svg);
   svg.dataset.finish = finish;
+  if (window.CAR3D) CAR3D.wrap(u, color, finish);
   cancelAnimationFrame(svg._raf);
   if (old.getAttribute('fill') === color && !svg._busy) return;
   nw.setAttribute('fill', color);
@@ -1068,7 +1098,7 @@ function wrapTo(u, color, finish, dur = 1.15) {
   const t0 = performance.now();
   sq.setAttribute('opacity', 1);
   const step = t => {
-    const p = Math.min(1, (t - t0) / (dur * 1000)), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2, x = 30 + e * 940;
+    const p = Math.max(0, Math.min(1, (t - t0) / (dur * 1000))), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2, x = 30 + e * 940;
     wipe.setAttribute('width', x); sq.setAttribute('transform', `translate(${x} 0)`);
     if (p < 1) svg._raf = requestAnimationFrame(step);
     else { old.setAttribute('fill', color); wipe.setAttribute('width', 0); sq.setAttribute('opacity', 0); svg._busy = false; }
@@ -1182,6 +1212,7 @@ function renderBay(paint) {
   $('#buildTxt').textContent = txt.charAt(0).toUpperCase() + txt.slice(1);
   $('#buildWa').href = wa(`Hi Wrappi! I built this on your website: ${txt}.\nCar: \nCould I get a price?`);
   sCar.setAttribute('aria-label', 'Preview: ' + txt);
+  if (window.CAR3D) CAR3D.sync('s');
 }
 $$('[data-m]').forEach(b => b.addEventListener('click', () => { S.mode = b.dataset.m; renderBay(true); }));
 $('#finishPicks').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; S.finish = b.dataset.f; renderBay(true); });
@@ -1411,7 +1442,7 @@ addEventListener('load', () => {
   /* hero: the copy lifts away, the car rolls forward with its wheels turning */
   const rims = $$('#car-h .rimrot');
   gsap.to('.hero__inner', { yPercent: -18, autoAlpha: .2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.to('.hero__car', { xPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true, onUpdate: s => rims.forEach(r => r.setAttribute('transform', `rotate(${s.progress * 540})`)) } });
+  gsap.to('.hero__car', { xPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true, onUpdate: s => { rims.forEach(r => r.setAttribute('transform', `rotate(${s.progress * 540})`)); if (window.CAR3D) CAR3D.heroScroll(s.progress); } } });
 
   /* reveals */
   $$('.rv').forEach(el => gsap.fromTo(el, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } }));
@@ -1446,5 +1477,289 @@ addEventListener('load', () => {
   ScrollTrigger.refresh();
 });
 </script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+/* ════════ 3D wrap bay — one WebGL canvas that moves between the hero and the wrap bay ════════
+   car.glb + car_ao.png load after the page; until then (or if WebGL is off) the drawn SVG car stays. */
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+if (document.documentElement.classList.contains('can3d')) init();
+
+function init() {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const RMo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // the SVG colours are tuned for flat art; these read right on real 3D paint
+  const C3 = { '#c62832': '#b8121c', '#1f5d96': '#0f3f7a', '#7d8085': '#6f7378', '#17181b': '#0b0c0e', '#e6e7e9': '#e3e5e8', '#1f4a38': '#0f3326', '#d4561d': '#d0440c', '#b5a383': '#a8946e', '#3c2652': '#2e1846', '#a9aeb5': '#b9bec5', '#2a2c30': '#2a2c30' };
+  const to3 = c => C3[(c || '').toLowerCase()] || c;
+  const FIN = { gloss: [.32, .15, 1, .02], satin: [.48, .35, .3, .45], matte: [.82, .08, 0, 1], chrome: [.06, 1, 1, .02] };
+  const PPFLV = { front: 1, ffront: 2, track: 3, full: 4 };
+
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); }
+  catch (e) { document.documentElement.classList.remove('can3d'); return; }
+  const mobile = () => innerWidth < 760;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, mobile() ? 1.5 : 2));
+  renderer.setClearColor(0x000000, 0);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = .92;
+  const canvas = renderer.domElement;
+  canvas.setAttribute('aria-hidden', 'true');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(32, 1, .1, 100);
+
+  /* studio reflections: ceiling bars, softboxes, grey floor, the logo's red + blue low on the walls */
+  (() => {
+    const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.BoxGeometry(34, 14, 34), new THREE.MeshBasicMaterial({ color: 0x15161a, side: THREE.BackSide })));
+    const panel = (w, h, pos, rot, col, k) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(col).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(...pos); m.rotation.set(...rot); env.add(m); };
+    for (let i = -2; i <= 2; i++) panel(.55, 16, [i * 2.2, 6.6, 0], [Math.PI / 2, 0, 0], '#ffffff', 5);
+    panel(12, 9, [0, 6.9, 0], [Math.PI / 2, 0, 0], '#ffffff', .35);
+    panel(34, 34, [0, -.02, 0], [-Math.PI / 2, 0, 0], '#3a3b40', 1);
+    panel(16, 6, [-15, 3.4, 0], [0, Math.PI / 2, 0], '#ffffff', 1.4);
+    panel(16, 6, [15, 3.4, 0], [0, -Math.PI / 2, 0], '#ffffff', 1.4);
+    panel(10, 3, [0, 3, 15], [0, Math.PI, 0], '#ffffff', .7);
+    panel(10, 3, [0, 3, -15], [0, 0, 0], '#ffffff', .7);
+    panel(8, 1.6, [-12, .9, 6], [0, Math.PI / 3, 0], '#ffffff', .9);
+    panel(8, 1.6, [12, .9, -6], [0, -Math.PI / 1.5, 0], '#ffffff', .9);
+    panel(22, .35, [-15.9, .9, 0], [0, Math.PI / 2, 0], '#d6343c', 6);
+    panel(22, .35, [15.9, .9, 0], [0, -Math.PI / 2, 0], '#4092ce', 6);
+    scene.environment = new THREE.PMREMGenerator(renderer).fromScene(env, .02).texture;
+  })();
+
+  /* floor that fades to transparent, turntable with the red/blue ring */
+  const radial = (stops) => { const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d'); const gr = g.createRadialGradient(128, 128, 0, 128, 128, 128); stops.forEach(([o, c]) => gr.addColorStop(o, c)); g.fillStyle = gr; g.fillRect(0, 0, 256, 256); return new THREE.CanvasTexture(cv); };
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(9, 64), new THREE.MeshStandardMaterial({ color: 0x0f1012, roughness: .5, envMapIntensity: .4, transparent: true, alphaMap: radial([[0, '#fff'], [.45, '#ddd'], [1, '#000']]), depthWrite: false }));
+  floor.rotation.x = -Math.PI / 2; scene.add(floor);
+  const halo = new THREE.Mesh(new THREE.PlaneGeometry(9.4, 9.4), new THREE.MeshBasicMaterial({ map: radial([[.68, 'rgba(255,255,255,0.09)'], [1, 'rgba(255,255,255,0)']]), transparent: true, depthWrite: false }));
+  halo.rotation.x = -Math.PI / 2; halo.position.y = .004; scene.add(halo);
+  const table = new THREE.Group(); scene.add(table);
+  const disc = new THREE.Mesh(new THREE.CylinderGeometry(3.15, 3.2, .06, 96), new THREE.MeshStandardMaterial({ color: 0x16171a, roughness: .38, metalness: .25, envMapIntensity: .7 }));
+  disc.position.y = .03; table.add(disc);
+  const ringMat = c => new THREE.MeshBasicMaterial({ color: new THREE.Color(c).multiplyScalar(1.15), toneMapped: false, side: THREE.DoubleSide });
+  [[0, '#d6343c'], [Math.PI, '#4092ce']].forEach(([a, c]) => { const r = new THREE.Mesh(new THREE.RingGeometry(3.15, 3.19, 128, 1, a, Math.PI), ringMat(c)); r.rotation.x = -Math.PI / 2; r.position.y = .062; table.add(r); });
+
+  /* body paint — squeegee wipe, finish, PPF zones and ceramic beading all live in this shader */
+  const U = {
+    uOld: { value: new THREE.Color() }, uNew: { value: new THREE.Color() },
+    uFOld: { value: new THREE.Vector4(...FIN.gloss) }, uFNew: { value: new THREE.Vector4(...FIN.gloss) },
+    uP: { value: 9 }, uA: { value: 0 }, uDir: { value: -1 }, uMidY: { value: .68 }, uLen: { value: 2.3 },
+    uPpf: { value: 0 }, uPpfA: { value: 0 }, uCer: { value: 0 }, uTime: { value: 0 }, uInv: { value: new THREE.Matrix4() }
+  };
+  const bodyMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: .15, roughness: .32, clearcoat: 1, clearcoatRoughness: .02, envMapIntensity: 1.25 });
+  bodyMat.onBeforeCompile = sh => {
+    Object.assign(sh.uniforms, U);
+    sh.vertexShader = sh.vertexShader
+      .replace('#include <common>', '#include <common>\nuniform mat4 uInv; varying vec3 vLocal; varying vec3 vLN;')
+      .replace('#include <project_vertex>', '#include <project_vertex>\nvLocal = (uInv * modelMatrix * vec4(transformed, 1.0)).xyz;\nvLN = normalize(mat3(uInv) * mat3(modelMatrix) * objectNormal);');
+    sh.fragmentShader = sh.fragmentShader
+      .replace('#include <common>', `#include <common>
+uniform vec3 uOld; uniform vec3 uNew; uniform vec4 uFOld; uniform vec4 uFNew; uniform float uP; uniform float uA; uniform float uDir; uniform float uMidY; uniform float uLen;
+uniform float uPpf; uniform float uPpfA; uniform float uCer; uniform float uTime;
+varying vec3 vLocal; varying vec3 vLN;
+float ppfZone(vec3 p){
+  float dn = uLen - p.z * uDir; float ax = abs(p.x);
+  float z1 = step(dn, 0.85) * step(p.y, 0.95);
+  float z2 = step(dn, 1.6);
+  float z3 = max(z2, max(step(p.y, 0.38) * step(0.7, ax), max(step(dn, 2.35) * step(0.95, p.y), step(2.85, dn) * step(dn, 3.75) * step(p.y, 0.78) * step(0.78, ax))));
+  return uPpf > 3.5 ? 1.0 : uPpf > 2.5 ? z3 : uPpf > 1.5 ? z2 : uPpf > 0.5 ? z1 : 0.0;
+}
+float hash(vec2 c){ return fract(sin(dot(c, vec2(127.1, 311.7))) * 43758.5453); }`)
+      .replace('#include <color_fragment>', '#include <color_fragment>\nfloat wT = step(0.0, (vLocal.z - uP) * uDir);\ndiffuseColor.rgb = mix(uOld, uNew, wT);')
+      .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = mix(uFOld.x, uFNew.x, wT);')
+      .replace('#include <metalnessmap_fragment>', '#include <metalnessmap_fragment>\nmetalnessFactor = mix(uFOld.y, uFNew.y, wT);')
+      .replace('#include <lights_physical_fragment>', '#include <lights_physical_fragment>\n#ifdef USE_CLEARCOAT\nmaterial.clearcoat = mix(uFOld.z, uFNew.z, wT);\nmaterial.clearcoatRoughness = clamp(mix(uFOld.w, uFNew.w, wT), 0.0525, 1.0);\n#endif')
+      .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+float ln = smoothstep(0.06, 0.0, abs(vLocal.z - uP)) * uA;
+float dp = (vLocal.z - uP) * uDir;
+float tr = step(0.0, dp) * exp(-dp * 5.0) * uA;
+vec3 lc = vLocal.y > uMidY ? vec3(0.84, 0.2, 0.24) : vec3(0.25, 0.57, 0.81);
+totalEmissiveRadiance += lc * ln * 7.0 + vec3(pow(ln, 3.0) * 2.2) + vec3(0.22) * tr;
+if (uPpfA > 0.001) {
+  float zp = ppfZone(vLocal) * uPpfA;
+  float hatch = smoothstep(0.40, 0.48, abs(fract((vLocal.x * 0.5 + vLocal.y + vLocal.z) * 7.0) - 0.5));
+  float dn = uLen - vLocal.z * uDir;
+  float sw = exp(-pow(dn - mod(uTime * 1.8, 2.0 * uLen + 3.0) + 1.0, 2.0) * 5.0);
+  totalEmissiveRadiance += zp * (vec3(0.45, 0.68, 0.95) * 0.09 + vec3(0.10) * hatch + vec3(0.6, 0.82, 1.0) * 0.4 * sw);
+}
+if (uCer > 0.001) {
+  vec2 q = abs(vLN.y) > 0.55 ? vLocal.xz : (abs(vLN.x) > abs(vLN.z) ? vLocal.zy : vLocal.xy);
+  vec2 g = q * 24.0; vec2 c = floor(g); vec2 f = fract(g);
+  float h = hash(c), h2 = hash(c + 17.3);
+  vec2 o = vec2(h, h2) * 0.5 + 0.25; float r = 0.1 + 0.16 * h2;
+  float on = step(0.4, h) * smoothstep(-0.3, 0.3, vLN.y + 0.25);
+  float rim = smoothstep(r, r * 0.8, length(f - o)) - smoothstep(r * 0.8, r * 0.55, length(f - o));
+  float hl = smoothstep(r * 0.42, 0.0, length(f - o + vec2(r * 0.32, -r * 0.32)));
+  totalEmissiveRadiance += uCer * on * (vec3(0.07) * rim + vec3(0.85) * hl);
+}`);
+  };
+
+  /* mounts: hero (auto re-wrap, spins) and bay (driven by the configurator) */
+  const VIEW = {
+    hero:   { d: [-.72, .2, -.66], s: [4.7, 1.8], fill: .8 },
+    threeq: { d: [-.68, .24, -.72], s: [4.4, 1.7], fill: .86 },
+    front:  { d: [0, .16, -1], s: [2.5, 1.45], fill: .8 },
+    side:   { d: [1, .15, 0], s: [4.8, 1.45], fill: .88 },
+    rear:   { d: [0, .2, 1], s: [2.5, 1.5], fill: .8 },
+    top:    { d: [.38, .92, .4], s: [3.9, 3.2], fill: .86 }
+  };
+  const M = {
+    h: { el: $('#hero3d'), view: 'hero', rot: -.4, spin: !RMo, scroll: 0, st: { c: '#2a2c30', f: 'gloss', mode: 'wrap', ppf: 0, cer: 0 } },
+    s: { el: $('#bay3d'), view: 'threeq', rot: 0, spin: false, scroll: 0, st: { c: '#c62832', f: 'gloss', mode: 'wrap', ppf: 0, cer: 0 } }
+  };
+  let active = null, car = null, wipe = null, camTween = null, drag = null, idleAt = 0;
+  const target = new THREE.Vector3(0, .6, 0);
+
+  function placeCamera(u, snap) {
+    const m = M[u], el = m.el, W = el.clientWidth, H = el.clientHeight, v = VIEW[m.view];
+    if (!W || !H) return;
+    renderer.setSize(W, H, false); camera.aspect = W / H; camera.fov = mobile() ? 36 : 32;
+    // where the car should sit inside the canvas: the hero puts it in the stage row, the bay uses all of it
+    let sx = W / 2, sy = H / 2, sw = W, sh = H;
+    if (u === 'h') { const st = $('.hero__stage').getBoundingClientRect(), hr = el.getBoundingClientRect(); sw = st.width; sh = st.height; sx = st.left - hr.left + sw / 2; sy = st.top - hr.top + sh / 2; }
+    camera.setViewOffset(W, H, -(sx - W / 2), -(sy - H / 2), W, H);
+    camera.updateProjectionMatrix();
+    const tv = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), th = tv * camera.aspect;
+    const D = Math.max(v.s[0] * W / (v.fill * sw) / (2 * th), v.s[1] * H / (v.fill * sh) / (2 * tv)) + 1.2;
+    const to = new THREE.Vector3(...v.d).normalize().multiplyScalar(D).add(target);
+    if (snap) { camera.position.copy(to); camTween = null; }
+    else camTween = { from: camera.position.clone(), to, t0: performance.now(), ms: 1300, r0: m.rot, r1: (m.view === 'threeq' || m.view === 'hero') ? m.rot : Math.round(m.rot / (Math.PI * 2)) * Math.PI * 2 };
+    camera.lookAt(target);
+  }
+  function applyState(u) {
+    const s = M[u].st;
+    U.uOld.value.set(to3(s.c)); U.uNew.value.copy(U.uOld.value);
+    U.uFOld.value.set(...FIN[s.f]); U.uFNew.value.copy(U.uFOld.value);
+    U.uPpf.value = s.ppf; U.uPpfA.value = s.mode === 'ppf' ? 1 : 0; U.uCer.value = s.cer;
+    U.uP.value = -U.uDir.value * 9; U.uA.value = 0; wipe = null;
+  }
+  function wrap(u, c, f) {
+    const s = M[u].st; s.c = c; s.f = f;
+    if (u !== active || !car) return;
+    U.uOld.value.copy(U.uNew.value); U.uFOld.value.copy(U.uFNew.value);
+    U.uNew.value.set(to3(c)); U.uFNew.value.set(...FIN[f]);
+    if (RMo) { U.uOld.value.copy(U.uNew.value); U.uFOld.value.copy(U.uFNew.value); return; }
+    wipe = { t0: performance.now(), dur: 1600 };
+  }
+  function sync(u) { // read the configurator state (S lives in the main script)
+    if (u !== 's' || typeof S === 'undefined') return;
+    const m = M.s.st;
+    m.mode = S.mode; m.ppf = PPFLV[S.ppf] || 2; m.cer = S.ceramic ? 1 : 0;
+    const c = S.mode === 'wrap' ? S.color.c : '#17181b', f = S.mode === 'wrap' ? S.finish : 'gloss';
+    if (c !== m.c || f !== m.f) wrap('s', c, f);
+  }
+  function activate(u) {
+    if (active === u || !car) return;
+    active = u;
+    if (!u) { renderer.setAnimationLoop(null); return; }
+    M[u].el.appendChild(canvas);
+    applyState(u); placeCamera(u, true);
+    renderer.setAnimationLoop(loop);
+  }
+
+  /* drag sideways to spin (vertical swipes still scroll the page) */
+  canvas.addEventListener('pointerdown', e => { drag = { x: e.clientX, v: 0 }; canvas.setPointerCapture(e.pointerId); camTween = null; $$('.bay__views [data-v3]').forEach(b => b.setAttribute('aria-pressed', 'false')); });
+  canvas.addEventListener('pointermove', e => { if (!drag || !active) return; const dx = e.clientX - drag.x; drag.x = e.clientX; drag.v = dx * .009; M[active].rot += drag.v; });
+  const endDrag = () => { if (!drag) return; inertia = drag.v; drag = null; idleAt = performance.now(); };
+  canvas.addEventListener('pointerup', endDrag); canvas.addEventListener('pointercancel', endDrag);
+  let inertia = 0;
+
+  /* bay view buttons + spin toggle */
+  $$('.bay__views [data-v3]').forEach(b => b.addEventListener('click', () => {
+    M.s.view = b.dataset.v3; M.s.spin = false; setSpinBtn();
+    $$('.bay__views [data-v3]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    if (active === 's') placeCamera('s', false);
+  }));
+  const spinBtn = $('#bay3dSpin');
+  function setSpinBtn() { spinBtn.setAttribute('aria-pressed', M.s.spin); spinBtn.textContent = M.s.spin ? 'Pause 360°' : 'Spin 360°'; }
+  spinBtn.addEventListener('click', () => { M.s.spin = !M.s.spin; if (M.s.spin) { M.s.view = 'threeq'; placeCamera('s', false); } setSpinBtn(); });
+  setSpinBtn();
+
+  /* loop */
+  const clock = new THREE.Clock();
+  function loop(now) {
+    const dt = Math.min(clock.getDelta(), .05), m = M[active];
+    U.uTime.value += dt;
+    if (!drag) {
+      if (Math.abs(inertia) > .0004) { m.rot += inertia; inertia *= .94; }
+      else if (m.spin && !camTween && now - idleAt > 1800) m.rot += dt * (Math.PI * 2 / 26);
+    }
+    if (camTween) {
+      const p = Math.min(1, (now - camTween.t0) / camTween.ms), e = 1 - Math.pow(1 - p, 4);
+      camera.position.lerpVectors(camTween.from, camTween.to, e); camera.lookAt(target);
+      m.rot = camTween.r0 + (camTween.r1 - camTween.r0) * e;
+      if (p >= 1) camTween = null;
+    }
+    table.rotation.y = m.rot + m.scroll;
+    if (wipe) {
+      const p = Math.min(1, (now - wipe.t0) / wipe.dur), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      U.uP.value = U.uLen.value * U.uDir.value - U.uDir.value * e * U.uLen.value * 2.1;
+      U.uA.value = Math.min(1, Math.sin(Math.PI * p) * 3);
+      if (p >= 1) { U.uOld.value.copy(U.uNew.value); U.uFOld.value.copy(U.uFNew.value); U.uP.value = -U.uDir.value * 9; U.uA.value = 0; wipe = null; }
+    }
+    const s = m.st; // ease PPF / ceramic overlays in and out
+    U.uPpf.value = s.ppf;
+    U.uPpfA.value += ((s.mode === 'ppf' ? 1 : 0) - U.uPpfA.value) * Math.min(1, dt * 6);
+    U.uCer.value += (s.cer - U.uCer.value) * Math.min(1, dt * 4);
+    table.updateMatrixWorld(); U.uInv.value.copy(table.matrixWorld).invert();
+    renderer.render(scene, camera);
+  }
+
+  /* public hooks for the main script */
+  window.CAR3D = { wrap, sync, heroScroll: p => { M.h.scroll = p * Math.PI * .9; } };
+
+  /* load after the page has settled */
+  const load = () => new GLTFLoader().load('car.glb', gltf => {
+    car = gltf.scene;
+    const dark = new THREE.MeshPhysicalMaterial({ color: 0x1c1d20, metalness: 1, roughness: .32, envMapIntensity: 1.1 });
+    const glass = new THREE.MeshPhysicalMaterial({ color: 0x07080a, metalness: .1, roughness: .02, transparent: true, opacity: .82, envMapIntensity: 1.6, clearcoat: 1 });
+    const chrome = new THREE.MeshStandardMaterial({ color: 0xe8e8e8, metalness: 1, roughness: .08 });
+    car.traverse(o => {
+      if (!o.isMesh) return;
+      const n = (o.name || '') + ' ' + (o.parent ? o.parent.name : '');
+      if (/\bbody\b/.test(n)) o.material = bodyMat;
+      else if (/rim_|\bcentre\b|\btrim\b/.test(n)) o.material = dark;
+      else if (/\bglass\b/.test(n)) o.material = glass;
+      else if (/\bchrome\b/.test(n)) o.material = chrome;
+      else if (/lights_red/.test(n)) { o.material = o.material.clone(); o.material.emissive = new THREE.Color('#ff1a1a'); o.material.emissiveIntensity = 1.4; }
+      else if (/\bbrakes\b/.test(n)) o.material = new THREE.MeshStandardMaterial({ color: '#c41f28', metalness: .3, roughness: .4 });
+    });
+    const box = new THREE.Box3().setFromObject(car), c = box.getCenter(new THREE.Vector3());
+    car.position.x -= c.x; car.position.z -= c.z; car.position.y -= box.min.y - .062;
+    U.uLen.value = (box.max.z - box.min.z) / 2 + .05; U.uMidY.value = .062 + (box.max.y - box.min.y) * .5;
+    table.add(car);
+    new THREE.TextureLoader().load('car_ao.png', tex => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      const sh = new THREE.Mesh(new THREE.PlaneGeometry(.655 * 4, 1.3 * 4), new THREE.MeshBasicMaterial({ map: tex, blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha: true }));
+      sh.rotation.x = -Math.PI / 2; sh.position.y = .065; sh.renderOrder = 2; table.add(sh);
+    });
+    // take over whatever the SVG hero car is wearing right now
+    const hs = $('#car-h'); if (hs) { M.h.st.c = $('.paint-new', hs).getAttribute('fill'); M.h.st.f = hs.dataset.finish || 'gloss'; }
+    sync('s'); M.s.st.c = S.mode === 'wrap' ? S.color.c : '#17181b'; M.s.st.f = S.mode === 'wrap' ? S.finish : 'gloss';
+    document.documentElement.classList.add('is-3d');
+    watch();
+  }, undefined, () => document.documentElement.classList.remove('can3d'));
+
+  /* which mount is on screen */
+  const vis = { h: 0, s: 0 };
+  function watch() {
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => vis[e.target === M.h.el ? 'h' : 's'] = e.isIntersecting ? e.intersectionRatio : 0);
+      const pick = vis.h <= 0 && vis.s <= 0 ? null : (vis.h >= vis.s ? 'h' : 's');
+      if ($('.hero').classList.contains('has-video') && pick === 'h') { activate(vis.s > 0 ? 's' : null); return; }
+      activate(pick);
+    }, { threshold: [0, .05, .2, .4, .6, .8, 1] });
+    io.observe(M.h.el); io.observe(M.s.el);
+  }
+  let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { renderer.setPixelRatio(Math.min(devicePixelRatio, mobile() ? 1.5 : 2)); if (active) placeCamera(active, true); }, 120); });
+  document.addEventListener('visibilitychange', () => { clock.getDelta(); });
+  if (document.readyState === 'complete') setTimeout(load, 300); else addEventListener('load', () => setTimeout(load, 300));
+}
+</script>
+
 </body>
 </html>

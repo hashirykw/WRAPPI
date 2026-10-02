@@ -13,6 +13,7 @@ Everything sits flat in one folder, same as the Verzish build. `index.html` link
 - `index.html` — the whole site (HTML, CSS and JS in one file)
 - `logo.png` / `logo.webp` — wordmark cut from the Instagram profile picture (swap for the original vector when the client sends it)
 - `favicon.png` / `apple-touch-icon.png` — the W mark with the red/blue rule
+- `car.glb` (6 MB) + `car_ao.png` — the 3D car and its contact shadow. They load after the page has settled; until then, and on browsers without WebGL or with data saver on, the drawn SVG car shows instead
 
 ### Photos and video: just drop them in
 
@@ -38,6 +39,15 @@ All of it is in one block at the top of the main `<script>` — search for `EDIT
 - `hours` — opening hours per day, used by the open/closed badge and the Oslo clock
 - `PRICES_CONFIRMED` — set to `true` once the real prices are in. That hides every red dashed "sample price / to confirm" tag on the page in one go
 
+## The 3D car
+
+One WebGL canvas moves between the hero and the wrap bay, so only one car is ever loaded and rendered, and nothing renders when neither is on screen.
+
+- **Hero:** turntable spins a full 360°, keeps re-wrapping itself, and turns further as you scroll
+- **Wrap bay:** colour + finish wipe on with the squeegee, PPF coverage glows on the panels each package covers, ceramic shows water beading, and there are 3/4 · Front · Side · Rear · Top views plus a 360° spin toggle
+- Drag sideways to spin the car. Vertical swipes still scroll the page on phones
+- **Demo car:** Ferrari 458 Italia by vicent091036 (CC BY 4.0), from the three.js examples. Credited in the footer. Check the licence on Sketchfab before launch, or swap `car.glb` for another model. The body mesh must be named `body` for the wrap shader to find it
+
 ## What's on the page
 
 Loader (film peeled off by a squeegee) → hero with a car that keeps getting re-wrapped → marquee → four service slabs → service tabs → **wrap bay configurator** (colour + finish, PPF coverage packages, ceramic beading toggle, sends the build to WhatsApp or into the price builder) → finishes stack → polishing before/after slider → filterable gallery + lightbox → 7-step process (horizontal scroll on desktop) → **price builder** with live guide price and a pre-written WhatsApp message → FAQ → map, hours and Oslo clock → Instagram strip → footer → rule-based "Ask Wrappi" assistant (understands a few Norwegian keywords too).
@@ -56,5 +66,6 @@ Upload every file to the root of a GitHub repo, then import it on Vercel (Framew
 - Original logo file (SVG/PNG) — the current one is cut from the profile picture
 - Photos and reels for every slot in the table above
 - English only, or English + Norwegian?
+- Keep the Ferrari as the demo car, or use a model closer to their customers (lots of Teslas on their Instagram)?
 
 Site by Nexlyr Solutions — nexlyr.solutions
