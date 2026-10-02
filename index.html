@@ -524,6 +524,131 @@ html.is-3d .bay__views{display:flex}
 @media (max-width:980px){html.can3d .bay__view{aspect-ratio:16/10}}
 @media (max-width:520px){html.can3d .hero__stage{min-height:clamp(240px,38svh,380px)}.bay__views{gap:4px;bottom:2px}.bay__views .chip{height:26px;padding:0 8px;font-size:9px;letter-spacing:.08em}}
 
+
+/* ════════ PHONES — dedicated layout (≤ 760px) ════════ */
+.nav__wa{display:none;width:44px;height:44px;border-radius:50%;place-items:center;border:1px solid rgb(37 211 102 / .55);color:var(--color-wa);margin-left:auto;flex:none}
+.nav__wa svg{width:20px;height:20px}
+.menu__acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+.menu__addr{margin-top:14px}
+.qbar{position:fixed;z-index:105;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:var(--radius-pill);background:rgb(20 21 24 / .92);border:1px solid var(--color-line-2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 14px 34px rgb(0 0 0 / .55);transform:translateY(140%);transition:transform var(--dur-base) var(--ease-out)}
+.qbar.is-on{transform:none}
+.qbar__t{display:grid;min-width:0}
+.qbar__t .mono{font-size:9px}
+.qbar__t b{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:14px;color:var(--color-glow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.qbar .btn{height:44px;padding:0 18px;flex:none}
+.hs-hint{display:none}
+@media (max-width:760px){
+  .sec{padding-block:clamp(56px,15vw,72px)}
+  .sec-head{gap:14px;margin-bottom:26px}
+  .sec-head h2{font-size:clamp(2rem,9.4vw,2.9rem)}
+  .sec-head p,.ba__copy p,.panel > p{font-size:15px;line-height:1.55}
+  .sec-head .rule{margin-top:16px}
+  .btn{height:50px;padding:0 20px}
+  .qbar{display:flex}
+  body.qbar-on .bot-fab,body.hero-cta .bot-fab{transform:translateY(160%);opacity:0!important;pointer-events:none}
+  .bot-fab{right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));height:52px}
+  .bot-fab img{width:36px;height:36px}
+
+  /* nav + menu */
+  .nav__wa{display:grid}
+  .nav__burger{margin-left:0}
+  .menu{justify-content:flex-end;padding-bottom:calc(32px + env(safe-area-inset-bottom,0px))}
+
+  /* hero: copy on top, the car big in the middle, actions at the bottom */
+  .hero{display:flex;flex-direction:column;min-height:100svh}
+  .hero__inner,.hero__row{display:contents}
+  .hero__eyebrow{order:1;padding:calc(90px + env(safe-area-inset-top,0px)) var(--gutter) 0}
+  .hero__eyebrow .tag:nth-child(2){display:none}
+  .hero__title{order:2;padding:14px var(--gutter) 0;font-size:calc((100vw - 2 * var(--gutter)) / 8.2)}
+  .hero__stage{order:3;flex:1 0 auto;margin:0;padding-top:8px}
+  html.can3d .hero__stage{min-height:clamp(250px,38svh,420px)}
+  .hero__now{order:4;position:relative;left:auto;bottom:auto;margin:-44px 0 0;padding:0 var(--gutter);z-index:3}
+  .hero__sub{order:5;padding:20px var(--gutter) 0;font-size:15px;max-width:none}
+  .hero__ctas{order:6;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px var(--gutter) calc(30px + env(safe-area-inset-bottom,0px))}
+  .hero__ctas .btn{padding:0 10px;font-size:12px;letter-spacing:.04em}
+  .hero__lights{padding-top:76px}
+
+  /* swipe rows instead of tall stacks */
+  .slabs,.stack,.ig__grid,.work__bar .picks,.tabs{display:grid;grid-auto-flow:column;grid-template-columns:none;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);scrollbar-width:none}
+  .slabs::-webkit-scrollbar,.stack::-webkit-scrollbar,.ig__grid::-webkit-scrollbar,.work__bar .picks::-webkit-scrollbar,.grid::-webkit-scrollbar{display:none}
+  .slabs{grid-auto-columns:74vw;gap:10px;padding-bottom:4px}
+  .slab{min-height:220px;scroll-snap-align:start;padding:20px}
+  .slab__w{font-size:2.4rem}
+  .hs-hint{display:flex;align-items:center;gap:10px;margin-top:14px}
+  .hs-hint i{width:28px;height:2px;background:var(--stripe)}
+
+  .tabs{grid-auto-columns:max-content;gap:8px;margin-bottom:20px}
+  .tab{padding:10px 16px 10px 10px;scroll-snap-align:start}
+  .tab i{width:26px;height:26px}
+  .spanel{gap:22px}
+  .spanel__media{gap:6px}
+  .spanel__info{gap:18px}
+  .spanel__info h3{font-size:2.3rem}
+  .dl > div{grid-template-columns:96px minmax(0,1fr);gap:12px}
+  .acts .btn{flex:1 1 auto}
+
+  /* wrap bay: car stays pinned on top while the controls scroll under it */
+  .bay{padding:28px 6px 10px;border-radius:20px}
+  .bay__lights{top:10px}
+  .bay__read{padding:0 8px}
+  .bay__name{font-size:.95rem}
+  .panel{gap:20px}
+  .panel h2{font-size:clamp(2rem,9.4vw,2.9rem)}
+  .swatches{display:flex;overflow-x:auto;gap:10px;padding:4px 2px 8px;scrollbar-width:none;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
+  .swatches::-webkit-scrollbar{display:none}
+  .sw{flex:0 0 46px;width:46px;height:46px}
+  .seg button{height:40px;font-size:12px}
+  .summary .acts .btn{flex:1 1 0}
+
+  /* finishes: swipe cards */
+  .stack{grid-auto-columns:80vw;gap:12px;padding-bottom:4px}
+  .fin{position:relative;top:auto;min-height:0;margin:0;grid-template-columns:1fr;grid-template-rows:150px auto;scroll-snap-align:start;transform:none!important;filter:none!important}
+  .fin__in{gap:18px;padding:22px}
+  .fin h3{font-size:2.5rem}
+
+  /* before / after */
+  .ba{aspect-ratio:4/3;border-radius:20px}
+
+  /* work: two-row swipe gallery */
+  .work__bar{margin-bottom:16px}
+  .work__bar .picks{grid-auto-columns:max-content;gap:8px;flex:1 1 100%}
+  .work__bar .pick{scroll-snap-align:start}
+  .work__count{display:none}
+  .grid{grid-template-columns:none;grid-auto-flow:column dense;grid-template-rows:repeat(2,44vw);grid-auto-rows:44vw;grid-auto-columns:44vw;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);margin-inline:calc(-1 * var(--gutter));padding:0 var(--gutter) 4px;gap:8px;scrollbar-width:none}
+  .shot{scroll-snap-align:start;border-radius:12px}
+  .shot.w2{grid-column:span 2}.shot.h2{grid-row:span 2}
+  .shot figcaption b{font-size:.78rem}
+
+  /* process */
+  .step{min-height:300px;padding:22px}
+
+  /* quote */
+  .quote__box{border-radius:20px}
+  .quote__l,.quote__r{padding:22px}
+  .quote__l{gap:28px}
+  .quote__l h2{font-size:clamp(2rem,9.4vw,2.9rem)}
+  .pick{min-height:42px}
+  .est__v{font-size:1.7rem}
+
+  /* faq, visit, ig, footer */
+  .qa summary{font-size:1.02rem;padding:18px 0}
+  .loc{padding:22px;border-radius:20px}
+  .map{min-height:260px;border-radius:20px}
+  .clock{border-radius:20px;padding:18px 20px}
+  .clock__t{font-size:3rem}
+  .ig__grid{grid-auto-columns:40vw;gap:8px;padding-bottom:4px}
+  .ig__grid a{scroll-snap-align:start}
+  .foot{padding-top:56px}
+  .foot__in{flex-direction:column;align-items:flex-start}
+  .foot__links{gap:10px 18px}
+  .foot__legal{flex-direction:column}
+}
+@media (max-width:360px){
+  .hero__ctas{grid-template-columns:1fr}
+  .slabs{grid-auto-columns:82vw}
+  .grid{grid-template-rows:repeat(2,52vw);grid-auto-columns:52vw}
+}
+
 /* reduced motion */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
@@ -563,6 +688,7 @@ html.is-3d .bay__views{display:flex}
     <li><a href="#visit">Visit</a></li>
   </ul>
   <a href="#quote" class="btn btn--solid nav__cta mag">Get a quote</a>
+  <a class="nav__wa" id="navWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp Wrappi"><svg><use href="#i-wa"/></svg></a>
   <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span></button>
 </header>
 <nav class="menu" id="menu" aria-label="Mobile">
@@ -571,7 +697,8 @@ html.is-3d .bay__views{display:flex}
   <a href="#work">Work <small>Gallery</small></a>
   <a href="#quote">Prices <small>Quote</small></a>
   <a href="#visit">Visit <small>Oslo</small></a>
-  <a class="menu__call" href="tel:+4746228133">Call +47 462 28 133</a>
+  <div class="menu__acts"><a class="btn btn--wa" id="menuWa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a><a class="btn btn--ghost" href="tel:+4746228133"><svg><use href="#i-call"/></svg>Call</a></div>
+  <p class="menu__addr mono">Strømsveien 324 · 1081 Oslo</p>
 </nav>
 
 <main id="main">
@@ -623,6 +750,7 @@ html.is-3d .bay__views{display:flex}
     <a class="slab rv" href="#services" data-tab="polish"><span class="mono">Correct</span><div><div class="slab__w">Polish</div><p>Swirls, haze and light scratches machined out of the clear coat.</p><span class="slab__go">See polishing →</span></div></a>
     <a class="slab rv" href="#services" data-tab="ceramic"><span class="mono">Seal</span><div><div class="slab__w">Coat</div><p>A hard ceramic layer for gloss, water beading and easier washes.</p><span class="slab__go">See ceramic →</span></div></a>
   </div>
+  <p class="hs-hint mono" aria-hidden="true"><i></i>Swipe for all four</p>
 </section>
 
 <!-- SERVICES -->
@@ -959,6 +1087,7 @@ html.is-3d .bay__views{display:flex}
   <button class="lb__btn lb__next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
 </div>
 
+<div class="qbar" id="qbar"><div class="qbar__t"><span class="mono">Guide price</span><b id="qbarV">Pick a service</b></div><a class="btn btn--wa" id="qbarWa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Send</a></div>
 <button class="bot-fab" id="botFab" aria-expanded="false" aria-controls="bot"><span class="bot-fab__label">Ask Wrappi</span><img src="favicon.png" alt=""></button>
 <section class="bot" id="bot" role="dialog" aria-label="Wrappi assistant">
   <header class="bot__head">
@@ -1121,6 +1250,7 @@ const PPF = {
 };
 
 /* ---------- WhatsApp links everywhere ---------- */
+$('#navWa').href = $('#menuWa').href = wa("Hi Wrappi! I found you on your website and I'd like to ask about my car.");
 $('#heroWa').href = wa("Hi Wrappi! I found you on your website and I'd like to ask about my car.");
 $$('[data-wa]').forEach(a => a.href = wa(a.dataset.wa));
 $$('[data-price]').forEach(el => { const s = WRAPPI.services[el.dataset.price]; if (s) el.textContent = 'from ' + nok(s.from); });
@@ -1319,7 +1449,8 @@ function renderQuote() {
     name ? `— ${name}` : ''
   ].filter(Boolean).join('\n');
   $('#bubble').textContent = msg;
-  $('#qWa').href = wa(msg);
+  $('#qWa').href = $('#qbarWa').href = wa(msg);
+  $('#qbarV').textContent = $('#estV').textContent;
 }
 $('#sizePicks').addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) { Q.size = b.dataset.s; renderQuote(); } });
 $('#svcPicks').addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; const v = b.dataset.v; Q.svc.has(v) ? Q.svc.delete(v) : Q.svc.add(v); renderQuote(); });
@@ -1331,6 +1462,18 @@ $('#buildQuote').addEventListener('click', () => {
   Q.build = buildText(); renderQuote();
 });
 renderQuote();
+/* phones: a slim bar with the live price + Send while you're picking options */
+(() => {
+  const bar = $('#qbar'), seen = { l: false, r: false };
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => seen[e.target.classList.contains('quote__l') ? 'l' : 'r'] = e.isIntersecting);
+    const on = seen.l && !seen.r;
+    bar.classList.toggle('is-on', on); document.body.classList.toggle('qbar-on', on);
+  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+  io.observe($('.quote__l')); io.observe($('.quote__r'));
+  // keep the chat button off the hero buttons on phones
+  new IntersectionObserver(es => es.forEach(e => document.body.classList.toggle('hero-cta', e.isIntersecting))).observe($('.hero__ctas'));
+})();
 
 /* ---------- Oslo clock + open status ---------- */
 function osloNow() {
@@ -1449,7 +1592,7 @@ addEventListener('load', () => {
 
   /* finishes: earlier cards sink back as the next one lands */
   const fins = $$('.fin');
-  fins.forEach((f, i) => { if (i < fins.length - 1) gsap.to(f, { scale: .94, filter: 'brightness(.55)', ease: 'none', scrollTrigger: { trigger: fins[i + 1], start: 'top bottom', end: 'top 20%', scrub: true } }); });
+  if (innerWidth > 760) fins.forEach((f, i) => { if (i < fins.length - 1) gsap.to(f, { scale: .94, filter: 'brightness(.55)', ease: 'none', scrollTrigger: { trigger: fins[i + 1], start: 'top bottom', end: 'top 20%', scrub: true } }); });
 
   /* process: horizontal on desktop */
   const mm = gsap.matchMedia();
@@ -1624,7 +1767,8 @@ if (uCer > 0.001) {
     camera.setViewOffset(W, H, -(sx - W / 2), -(sy - H / 2), W, H);
     camera.updateProjectionMatrix();
     const tv = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), th = tv * camera.aspect;
-    const D = Math.max(v.s[0] * W / (v.fill * sw) / (2 * th), v.s[1] * H / (v.fill * sh) / (2 * tv)) + 1.2;
+    const fill = u === 'h' && mobile() ? .9 : v.fill;
+    const D = Math.max(v.s[0] * W / (fill * sw) / (2 * th), v.s[1] * H / (fill * sh) / (2 * tv)) + (mobile() ? .6 : 1.2);
     const to = new THREE.Vector3(...v.d).normalize().multiplyScalar(D).add(target);
     if (snap) { camera.position.copy(to); camTween = null; }
     else camTween = { from: camera.position.clone(), to, t0: performance.now(), ms: 1300, r0: m.rot, r1: (m.view === 'threeq' || m.view === 'hero') ? m.rot : Math.round(m.rot / (Math.PI * 2)) * Math.PI * 2 };
