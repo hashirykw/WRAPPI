@@ -1,0 +1,1450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wrappi · Wrapping Art Design · PPF, car wraps, polishing &amp; ceramic coating in Oslo</title>
+<meta name="description" content="Wrappi — Wrapping Art Design. Paint protection film (PPF), colour wraps, polishing and ceramic coating at Strømsveien 324, 1081 Oslo. Call +47 462 28 133 or +47 463 61 675.">
+<meta name="theme-color" content="#0c0d0f">
+<meta property="og:title" content="Wrappi — Turn your car into art">
+<meta property="og:description" content="PPF · Wrapping · Polishing · Ceramic coating · Strømsveien 324, Oslo">
+<meta property="og:image" content="logo.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+document.documentElement.classList.add('js');
+/* any photo that isn't in the folder yet turns into a labelled placeholder */
+function ph(i){var f=i.closest('[data-ph]')||i.parentNode;if(f)f.classList.add('ph');i.remove();}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AutoBodyShop","name":"Wrappi — Wrapping Art Design","slogan":"Turn your car into art","telephone":["+47 462 28 133","+47 463 61 675"],"logo":"logo.png","image":"logo.png",
+"address":{"@type":"PostalAddress","streetAddress":"Strømsveien 324","postalCode":"1081","addressLocality":"Oslo","addressCountry":"NO"},
+"sameAs":["https://www.instagram.com/wrappi_/"],
+"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Paint protection film (PPF)"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Car wrapping"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Polishing"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ceramic coating"}}]}
+</script>
+<style>
+/* Hallmark · genre: atmospheric (client-overridden: maximal, matches the Verzish build) · macrostructure: bespoke "Wrap Bay"
+ * theme: studied-DNA (source: client logo "WRAPPI · Wrapping Art Design") · palette sampled from the logo:
+ *   disc #1c1d1f · wordmark #f6f6f4 · left rule red #d6343c · right rule blue #4092ce
+ * display: Archivo expanded (wdth 125) · body: Archivo (wdth 100) · data: Geist Mono · nav: N5 floating pill · footer: Ft5 statement
+ * signature move: the squeegee — every colour change is laid on like film, a blade with the logo's red/blue rule drags it across
+ * pre-emit critique: P5 H4 E4 S5 R3 V5 (restraint lowered to match Verzish) · prices and hours are placeholders, flagged in UI + README
+ */
+:root{
+  --color-ink:#0c0d0f;
+  --color-ink-2:#141518;
+  --color-ink-3:#1c1d1f;
+  --color-steel:#34363b;
+  --color-line:rgb(236 236 232 / .12);
+  --color-line-2:rgb(236 236 232 / .24);
+  --color-mute:#8b8d92;
+  --color-soft:#c9cacd;
+  --color-glow:#f6f6f4;
+  --color-red:#d6343c;
+  --color-red-deep:#7d1d23;
+  --color-blue:#4092ce;
+  --color-blue-deep:#173e5f;
+  --color-wa:#25d366;
+  --stripe:linear-gradient(90deg,var(--color-red) 0 44%,transparent 44% 56%,var(--color-blue) 56% 100%);
+  --glow-sm:0 0 6px rgb(246 246 244 / .5),0 0 18px rgb(246 246 244 / .2);
+  --glow-red:0 0 10px rgb(214 52 60 / .7),0 0 30px rgb(214 52 60 / .3);
+  --glow-blue:0 0 10px rgb(64 146 206 / .7),0 0 30px rgb(64 146 206 / .3);
+  --font-display:'Archivo','Arial Black',system-ui,sans-serif;
+  --font-body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --space-2xs:4px;--space-xs:8px;--space-sm:12px;--space-md:16px;--space-lg:24px;--space-xl:40px;--space-2xl:64px;--space-3xl:112px;
+  --text-xs:.75rem;--text-sm:.875rem;--text-md:1rem;--text-lg:1.2rem;--text-xl:clamp(1.4rem,1.1rem + 1.2vw,2rem);
+  --text-2xl:clamp(2.1rem,1.2rem + 3.6vw,4.4rem);
+  --radius-sm:6px;--radius-md:14px;--radius-lg:26px;--radius-pill:999px;
+  --ease-out:cubic-bezier(.16,1,.3,1);--ease-in:cubic-bezier(.7,0,.84,0);--ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:160ms;--dur-base:320ms;--dur-slow:900ms;
+  --maxw:1320px;--gutter:clamp(18px,4vw,48px);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{overflow-x:clip;scroll-padding-top:calc(96px + env(safe-area-inset-top,0px));background:var(--color-ink);color-scheme:dark;scrollbar-width:thin;scrollbar-color:var(--color-steel) var(--color-ink)}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:var(--color-ink)}::-webkit-scrollbar-thumb{background:var(--color-steel);border-radius:10px;border:2px solid var(--color-ink)}
+body{margin:0;overflow-x:clip;background:var(--color-ink);color:var(--color-soft);font-family:var(--font-body);font-size:var(--text-md);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px)}
+img,video,svg,iframe{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--color-glow);outline-offset:3px;border-radius:4px}
+::selection{background:var(--color-red);color:var(--color-glow)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+h1,h2,h3,h4{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-style:normal;color:var(--color-glow);margin:0;line-height:.92;letter-spacing:-.01em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0}
+p{margin:0}
+.mono{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute)}
+.tag{display:inline-flex;align-items:center;gap:var(--space-xs);font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--color-soft)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--color-red);box-shadow:var(--glow-red);animation:pulse 1.8s var(--ease-in-out) infinite;flex:none}
+.dot--blue{background:var(--color-blue);box-shadow:var(--glow-blue)}
+@keyframes pulse{50%{opacity:.35;transform:scale(.7)}}
+.rule{display:block;height:2px;width:min(220px,40%);background:var(--stripe)}
+.rule--c{margin-inline:auto}
+
+/* grain */
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:120;background:var(--stripe);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+
+/* buttons */
+.btn{--bg:transparent;--fg:var(--color-glow);position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:var(--radius-pill);background:var(--bg);color:var(--fg);font-family:var(--font-body);font-weight:650;font-size:var(--text-sm);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;border:1px solid var(--color-line-2);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),transform var(--dur-fast) var(--ease-out)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn:active{transform:translateY(1px)}
+.btn--solid{--bg:var(--color-glow);--fg:var(--color-ink);border-color:var(--color-glow)}
+.btn--solid:hover{--bg:#fff;box-shadow:0 0 0 3px rgb(246 246 244 / .22),0 10px 28px rgb(0 0 0 / .5)}
+.btn--ghost:hover{border-color:var(--color-glow);box-shadow:inset 0 0 0 1px var(--color-glow)}
+.btn--wa{--bg:var(--color-wa);--fg:#04210f;border-color:var(--color-wa)}
+.btn--wa:hover{box-shadow:0 0 0 3px rgb(37 211 102 / .25),0 10px 28px rgb(0 0 0 / .5)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+
+/* cursor (fine pointers only) */
+.cursor,.cursor-dot{position:fixed;left:0;top:0;z-index:130;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%)}
+.cursor{opacity:0;width:42px;height:42px;border:1px solid var(--color-glow);display:none;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--color-ink);transition:width var(--dur-base) var(--ease-out),height var(--dur-base) var(--ease-out),background var(--dur-base) var(--ease-out)}
+.cursor span{opacity:0;transition:opacity var(--dur-fast)}
+.cursor.is-view{width:84px;height:84px;background:var(--color-glow)}
+.cursor.is-view span{opacity:1}
+.cursor-dot{opacity:0;width:5px;height:5px;background:var(--color-red);display:none}
+@media (hover:hover) and (pointer:fine){.has-cursor .cursor{display:flex}.has-cursor .cursor-dot{display:block}}
+
+/* loader — the page arrives under a sheet of film, then the squeegee pulls it off */
+.loader{position:fixed;inset:0;z-index:150;background:var(--color-ink);display:grid;place-items:center;align-content:center;gap:clamp(14px,2vw,26px);clip-path:inset(0 0 0 0)}
+.loader__w{display:flex;overflow:hidden;font-family:var(--font-display);font-stretch:125%;font-weight:900;font-size:clamp(3.4rem,15vw,15rem);line-height:.86;letter-spacing:.06em;color:var(--color-glow)}
+.loader__w span{display:inline-block}
+.loader__s{display:flex;align-items:center;gap:14px;width:min(78vw,1100px)}
+.loader__s i{flex:1;height:3px;transform-origin:right}
+.loader__s i:first-child{background:var(--color-red);box-shadow:var(--glow-red)}
+.loader__s i:last-child{background:var(--color-blue);box-shadow:var(--glow-blue);transform-origin:left}
+.loader__s b{font-family:var(--font-mono);font-weight:500;font-size:clamp(10px,1.1vw,14px);letter-spacing:.34em;text-transform:uppercase;color:var(--color-glow);white-space:nowrap}
+.loader__n{position:fixed;left:var(--gutter);bottom:calc(6vh + env(safe-area-inset-bottom,0px));z-index:151;font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(2rem,4.5vw,3.6rem);color:var(--color-glow);font-variant-numeric:tabular-nums;pointer-events:none}
+.loader__blade{position:fixed;top:0;bottom:0;left:0;width:4px;z-index:152;background:var(--color-glow);box-shadow:0 0 18px rgb(246 246 244 / .8);opacity:0;pointer-events:none}
+.loader__blade::before,.loader__blade::after{content:"";position:absolute;left:0;right:0;height:50%}
+.loader__blade::before{top:0;background:var(--color-red)}
+.loader__blade::after{bottom:0;background:var(--color-blue)}
+html:not(.js) .loader,html:not(.js) .loader__n,html:not(.js) .loader__blade{display:none}
+
+/* nav — N5 floating pill */
+.nav{position:fixed;z-index:100;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);width:min(calc(100% - 24px),1180px);display:flex;align-items:center;gap:var(--space-md);height:64px;padding:0 10px 0 22px;border-radius:var(--radius-pill);background:rgb(12 13 15 / .62);border:1px solid var(--color-line);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);transition:transform var(--dur-slow) var(--ease-out)}
+.nav.is-hidden{transform:translate(-50%,-140%)}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{height:22px;width:auto}
+.nav__links{display:flex;gap:4px;margin:0 auto;padding:0;list-style:none}
+.nav__links a{display:block;padding:8px 13px;border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:550;color:var(--color-soft);white-space:nowrap;transition:color var(--dur-fast),background var(--dur-fast)}
+.nav__links a:hover,.nav__links a.is-on{color:var(--color-glow);background:rgb(246 246 244 / .07)}
+.nav__cta{height:44px;padding:0 20px}
+.nav__burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--color-line-2);position:relative;margin-left:auto}
+.nav__burger span,.nav__burger span::before{position:absolute;left:13px;right:13px;height:2px;background:var(--color-glow);content:"";transition:transform var(--dur-base) var(--ease-out)}
+.nav__burger span{top:17px}.nav__burger span::before{left:0;right:0;top:8px}
+.nav__burger[aria-expanded="true"] span{transform:translateY(4px) rotate(45deg)}
+.nav__burger[aria-expanded="true"] span::before{transform:translateY(-8px) rotate(-90deg)}
+.menu{position:fixed;inset:0;z-index:99;background:rgb(12 13 15 / .97);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:100px var(--gutter) 40px;opacity:0;visibility:hidden;transition:opacity var(--dur-base) var(--ease-out),visibility var(--dur-base)}
+.menu.is-open{opacity:1;visibility:visible}
+.menu a{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(1.8rem,8vw,3rem);text-transform:uppercase;color:var(--color-glow);padding:8px 0;border-bottom:1px solid var(--color-line)}
+.menu a small{font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--color-mute)}
+.menu .menu__call{margin-top:24px;border:0;font-family:var(--font-body);font-stretch:100%;font-size:var(--text-md);font-weight:600;text-transform:none;color:var(--color-soft)}
+@media (max-width:1060px){.nav__links{display:none}.nav__cta{margin-left:auto}}
+@media (max-width:520px){.nav{height:58px;padding-left:18px}.brand img{height:18px}.nav__cta{display:none}.nav__burger{display:block}}
+@media (min-width:521px) and (max-width:1060px){.nav__burger{display:block;margin-left:0}}
+
+/* ───────── HERO ───────── */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-rows:1fr auto;overflow:hidden;isolation:isolate;background:radial-gradient(120% 70% at 50% 100%,#1d1f23 0%,var(--color-ink) 62%)}
+.hero__lights{position:absolute;inset:0 0 auto;height:44%;z-index:-1;pointer-events:none;display:flex;justify-content:center;gap:clamp(18px,4vw,64px);padding-top:calc(var(--space-xl) + 70px);perspective:600px}
+.hero__lights i{display:block;width:clamp(60px,12vw,180px);height:6px;border-radius:6px;background:var(--color-glow);box-shadow:0 0 14px rgb(246 246 244 / .9),0 0 50px rgb(246 246 244 / .35);opacity:.16;transform:rotateX(55deg)}
+.hero__video{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s var(--ease-out)}
+.hero.has-video .hero__video{opacity:.55}
+.hero.has-video .hero__stage{opacity:0;pointer-events:none}
+.hero__shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgb(12 13 15 / .2) 0%,transparent 40%,rgb(12 13 15 / .85) 100%);pointer-events:none}
+.hero__inner{position:relative;padding-top:calc(130px + env(safe-area-inset-top,0px));display:grid;gap:var(--space-lg);align-content:start}
+.hero__eyebrow{display:flex;flex-wrap:wrap;gap:10px 22px}
+.hero__title{font-weight:900;font-size:clamp(1.6rem,calc((100vw - 2 * var(--gutter)) / 13.4),7.4rem);line-height:.88;letter-spacing:-.005em}
+.hero__title .line{display:block;overflow:hidden;padding-bottom:.04em}
+.hero__title .line > span{display:inline-block}
+.hero__title .out{color:transparent;-webkit-text-stroke:1.5px var(--color-glow)}
+.hero__row{display:grid;grid-template-columns:minmax(0,1.1fr) auto;gap:var(--space-lg) var(--space-xl);align-items:end}
+.hero__sub{max-width:54ch;font-size:var(--text-lg);color:var(--color-soft)}
+.hero__sub strong{color:var(--color-glow);font-weight:650}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:10px}
+.hero__stage{position:relative;transition:opacity 1s var(--ease-out);margin-top:clamp(-40px,-3vw,0px)}
+.hero__car{width:min(1180px,100%);margin-inline:auto;padding-inline:var(--gutter)}
+.hero__now{position:absolute;left:var(--gutter);bottom:clamp(14px,3vw,40px);display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);background:rgb(12 13 15 / .5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-glow);white-space:nowrap;transition:border-color var(--dur-fast),background var(--dur-fast)}
+.chip:hover{border-color:var(--color-glow)}
+.chip__sw{width:12px;height:12px;border-radius:50%;background:var(--sw,#888);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .3)}
+.scroll-cue{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(14px,3vw,40px);display:flex;align-items:center;gap:10px}
+.scroll-cue span{width:1px;height:38px;background:linear-gradient(var(--color-glow),transparent);animation:cue 2s var(--ease-in-out) infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:860px){.hero__row{grid-template-columns:1fr}.hero__now{position:static;justify-content:flex-start;padding:0 var(--gutter) var(--space-lg)}.scroll-cue{display:none}.hero__stage{margin-top:var(--space-lg)}}
+@media (max-width:520px){.hero__ctas .btn{flex:1 1 100%}.hero__sub{font-size:var(--text-md)}.hero__title{font-size:calc((100vw - 2 * var(--gutter)) / 8.6)}.hero__car{width:110%;margin-left:-5%;padding:0}}
+
+/* ───────── CAR (shared by hero + studio) ───────── */
+.car{width:100%;height:auto;overflow:visible}
+.car .shade{transition:opacity var(--dur-slow) var(--ease-out)}
+.car .spec,.car .spec-soft,.car .chrome,.car .metal{transition:opacity var(--dur-slow) var(--ease-out)}
+.car[data-finish="gloss"] .shade{opacity:.95}.car[data-finish="gloss"] .spec{opacity:.7}.car[data-finish="gloss"] .spec-soft{opacity:.25}.car[data-finish="gloss"] .chrome{opacity:0}
+.car[data-finish="satin"] .shade{opacity:.8}.car[data-finish="satin"] .spec{opacity:0}.car[data-finish="satin"] .spec-soft{opacity:.55}.car[data-finish="satin"] .chrome{opacity:0}
+.car[data-finish="matte"] .shade{opacity:.55}.car[data-finish="matte"] .spec{opacity:0}.car[data-finish="matte"] .spec-soft{opacity:.1}.car[data-finish="matte"] .chrome{opacity:0}
+.car[data-finish="chrome"] .shade{opacity:.4}.car[data-finish="chrome"] .spec{opacity:1}.car[data-finish="chrome"] .spec-soft{opacity:.4}.car[data-finish="chrome"] .chrome{opacity:.95}
+.car .sq{transition:opacity var(--dur-base)}
+.car .ppf rect{opacity:0;transition:opacity var(--dur-base) var(--ease-out)}
+.car[data-mode="ppf"] .ppf-sheen{opacity:1}
+.car .ppf-sheen{opacity:0;transition:opacity var(--dur-base)}
+.car[data-mode="ppf"][data-ppf="front"] .z1,
+.car[data-mode="ppf"][data-ppf="ffront"] :is(.z1,.z2),
+.car[data-mode="ppf"][data-ppf="track"] :is(.z1,.z2,.z3,.z4,.z5),
+.car[data-mode="ppf"][data-ppf="full"] .z6{opacity:1}
+.car .beads ellipse,.car .beads circle{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.2);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out)}
+.car[data-ceramic="1"] .beads ellipse,.car[data-ceramic="1"] .beads circle{opacity:1;transform:scale(1)}
+.car .brake{fill:var(--color-red)}
+@media (prefers-reduced-motion:reduce){.car .beads ellipse,.car .beads circle{transition:opacity .15s}}
+
+/* ───────── MARQUEE ───────── */
+.marquee{position:relative;border-block:1px solid var(--color-line);background:var(--color-glow);overflow:hidden;transform:rotate(-1.2deg) scale(1.03);margin:var(--space-xl) 0 var(--space-2xl)}
+.marquee__row{display:flex;width:max-content;animation:mq 38s linear infinite}
+.marquee__item{display:flex;align-items:center;gap:22px;padding-right:22px;height:46px;font-family:var(--font-display);font-stretch:125%;font-weight:900;font-size:clamp(1rem,.9rem + .5vw,1.4rem);letter-spacing:.05em;text-transform:uppercase;color:var(--color-ink);white-space:nowrap}
+.marquee__item i{width:26px;height:3px;background:var(--stripe);flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee__row{animation-duration:160s}}
+
+/* section heads */
+.sec{padding-block:clamp(72px,10vw,140px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--space-lg) var(--space-2xl);align-items:end;margin-bottom:clamp(32px,5vw,64px)}
+.sec-head h2{font-size:var(--text-2xl)}
+.sec-head p{max-width:52ch}
+.sec-head .rule{margin-top:var(--space-lg)}
+@media (max-width:820px){.sec-head{grid-template-columns:1fr}}
+
+/* ───────── WHAT WE DO (slabs) ───────── */
+.slabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.slab{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-xl);min-height:300px;padding:22px;border-radius:var(--radius-md);background:linear-gradient(160deg,var(--color-ink-3),var(--color-ink-2));border:1px solid var(--color-line);overflow:hidden;transition:border-color var(--dur-base),transform var(--dur-base) var(--ease-out)}
+.slab::after{content:"";position:absolute;left:22px;right:22px;bottom:0;height:2px;background:var(--stripe);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-slow) var(--ease-out)}
+.slab:hover{border-color:var(--color-line-2)}
+.slab:hover::after{transform:scaleX(1)}
+.slab__w{font-family:var(--font-display);font-stretch:125%;font-weight:900;font-size:clamp(2.2rem,1.4rem + 2.4vw,3.6rem);line-height:.85;color:var(--color-glow);text-transform:uppercase;overflow-wrap:anywhere}
+.slab p{font-size:var(--text-sm)}
+.slab__go{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-glow);margin-top:10px;display:inline-block}
+@media (max-width:1000px){.slabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.slabs{grid-template-columns:1fr}.slab{min-height:0}}
+
+/* ───────── SERVICES (tabs) ───────── */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:var(--space-lg);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:flex;align-items:center;gap:12px;padding:12px 20px 12px 14px;border-radius:var(--radius-pill);border:1px solid var(--color-line);text-align:left;transition:border-color var(--dur-fast),background var(--dur-fast)}
+.tab i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--color-ink-3);font-style:normal;font-family:var(--font-mono);font-size:11px;color:var(--color-mute)}
+.tab b{display:block;font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--color-glow);line-height:1.1}
+.tab span span{font-size:var(--text-xs);color:var(--color-mute)}
+.tab:hover{border-color:var(--color-line-2)}
+.tab[aria-selected="true"]{background:var(--color-glow);border-color:var(--color-glow)}
+.tab[aria-selected="true"] b{color:var(--color-ink)}
+.tab[aria-selected="true"] span span{color:#55575c}
+.tab[aria-selected="true"] i{background:var(--color-ink);color:var(--color-glow)}
+.spanel{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.spanel[hidden]{display:none}
+.spanel__media{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.media{position:relative;overflow:hidden;border-radius:var(--radius-md);background:var(--color-ink-3);aspect-ratio:4/3}
+.media img,.media video{width:100%;height:100%;object-fit:cover}
+.spanel__media .media:first-child{grid-column:1 / -1;aspect-ratio:16/10}
+.spanel__info{display:grid;gap:var(--space-lg)}
+.spanel__info h3{font-size:clamp(2rem,1.3rem + 2.6vw,3.6rem)}
+.spanel__info h3 small{display:block;margin-top:10px;font-family:var(--font-body);font-stretch:100%;font-size:var(--text-md);font-weight:500;letter-spacing:0;text-transform:none;color:var(--color-mute)}
+.dl{display:grid;gap:0;margin:0;border-top:1px solid var(--color-line)}
+.dl > div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--space-md);padding:12px 0;border-bottom:1px solid var(--color-line)}
+.dl dt{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute);padding-top:3px}
+.dl dd{margin:0;color:var(--color-glow)}
+.kit{display:flex;flex-wrap:wrap;gap:6px}
+.kit span{padding:6px 12px;border-radius:var(--radius-pill);border:1px solid var(--color-line);font-size:var(--text-xs);color:var(--color-soft)}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.tbc{display:inline-flex;align-items:center;gap:6px;padding:1px 8px;border:1px dashed rgb(214 52 60 / .7);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#f09095;vertical-align:middle;white-space:nowrap}
+.no-tbc .tbc{display:none}
+@media (max-width:900px){.spanel{grid-template-columns:1fr}}
+@media (max-width:420px){.dl > div{grid-template-columns:1fr;gap:2px}}
+
+/* placeholder frames — any missing photo shows what file belongs there */
+.ph{background:
+  repeating-linear-gradient(115deg,rgb(246 246 244 / .025) 0 14px,transparent 14px 28px),
+  radial-gradient(90% 70% at 30% 20%,#26282c,var(--color-ink-2) 70%)}
+.ph::before{content:"";position:absolute;inset:auto 18px 18px auto;width:min(42%,170px);aspect-ratio:3/1;opacity:.22;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100'%3E%3Cpath d='M10 74C8 66 10 60 20 57L94 50C112 36 128 26 156 24C190 22 222 30 246 44C268 47 284 52 288 62L288 74Z' fill='none' stroke='%23f6f6f4' stroke-width='3'/%3E%3Ccircle cx='70' cy='76' r='13' fill='none' stroke='%23f6f6f4' stroke-width='3'/%3E%3Ccircle cx='232' cy='76' r='13' fill='none' stroke='%23f6f6f4' stroke-width='3'/%3E%3C/svg%3E") no-repeat center/contain}
+.ph::after{content:attr(data-ph);position:absolute;left:16px;top:14px;right:16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-mute);line-height:1.5}
+
+/* ───────── STUDIO (configurator) ───────── */
+.studio{position:relative;background:linear-gradient(180deg,var(--color-ink) 0%,#101114 30%,#101114 70%,var(--color-ink) 100%);overflow:hidden}
+.studio__grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(320px,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.bay{position:sticky;top:96px;border-radius:var(--radius-lg);border:1px solid var(--color-line);background:radial-gradient(90% 60% at 50% 105%,#2a2c31 0%,#141518 55%,#0e0f11 100%);overflow:hidden;padding:clamp(40px,6vw,80px) clamp(10px,2vw,28px) clamp(16px,2vw,24px)}
+.bay__lights{position:absolute;top:18px;left:0;right:0;display:flex;justify-content:center;gap:clamp(12px,3vw,40px);pointer-events:none}
+.bay__lights i{width:clamp(40px,9vw,120px);height:4px;border-radius:4px;background:var(--color-glow);box-shadow:0 0 12px rgb(246 246 244 / .9),0 0 40px rgb(246 246 244 / .3);opacity:.5}
+.bay__read{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px}
+.bay__name{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:clamp(1rem,.8rem + .8vw,1.5rem);text-transform:uppercase;color:var(--color-glow)}
+.panel{display:grid;gap:var(--space-lg)}
+.panel h2{font-size:clamp(2rem,1.2rem + 3vw,3.8rem)}
+.seg{display:grid;grid-template-columns:1fr 1fr;padding:4px;border-radius:var(--radius-pill);background:var(--color-ink-3);border:1px solid var(--color-line)}
+.seg button{height:42px;border-radius:var(--radius-pill);font-weight:650;font-size:var(--text-sm);letter-spacing:.04em;text-transform:uppercase;color:var(--color-mute);transition:background var(--dur-base) var(--ease-out),color var(--dur-base)}
+.seg button[aria-pressed="true"]{background:var(--color-glow);color:var(--color-ink)}
+.ctrl{display:grid;gap:10px}
+.ctrl > span{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute)}
+.ctrl[hidden]{display:none}
+.picks{display:flex;flex-wrap:wrap;gap:8px}
+.pick{min-height:40px;padding:8px 16px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);font-size:var(--text-sm);font-weight:550;color:var(--color-soft);text-align:left;transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast)}
+.pick:hover{border-color:var(--color-glow);color:var(--color-glow)}
+.pick[aria-pressed="true"],.pick[aria-checked="true"]{background:var(--color-glow);color:var(--color-ink);border-color:var(--color-glow)}
+.pick small{display:block;font-size:11px;font-weight:400;opacity:.7}
+.swatches{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.sw{position:relative;aspect-ratio:1;border-radius:50%;background:var(--sw);box-shadow:inset 0 -8px 14px rgb(0 0 0 / .35),inset 0 6px 10px rgb(255 255 255 / .25),0 0 0 1px rgb(255 255 255 / .12);transition:transform var(--dur-fast) var(--ease-out),box-shadow var(--dur-fast)}
+.sw:hover{transform:scale(1.06)}
+.sw[aria-pressed="true"]{box-shadow:inset 0 -8px 14px rgb(0 0 0 / .35),inset 0 6px 10px rgb(255 255 255 / .25),0 0 0 2px var(--color-ink),0 0 0 4px var(--color-glow)}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-radius:var(--radius-md);border:1px solid var(--color-line);text-align:left;width:100%}
+.switch b{display:block;color:var(--color-glow);font-weight:650}
+.switch small{color:var(--color-mute);font-size:var(--text-xs)}
+.switch__t{flex:none;width:48px;height:28px;border-radius:99px;background:var(--color-steel);position:relative;transition:background var(--dur-base)}
+.switch__t::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--color-glow);transition:transform var(--dur-base) var(--ease-out)}
+.switch[aria-checked="true"] .switch__t{background:var(--color-blue)}
+.switch[aria-checked="true"] .switch__t::after{transform:translateX(20px)}
+.covers{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.covers li{display:flex;gap:10px;font-size:var(--text-sm)}
+.covers li::before{content:"";flex:none;width:14px;height:2px;margin-top:11px;background:var(--stripe)}
+.summary{padding:18px;border-radius:var(--radius-md);background:var(--color-ink-3);border:1px solid var(--color-line);display:grid;gap:14px}
+.summary p{color:var(--color-glow)}
+@media (max-width:980px){.studio__grid{grid-template-columns:1fr}.bay{position:sticky;top:calc(8px + env(safe-area-inset-top,0px));z-index:5;box-shadow:0 18px 40px rgb(0 0 0 / .55)}}
+@media (max-width:420px){.swatches{gap:8px}}
+
+/* ───────── FINISHES (sticky stack) ───────── */
+.stack{display:grid;gap:0;padding-bottom:4vh}
+.fin{position:sticky;top:calc(96px + var(--i) * 18px);min-height:clamp(380px,62vh,600px);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-line);margin-bottom:6vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--color-ink-2);transform-origin:50% 0}
+.fin__swatch{position:relative;overflow:hidden;background:var(--paint)}
+.fin__swatch::before{content:"";position:absolute;inset:0;background:var(--fx)}
+.fin__swatch::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgb(0 0 0 / .45))}
+.fin__in{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-xl);padding:clamp(24px,4vw,52px)}
+.fin h3{font-size:clamp(2.6rem,1.4rem + 5vw,6rem)}
+.fin__foot{display:grid;gap:var(--space-md)}
+.fin__foot p{max-width:46ch}
+@media (max-width:760px){.fin{grid-template-columns:1fr;grid-template-rows:180px auto;min-height:0}}
+
+/* ───────── BEFORE / AFTER ───────── */
+.ba__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(24px,4vw,64px);align-items:center}
+.ba__copy{display:grid;gap:var(--space-lg)}
+.ba__copy h2{font-size:var(--text-2xl)}
+.ba{position:relative;aspect-ratio:16/10;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-line);user-select:none;touch-action:pan-y;--x:50%}
+.ba__layer{position:absolute;inset:0}
+.ba__layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba__paint{position:absolute;inset:0;background:
+  radial-gradient(28% 9% at 52% 30%,rgb(255 255 255 / .95),rgb(255 255 255 / .5) 40%,transparent 72%),
+  radial-gradient(60% 30% at 50% 32%,rgb(150 170 200 / .18),transparent 70%),
+  linear-gradient(175deg,#2c3036 0%,#101114 46%,#060607 100%)}
+.ba__layer--before .ba__paint{filter:saturate(.7) brightness(.86)}
+.ba__layer--before .ba__paint::after{content:"";position:absolute;inset:0;background:
+  repeating-radial-gradient(circle at 52% 31%,rgb(255 255 255 / .0) 0 7px,rgb(255 255 255 / .07) 7.5px 8.5px,rgb(255 255 255 / 0) 9px 15px),
+  repeating-radial-gradient(circle at 30% 70%,rgb(255 255 255 / 0) 0 9px,rgb(255 255 255 / .05) 9.5px 10.5px,rgb(255 255 255 / 0) 11px 19px),
+  radial-gradient(70% 50% at 50% 40%,rgb(255 255 255 / .08),transparent);mix-blend-mode:screen}
+.ba__layer--after{clip-path:inset(0 0 0 var(--x))}
+.ba__layer--after .ba__paint{filter:contrast(1.15)}
+.ba__label{position:absolute;top:16px;z-index:3;pointer-events:none}
+.ba__label--l{left:16px}.ba__label--r{right:16px}
+.ba__handle{position:absolute;top:0;bottom:0;left:var(--x);width:4px;margin-left:-2px;z-index:4;background:var(--color-glow);box-shadow:0 0 16px rgb(246 246 244 / .7);pointer-events:none}
+.ba__handle::before,.ba__handle::after{content:"";position:absolute;left:0;right:0;height:50%}
+.ba__handle::before{top:0;background:var(--color-red)}.ba__handle::after{bottom:0;background:var(--color-blue)}
+.ba__knob{position:absolute;top:50%;left:50%;z-index:2;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:var(--color-glow);display:grid;place-items:center;color:var(--color-ink);box-shadow:0 8px 24px rgb(0 0 0 / .5)}
+.ba__knob svg{width:22px;height:22px}
+.ba input{position:absolute;inset:0;z-index:5;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba input:focus-visible + .ba__handle .ba__knob{outline:2px solid var(--color-glow);outline-offset:4px}
+@media (max-width:860px){.ba__grid{grid-template-columns:1fr}}
+
+/* ───────── WORK (gallery) ───────── */
+.work__bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-bottom:var(--space-lg)}
+.work__count{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute)}
+.work__count b{color:var(--color-glow);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(150px,18vw,260px);grid-auto-flow:dense;gap:10px}
+.shot{position:relative;margin:0;border-radius:var(--radius-md);overflow:hidden;background:var(--color-ink-3);cursor:zoom-in;border:1px solid var(--color-line)}
+.shot.w2{grid-column:span 2}.shot.h2{grid-row:span 2}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease-out),filter var(--dur-slow)}
+.shot:hover img{transform:scale(1.05)}
+.shot figcaption{position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;gap:8px;align-items:end;z-index:2;pointer-events:none}
+.shot figcaption b{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:.95rem;text-transform:uppercase;color:var(--color-glow);text-shadow:0 2px 12px rgb(0 0 0 / .6)}
+.shot figcaption span{padding:4px 9px;border-radius:var(--radius-pill);background:rgb(12 13 15 / .7);font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-soft)}
+.shot.is-out{display:none}
+.shot button{position:absolute;inset:0;z-index:3}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,36vw,240px)}}
+@media (max-width:480px){.shot.w2{grid-column:span 2}.shot.h2{grid-row:span 1}.shot:not(.w2) figcaption span{display:none}.shot figcaption b{font-size:.8rem}}
+
+/* ───────── PROCESS (horizontal) ───────── */
+.process{overflow:hidden}
+.track{display:flex;gap:14px;padding-inline:var(--gutter);width:max-content}
+.step{position:relative;flex:none;width:clamp(270px,30vw,400px);min-height:clamp(340px,46vh,440px);border-radius:var(--radius-lg);border:1px solid var(--color-line);background:linear-gradient(170deg,var(--color-ink-3),var(--color-ink-2));padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-xl)}
+.step__n{font-family:var(--font-display);font-stretch:125%;font-weight:900;font-size:clamp(3.4rem,2.6rem + 3vw,5.4rem);line-height:.8;color:transparent;-webkit-text-stroke:1.2px var(--color-glow)}
+.step h3{font-size:1.45rem;margin-bottom:12px}
+.step p{font-size:var(--text-sm)}
+.step--end{background:var(--color-glow);border-color:var(--color-glow);color:var(--color-ink)}
+.step--end h3{color:var(--color-ink);font-size:clamp(2rem,1.6rem + 1.4vw,2.8rem)}
+.step--end .btn{--bg:var(--color-ink);--fg:var(--color-glow);border-color:var(--color-ink);align-self:start}
+.step__bar{position:absolute;left:26px;right:26px;top:0;height:2px;background:var(--stripe);transform-origin:left;transform:scaleX(.18)}
+@media (max-width:899px){.process .track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:none}.process .track::-webkit-scrollbar{display:none}.step{scroll-snap-align:start;width:min(82vw,360px)}}
+
+/* ───────── QUOTE (estimator + WhatsApp builder) ───────── */
+.quote__box{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);border-radius:var(--radius-lg);border:1px solid var(--color-line);overflow:hidden;background:var(--color-ink-2)}
+.quote__l{padding:clamp(22px,4vw,48px);display:grid;gap:var(--space-xl);align-content:start}
+.quote__l h2{font-size:clamp(2rem,1.2rem + 3vw,3.8rem)}
+.quote__r{position:relative;padding:clamp(22px,4vw,48px);background:linear-gradient(170deg,#1d1f23,#121316);border-left:1px solid var(--color-line);display:grid;gap:var(--space-lg);align-content:start}
+.est{display:grid;gap:6px}
+.est__v{font-family:var(--font-display);font-stretch:125%;font-weight:900;font-size:clamp(1.9rem,1.3rem + 2vw,3rem);line-height:.95;color:var(--color-glow);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.est__note{font-size:var(--text-xs);color:var(--color-mute)}
+.bubble{position:relative;padding:16px 18px;border-radius:16px 16px 16px 4px;background:#e7ffdb;color:#0b1f12;font-size:var(--text-sm);line-height:1.5;white-space:pre-line;min-height:120px}
+.field{display:grid;gap:8px}
+.field label,.field > span{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute)}
+.field input{height:50px;padding:0 16px;border-radius:var(--radius-md);border:1px solid var(--color-line-2);background:var(--color-ink);color:var(--color-glow);transition:border-color var(--dur-fast)}
+.field input::placeholder{color:#62646a}
+.field input:hover{border-color:var(--color-mute)}
+.field input:focus-visible{outline:2px solid var(--color-glow);outline-offset:1px;border-color:transparent}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)}
+.calls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.calls .btn{padding:0 12px;font-size:12px}
+@media (max-width:920px){.quote__box{grid-template-columns:1fr}.quote__r{border-left:0;border-top:1px solid var(--color-line)}}
+@media (max-width:520px){.two,.calls{grid-template-columns:1fr}}
+
+/* ───────── FAQ ───────── */
+.faq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(24px,5vw,80px)}
+.faq h2{font-size:var(--text-2xl)}
+.faq > div:first-child{position:sticky;top:110px;align-self:start}
+.qa{border-top:1px solid var(--color-line)}
+.qa details{border-bottom:1px solid var(--color-line)}
+.qa summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;cursor:pointer;font-weight:650;font-size:var(--text-lg);color:var(--color-glow)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary i{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--color-line-2);position:relative;transition:transform var(--dur-base) var(--ease-out),background var(--dur-base)}
+.qa summary i::before,.qa summary i::after{content:"";position:absolute;left:8px;right:8px;top:13px;height:1.5px;background:var(--color-glow)}
+.qa summary i::after{transform:rotate(90deg);transition:transform var(--dur-base) var(--ease-out)}
+.qa details[open] summary i{background:var(--color-glow)}
+.qa details[open] summary i::before,.qa details[open] summary i::after{background:var(--color-ink)}
+.qa details[open] summary i::after{transform:rotate(0)}
+.qa details p{padding:0 0 22px;max-width:62ch}
+@media (max-width:860px){.faq{grid-template-columns:1fr}.faq > div:first-child{position:static}}
+
+/* ───────── VISIT ───────── */
+.visit__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px}
+.loc{display:grid;gap:var(--space-lg);align-content:space-between;padding:clamp(22px,3vw,36px);border-radius:var(--radius-lg);border:1px solid var(--color-line);background:linear-gradient(170deg,var(--color-ink-3),var(--color-ink-2))}
+.loc h3{font-size:clamp(1.5rem,1rem + 1.1vw,2.5rem)}
+.map{position:relative;min-height:380px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-line);background:var(--color-ink-3)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.6) contrast(.9)}
+.map__pin{position:absolute;left:16px;bottom:16px;z-index:2}
+.clock{margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;padding:20px clamp(20px,3vw,32px);border-radius:var(--radius-lg);border:1px solid var(--color-line)}
+.clock__t{font-family:var(--font-display);font-stretch:125%;font-weight:900;font-size:clamp(2.6rem,2rem + 3vw,5rem);line-height:.85;color:var(--color-glow);font-variant-numeric:tabular-nums}
+@media (max-width:860px){.visit__grid{grid-template-columns:1fr}.map{min-height:300px}}
+
+/* ───────── INSTAGRAM ───────── */
+.ig__grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.ig__grid a{position:relative;display:block;aspect-ratio:9/14;border-radius:var(--radius-md);overflow:hidden;background:var(--color-ink-3);border:1px solid var(--color-line)}
+.ig__grid img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease-out)}
+.ig__grid a:hover img{transform:scale(1.05)}
+@media (max-width:900px){.ig__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ───────── FOOTER Ft5 statement ───────── */
+.foot{padding:clamp(60px,9vw,120px) 0 calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--color-line);overflow:hidden}
+.foot__big{font-family:var(--font-display);font-stretch:125%;font-weight:900;font-size:clamp(3.4rem,16vw,17rem);line-height:.8;letter-spacing:.04em;color:var(--color-glow);text-align:center;white-space:nowrap}
+.foot__rule{display:flex;align-items:center;gap:16px;margin:clamp(14px,2vw,24px) auto clamp(40px,6vw,72px);max-width:var(--maxw);padding-inline:var(--gutter)}
+.foot__rule i{flex:1;height:3px}
+.foot__rule i:first-child{background:var(--color-red)}.foot__rule i:last-child{background:var(--color-blue)}
+.foot__rule b{font-family:var(--font-mono);font-weight:500;font-size:clamp(10px,1.2vw,14px);letter-spacing:.32em;text-transform:uppercase;color:var(--color-glow);white-space:nowrap}
+.foot__in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--space-lg)}
+.foot__links{display:flex;flex-wrap:wrap;gap:6px 22px}
+.foot__links a{font-size:var(--text-sm);white-space:nowrap;transition:color var(--dur-fast)}
+.foot__links a:hover{color:var(--color-glow)}
+.foot__legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:var(--space-xl);padding-top:var(--space-lg);border-top:1px solid var(--color-line)}
+.foot__legal a{color:var(--color-soft)}
+
+/* ───────── LIGHTBOX ───────── */
+.lb{position:fixed;inset:0;z-index:140;background:rgb(6 7 8 / .94);display:grid;place-items:center;padding:clamp(16px,4vw,60px)}
+.lb[hidden]{display:none}
+.lb__fig{margin:0;display:grid;gap:12px;max-width:min(1100px,100%);width:100%}
+.lb__media{position:relative;aspect-ratio:3/2;max-height:76vh;border-radius:var(--radius-md);overflow:hidden;background:var(--color-ink-3)}
+.lb__media img{width:100%;height:100%;object-fit:contain}
+.lb__fig figcaption{display:flex;justify-content:space-between;gap:12px;color:var(--color-glow)}
+.lb__btn{position:absolute;width:52px;height:52px;border-radius:50%;border:1px solid var(--color-line-2);background:rgb(12 13 15 / .6);display:grid;place-items:center}
+.lb__btn:hover{border-color:var(--color-glow)}
+.lb__btn svg{width:22px;height:22px}
+.lb__close{top:calc(16px + env(safe-area-inset-top,0px));right:16px}
+.lb__prev{left:16px;top:50%;margin-top:-26px}.lb__next{right:16px;top:50%;margin-top:-26px}
+@media (max-width:640px){.lb__prev,.lb__next{top:auto;bottom:calc(20px + env(safe-area-inset-bottom,0px));margin:0}}
+
+/* ───────── CHAT ───────── */
+.bot-fab{position:fixed;z-index:110;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;height:56px;padding:0 8px 0 20px;border-radius:var(--radius-pill);background:var(--color-glow);color:var(--color-ink);box-shadow:0 12px 32px rgb(0 0 0 / .5);font-weight:700;font-size:var(--text-sm);letter-spacing:.04em;text-transform:uppercase;transition:transform var(--dur-base) var(--ease-out)}
+.bot-fab:hover{transform:translateY(-2px)}
+.bot-fab img{width:40px;height:40px;border-radius:50%}
+.bot-fab[aria-expanded="true"]{transform:scale(.9);opacity:0;pointer-events:none}
+@media (max-width:520px){.bot-fab__label{display:none}.bot-fab{padding:0 8px}}
+.bot{position:fixed;z-index:111;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 24px));height:min(560px,calc(100svh - 120px));display:flex;flex-direction:column;border-radius:var(--radius-lg);border:1px solid var(--color-line-2);background:rgb(16 17 20 / .97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 24px 60px rgb(0 0 0 / .6);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.98);transform-origin:bottom right;transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out),visibility var(--dur-base)}
+.bot.is-open{opacity:1;visibility:visible;transform:none}
+.bot__head{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;border-bottom:1px solid var(--color-line)}
+.bot__head > img{width:40px;height:40px;border-radius:50%}
+.bot__title{flex:1;min-width:0}
+.bot__title strong{display:block;color:var(--color-glow);font-size:var(--text-sm)}
+.bot__title span{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--color-mute)}
+.bot__icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--color-line)}
+.bot__icon:hover{border-color:var(--color-glow)}
+.bot__icon svg{width:16px;height:16px}
+.bot__log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+.msg{max-width:86%;padding:10px 14px;border-radius:16px;font-size:var(--text-sm);line-height:1.5}
+.msg a{text-decoration:underline;text-underline-offset:2px;color:var(--color-glow)}
+.msg--bot{background:var(--color-ink-3);border-bottom-left-radius:4px;align-self:flex-start}
+.msg--me{background:var(--color-glow);color:var(--color-ink);border-bottom-right-radius:4px;align-self:flex-end}
+.bot__chips{display:flex;gap:6px;overflow-x:auto;padding:0 16px 10px;scrollbar-width:none}
+.bot__chips::-webkit-scrollbar{display:none}
+.bot__chips button{flex:none;height:32px;padding:0 12px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);font-size:12px;color:var(--color-soft)}
+.bot__chips button:hover{border-color:var(--color-glow);color:var(--color-glow)}
+.bot__form{display:flex;gap:8px;padding:10px 12px 12px;border-top:1px solid var(--color-line)}
+.bot__form input{flex:1;min-width:0;height:44px;padding:0 14px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);background:var(--color-ink);color:var(--color-glow)}
+.bot__form button{width:44px;height:44px;border-radius:50%;background:var(--color-glow);color:var(--color-ink);display:grid;place-items:center}
+.bot__form button svg{width:18px;height:18px}
+
+
+/* bits the car + process need */
+.car .tail{fill:var(--color-red)}
+.car[data-mode="ppf"] .ppf-sheen{animation:sheen 3.4s var(--ease-in-out) infinite}
+@keyframes sheen{from{transform:translateX(-300px)}to{transform:translateX(1050px)}}
+.loader__w span{will-change:transform}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+  .loader,.loader__n,.loader__blade{display:none}
+  .marquee__row{animation:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c0-.1-.2-.2-.4-.3Z"/></symbol>
+  <symbol id="i-call" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+<a class="sr-only" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span>VIEW</span></div><div class="cursor-dot" aria-hidden="true"></div>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader__w">WRAPPI</div>
+  <div class="loader__s"><i></i><b>Wrapping art design</b><i></i></div>
+</div>
+<div class="loader__n" aria-hidden="true"><span id="lc">000</span></div>
+<div class="loader__blade" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="Wrappi home"><img src="logo.webp" alt="Wrappi — Wrapping Art Design" width="141" height="22"></a>
+  <ul class="nav__links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#studio">Build your wrap</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#quote">Prices</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+  <a href="#quote" class="btn btn--solid nav__cta mag">Get a quote</a>
+  <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+</header>
+<nav class="menu" id="menu" aria-label="Mobile">
+  <a href="#services">Services <small>PPF · Wrap · Polish · Ceramic</small></a>
+  <a href="#studio">Build your wrap <small>Configurator</small></a>
+  <a href="#work">Work <small>Gallery</small></a>
+  <a href="#quote">Prices <small>Quote</small></a>
+  <a href="#visit">Visit <small>Oslo</small></a>
+  <a class="menu__call" href="tel:+4746228133">Call +47 462 28 133</a>
+</nav>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top" aria-label="Wrappi — car wrapping, PPF, polishing and ceramic coating in Oslo">
+  <div class="hero__lights" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <!-- drop hero.mp4 (a 10–20 s reel) into the folder and it replaces the car scene automatically -->
+  <video class="hero__video" muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero__shade" aria-hidden="true"></div>
+  <div class="hero__inner wrap">
+    <div class="hero__eyebrow">
+      <span class="tag"><span class="dot"></span>Strømsveien 324 · Oslo</span>
+      <span class="tag">PPF · Wrapping · Polishing · Ceramic coating</span>
+    </div>
+    <h1 class="hero__title" aria-label="Turn your car into art.">
+      <span class="line"><span>Turn your car</span></span>
+      <span class="line"><span class="out">into</span> <span>art.</span></span>
+    </h1>
+    <div class="hero__row">
+      <p class="hero__sub"><strong>Wrappi</strong> wraps, protects and polishes cars at our studio in Oslo. Tell us how you want yours to look, and we'll lay it down panel by panel.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--solid mag" href="#studio">Build your wrap</a>
+        <a class="btn btn--ghost mag" id="heroWa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp us</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__stage" aria-hidden="true">
+    <div class="hero__car" id="heroCar"></div>
+  </div>
+  <div class="hero__now" aria-live="off"><span class="chip"><span class="chip__sw" id="heroSw"></span><span id="heroLbl">Gloss · Wrappi red</span></span></div>
+  <div class="scroll-cue mono" aria-hidden="true">Scroll<span></span></div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marquee" aria-label="What Wrappi does"><div class="marquee__row" id="mq"></div></section>
+
+<!-- WHAT WE DO -->
+<section class="wrap sec" style="padding-top:clamp(40px,6vw,80px)" aria-labelledby="do-h">
+  <div class="sec-head">
+    <div><h2 id="do-h" class="rv">Four ways<br>to finish a car.</h2><span class="rule rv"></span></div>
+    <p class="rv">Protection film against stone chips, a full colour change, paint correction that brings the depth back, and a ceramic layer that keeps it all easy to wash. Pick one, or stack them.</p>
+  </div>
+  <div class="slabs">
+    <a class="slab rv" href="#services" data-tab="ppf"><span class="mono">Protect</span><div><div class="slab__w">PPF</div><p>Clear, self-healing film over the paint where chips and scratches land first.</p><span class="slab__go">See PPF →</span></div></a>
+    <a class="slab rv" href="#services" data-tab="wrap"><span class="mono">Change</span><div><div class="slab__w">Wrap</div><p>New colour, new finish, original paint kept safe underneath.</p><span class="slab__go">See wrapping →</span></div></a>
+    <a class="slab rv" href="#services" data-tab="polish"><span class="mono">Correct</span><div><div class="slab__w">Polish</div><p>Swirls, haze and light scratches machined out of the clear coat.</p><span class="slab__go">See polishing →</span></div></a>
+    <a class="slab rv" href="#services" data-tab="ceramic"><span class="mono">Seal</span><div><div class="slab__w">Coat</div><p>A hard ceramic layer for gloss, water beading and easier washes.</p><span class="slab__go">See ceramic →</span></div></a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="wrap sec" id="services" aria-labelledby="svc-h" style="padding-top:0">
+  <div class="sec-head"><h2 id="svc-h" class="rv">Pick your service.</h2><p class="rv">Every job starts with a look at the car in the studio. Prices below are a starting point; the final quote comes after we've seen the paint.</p></div>
+  <div class="tabs rv" role="tablist" aria-label="Services">
+    <button class="tab" role="tab" id="tab-ppf" aria-controls="sp-ppf" aria-selected="true"><i>01</i><span><b>PPF</b><span>Paint protection film</span></span></button>
+    <button class="tab" role="tab" id="tab-wrap" aria-controls="sp-wrap" aria-selected="false" tabindex="-1"><i>02</i><span><b>Wrapping</b><span>Colour change &amp; details</span></span></button>
+    <button class="tab" role="tab" id="tab-polish" aria-controls="sp-polish" aria-selected="false" tabindex="-1"><i>03</i><span><b>Polishing</b><span>Paint correction</span></span></button>
+    <button class="tab" role="tab" id="tab-ceramic" aria-controls="sp-ceramic" aria-selected="false" tabindex="-1"><i>04</i><span><b>Ceramic</b><span>Coating</span></span></button>
+  </div>
+
+  <div class="spanel" role="tabpanel" id="sp-ppf" aria-labelledby="tab-ppf">
+    <div class="spanel__media">
+      <div class="media" data-ph="ppf_01.webp · film going on a front end" data-cursor="view"><img src="ppf_01.webp" alt="Paint protection film being applied to a car's front end" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="ppf_02.webp"><img src="ppf_02.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="ppf_03.webp"><img src="ppf_03.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="ppf_04.webp"><img src="ppf_04.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+    </div>
+    <div class="spanel__info">
+      <span class="tag"><span class="dot"></span>Most asked for</span>
+      <h3>PPF<small>Paint protection film — clear or coloured, gloss or matte.</small></h3>
+      <p>A thick urethane film laid over the paint. It takes the stone chips, road rash and car-park scuffs so the paint underneath doesn't. Light marks in the top layer close up again with heat.</p>
+      <dl class="dl">
+        <div><dt>Packages</dt><dd>Front pack · Full front · Track pack · Full body</dd></div>
+        <div><dt>From</dt><dd><span data-price="ppfFront">NOK —</span> <span class="tbc">sample price</span></dd></div>
+        <div><dt>Film</dt><dd>Brand and warranty to confirm <span class="tbc">to confirm</span></dd></div>
+      </dl>
+      <div class="kit"><span>Self-healing top coat</span><span>Gloss or matte</span><span>Wrapped edges</span><span>Works over ceramic</span></div>
+      <div class="acts">
+        <a class="btn btn--solid mag" href="#studio" data-mode="ppf">See coverage</a>
+        <a class="btn btn--ghost" data-wa="Hi Wrappi! I'd like a price for PPF on my car." href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask about PPF</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="spanel" role="tabpanel" id="sp-wrap" aria-labelledby="tab-wrap" hidden>
+    <div class="spanel__media">
+      <div class="media" data-ph="wrap_01.webp · a finished colour change" data-cursor="view"><img src="wrap_01.webp" alt="A car after a full colour-change wrap" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="wrap_02.webp"><img src="wrap_02.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="wrap_03.webp"><img src="wrap_03.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="wrap_04.webp"><img src="wrap_04.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+    </div>
+    <div class="spanel__info">
+      <span class="tag"><span class="dot dot--blue"></span>Colour change</span>
+      <h3>Wrapping<small>Full colour change, roof, mirrors, chrome delete, stripes.</small></h3>
+      <p>Cast vinyl in gloss, satin, matte or chrome, worked into every edge so it reads as paint. Your original paint stays underneath, and the wrap can come off again later.</p>
+      <dl class="dl">
+        <div><dt>Full wrap</dt><dd><span data-price="wrap">NOK —</span> <span class="tbc">sample price</span></dd></div>
+        <div><dt>Partial</dt><dd><span data-price="partial">NOK —</span> <span class="tbc">sample price</span></dd></div>
+        <div><dt>Film</dt><dd>Brands and colour books to confirm <span class="tbc">to confirm</span></dd></div>
+      </dl>
+      <div class="kit"><span>Gloss</span><span>Satin</span><span>Matte</span><span>Chrome</span><span>Chrome delete</span><span>Roof &amp; mirrors</span></div>
+      <div class="acts">
+        <a class="btn btn--solid mag" href="#studio" data-mode="wrap">Try colours</a>
+        <a class="btn btn--ghost" data-wa="Hi Wrappi! I'm thinking about wrapping my car. Could I get a price?" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask about wraps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="spanel" role="tabpanel" id="sp-polish" aria-labelledby="tab-polish" hidden>
+    <div class="spanel__media">
+      <div class="media" data-ph="polish_01.webp · machine polishing" data-cursor="view"><img src="polish_01.webp" alt="Machine polishing a dark car" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="polish_02.webp"><img src="polish_02.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="polish_03.webp"><img src="polish_03.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="polish_04.webp"><img src="polish_04.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+    </div>
+    <div class="spanel__info">
+      <span class="tag"><span class="dot"></span>Paint correction</span>
+      <h3>Polishing<small>One-step gloss polish or full multi-stage correction.</small></h3>
+      <p>Washing, brushes and time leave fine circles in the clear coat that show up under any light. We level them out with machine and compound, then refine until the reflection is sharp again.</p>
+      <dl class="dl">
+        <div><dt>One-step</dt><dd><span data-price="polish1">NOK —</span> <span class="tbc">sample price</span></dd></div>
+        <div><dt>Correction</dt><dd><span data-price="polish2">NOK —</span> <span class="tbc">sample price</span></dd></div>
+        <div><dt>Good before</dt><dd>PPF, ceramic coating, selling the car</dd></div>
+      </dl>
+      <div class="kit"><span>Swirl removal</span><span>Light scratches</span><span>Haze &amp; holograms</span><span>Headlight restore</span></div>
+      <div class="acts">
+        <a class="btn btn--solid mag" href="#polish">See before / after</a>
+        <a class="btn btn--ghost" data-wa="Hi Wrappi! My paint has swirls and light scratches. Could I get a price for polishing?" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask about polishing</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="spanel" role="tabpanel" id="sp-ceramic" aria-labelledby="tab-ceramic" hidden>
+    <div class="spanel__media">
+      <div class="media" data-ph="ceramic_01.webp · water beading on a coated panel" data-cursor="view"><img src="ceramic_01.webp" alt="Water beading on a ceramic coated car" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="ceramic_02.webp"><img src="ceramic_02.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="ceramic_03.webp"><img src="ceramic_03.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+      <div class="media" data-ph="ceramic_04.webp"><img src="ceramic_04.webp" alt="" loading="lazy" onerror="ph(this)"></div>
+    </div>
+    <div class="spanel__info">
+      <span class="tag"><span class="dot dot--blue"></span>Gloss &amp; easy care</span>
+      <h3>Ceramic coating<small>On paint, PPF, wraps, wheels and glass.</small></h3>
+      <p>A liquid coating that cures into a hard, slick layer. Water and road dirt slide off it, the gloss stays deeper for longer, and winter washes in Oslo get a lot quicker.</p>
+      <dl class="dl">
+        <div><dt>From</dt><dd><span data-price="ceramic">NOK —</span> <span class="tbc">sample price</span></dd></div>
+        <div><dt>Coating</dt><dd>Brand and durability to confirm <span class="tbc">to confirm</span></dd></div>
+        <div><dt>Pairs with</dt><dd>Polishing first, PPF underneath</dd></div>
+      </dl>
+      <div class="kit"><span>Water beading</span><span>Deeper gloss</span><span>Easier washing</span><span>Wheels &amp; glass</span></div>
+      <div class="acts">
+        <a class="btn btn--solid mag" href="#studio" data-ceramic="1">See it beading</a>
+        <a class="btn btn--ghost" data-wa="Hi Wrappi! I'd like a price for ceramic coating." href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask about ceramic</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO / CONFIGURATOR -->
+<section class="studio sec" id="studio" aria-labelledby="studio-h">
+  <div class="wrap studio__grid">
+    <div class="bay rv" aria-label="Car preview">
+      <div class="bay__lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div id="studioCar"></div>
+      <div class="bay__read"><span class="bay__name" id="bayName">Gloss · Wrappi red</span><span class="mono" id="bayHint">Full colour wrap</span></div>
+    </div>
+    <div class="panel">
+      <span class="tag rv"><span class="dot"></span>The wrap bay</span>
+      <h2 id="studio-h" class="rv">Build your wrap.</h2>
+      <p class="rv">Pick a colour and finish and watch it go on. Switch to PPF to see what each protection package covers. Send the build to us when you like it.</p>
+      <div class="seg rv" role="group" aria-label="What to preview">
+        <button aria-pressed="true" data-m="wrap">Colour wrap</button>
+        <button aria-pressed="false" data-m="ppf">PPF coverage</button>
+      </div>
+      <div class="ctrl" id="ctrlFinish"><span>Finish</span>
+        <div class="picks" id="finishPicks" role="group" aria-label="Finish"></div>
+      </div>
+      <div class="ctrl" id="ctrlColour"><span>Colour · <b id="colName" style="color:var(--color-glow);font-weight:500">Wrappi red</b></span>
+        <div class="swatches" id="swatches" role="group" aria-label="Colour"></div>
+      </div>
+      <div class="ctrl" id="ctrlPpf" hidden><span>Coverage</span>
+        <div class="picks" id="ppfPicks" role="group" aria-label="PPF coverage"></div>
+        <ul class="covers" id="ppfList"></ul>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" id="ceramicSw">
+        <span><b>Add ceramic coating</b><small>Watch the water bead up</small></span><span class="switch__t" aria-hidden="true"></span>
+      </button>
+      <div class="summary">
+        <span class="mono">Your build</span>
+        <p id="buildTxt">Gloss Wrappi red full wrap</p>
+        <div class="acts">
+          <a class="btn btn--wa mag" id="buildWa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Send this build</a>
+          <a class="btn btn--ghost" id="buildQuote" href="#quote">Price it</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINISHES -->
+<section class="wrap sec" id="finishes" aria-labelledby="fin-h">
+  <div class="sec-head"><h2 id="fin-h" class="rv">Choose the finish.</h2><p class="rv">The same colour reads completely differently in each finish. Ask to see film samples in the studio before you decide.</p></div>
+  <div class="stack">
+    <article class="fin" style="--i:0;--paint:linear-gradient(170deg,#e0404a,#8f1820 55%,#3b080c);--fx:linear-gradient(100deg,transparent 30%,rgb(255 255 255 / .55) 44%,rgb(255 255 255 / .1) 48%,transparent 60%)">
+      <div class="fin__swatch" aria-hidden="true"></div>
+      <div class="fin__in"><span class="mono">Mirror shine</span><h3>Gloss.</h3><div class="fin__foot"><p>Closest to fresh paint. Sharp reflections, deep colour, the most forgiving to keep clean.</p><span class="tag"><span class="dot"></span>Works with any colour</span></div></div>
+    </article>
+    <article class="fin" style="--i:1;--paint:linear-gradient(170deg,#8a8d92,#55585d 55%,#26282b);--fx:radial-gradient(70% 40% at 40% 30%,rgb(255 255 255 / .28),transparent 70%)">
+      <div class="fin__swatch" aria-hidden="true"></div>
+      <div class="fin__in"><span class="mono">Soft sheen</span><h3>Satin.</h3><div class="fin__foot"><p>Somewhere between paint and matte. A low, silky glow that follows the body lines without mirroring everything around it.</p><span class="tag"><span class="dot dot--blue"></span>Popular on greys and blacks</span></div></div>
+    </article>
+    <article class="fin" style="--i:2;--paint:linear-gradient(170deg,#2b3a2f,#1d2a21 55%,#0d140f);--fx:linear-gradient(180deg,rgb(255 255 255 / .06),transparent 60%)">
+      <div class="fin__swatch" aria-hidden="true"></div>
+      <div class="fin__in"><span class="mono">No reflection</span><h3>Matte.</h3><div class="fin__foot"><p>Flat and serious. It shows the shape of the car rather than the sky above it. Needs matte-safe care products.</p><span class="tag"><span class="dot"></span>Pair with a matte ceramic</span></div></div>
+    </article>
+    <article class="fin" style="--i:3;--paint:linear-gradient(180deg,#f4f6f8 0%,#9aa0a8 22%,#2e3237 40%,#d9dde2 58%,#5d636b 76%,#eef0f2 100%);--fx:linear-gradient(100deg,transparent 35%,rgb(255 255 255 / .7) 48%,transparent 56%)">
+      <div class="fin__swatch" aria-hidden="true"></div>
+      <div class="fin__in"><span class="mono">Liquid metal</span><h3>Chrome.</h3><div class="fin__foot"><p>The loud one. Silver, gold, blue or red chrome that turns every street into a mirror. Best on show cars and accents.</p><span class="tag"><span class="dot dot--blue"></span>Ask about legal limits on full chrome</span></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="wrap sec" id="polish" aria-labelledby="ba-h" style="padding-top:0">
+  <div class="ba__grid">
+    <div class="ba__copy">
+      <span class="tag rv"><span class="dot"></span>Polishing</span>
+      <h2 id="ba-h" class="rv">Swirls out.<br>Depth back.</h2>
+      <p class="rv">Drag the line across. On the left, paint the way most cars come in: fine circles around every light. On the right, the same panel after correction.</p>
+      <div class="acts rv"><a class="btn btn--ghost" data-wa="Hi Wrappi! Could you have a look at my paint? I'd like it polished." href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Book an inspection</a></div>
+    </div>
+    <div class="ba rv" id="ba">
+      <div class="ba__layer ba__layer--before"><div class="ba__paint"></div><img src="before.webp" alt="Paint with swirl marks before polishing" onerror="this.remove()"></div>
+      <div class="ba__layer ba__layer--after"><div class="ba__paint"></div><img src="after.webp" alt="The same paint after polishing" onerror="this.remove()"></div>
+      <span class="chip ba__label ba__label--l">Before</span><span class="chip ba__label ba__label--r">After</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Compare before and after polishing" id="baRange">
+      <div class="ba__handle" aria-hidden="true"><span class="ba__knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="wrap sec" id="work" aria-labelledby="work-h" style="padding-top:0">
+  <div class="sec-head"><h2 id="work-h" class="rv">Out of the bay.</h2><p class="rv">Recent cars from the studio. Open any photo to see it full size, or find more on <a href="https://www.instagram.com/wrappi_/" target="_blank" rel="noopener" style="color:var(--color-glow);text-decoration:underline;text-underline-offset:3px">@wrappi_</a>.</p></div>
+  <div class="work__bar rv">
+    <div class="picks" id="workFilters" role="group" aria-label="Filter work"></div>
+    <span class="work__count"><b id="workN">0</b> photos</span>
+  </div>
+  <div class="grid" id="workGrid"></div>
+</section>
+
+<!-- PROCESS -->
+<section class="process sec" id="process" aria-labelledby="proc-h" style="padding-top:0">
+  <div class="wrap sec-head"><h2 id="proc-h" class="rv">How a car<br>moves through.</h2><p class="rv">From the first message to handing back the keys. The order is the same whether it's a front-end PPF or a full colour change.</p></div>
+  <div class="track" id="track">
+    <article class="step"><span class="step__bar"></span><span class="step__n">01</span><div><h3>Message us</h3><p>WhatsApp or call with the car, what you want done, and a couple of photos. We'll tell you if it's a fit and roughly what it costs.</p></div></article>
+    <article class="step"><span class="step__bar"></span><span class="step__n">02</span><div><h3>Inspection</h3><p>Bring the car to Strømsveien. We check the paint under light, point out chips and swirls, and confirm the price and dates.</p></div></article>
+    <article class="step"><span class="step__bar"></span><span class="step__n">03</span><div><h3>Deep clean</h3><p>Foam wash, iron and tar removal, clay. Film and coatings only stick properly to paint that is completely bare.</p></div></article>
+    <article class="step"><span class="step__bar"></span><span class="step__n">04</span><div><h3>Prep &amp; correct</h3><p>Polishing where the paint needs it. For wraps, badges, handles and trim come off so the film can tuck behind edges.</p></div></article>
+    <article class="step"><span class="step__bar"></span><span class="step__n">05</span><div><h3>Install</h3><p>Film is laid, stretched and squeegeed panel by panel, or the coating goes on section by section under the lights.</p></div></article>
+    <article class="step"><span class="step__bar"></span><span class="step__n">06</span><div><h3>Cure &amp; check</h3><p>Edges are post-heated, coatings cure, and the whole car gets checked in full light before anything goes back together.</p></div></article>
+    <article class="step"><span class="step__bar"></span><span class="step__n">07</span><div><h3>Handover</h3><p>We walk you round the car and explain how to wash it and how long to wait before the first wash.</p></div></article>
+    <article class="step step--end"><span class="mono" style="color:#55575c">Your turn</span><h3>Bring the car in.</h3><a class="btn mag" href="#quote">Get a quote</a></article>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="wrap sec" id="quote" aria-labelledby="quote-h" style="padding-top:0">
+  <div class="quote__box rv">
+    <div class="quote__l">
+      <div style="display:grid;gap:16px">
+        <span class="tag"><span class="dot"></span>Guide prices</span>
+        <h2 id="quote-h">Price it, then send it.</h2>
+        <p>Pick the car size and what you want done. You'll see a guide price straight away, and we write the WhatsApp message for you.</p>
+      </div>
+      <div class="ctrl"><span>Car size</span><div class="picks" id="sizePicks" role="radiogroup" aria-label="Car size"></div></div>
+      <div class="ctrl"><span>Services · pick one or more</span><div class="picks" id="svcPicks" role="group" aria-label="Services"></div></div>
+      <div class="two">
+        <div class="field"><label for="qCar">Car (make &amp; model)</label><input id="qCar" type="text" placeholder="Tesla Model 3" maxlength="50" autocomplete="off"></div>
+        <div class="field"><label for="qName">Your name (optional)</label><input id="qName" type="text" placeholder="Ola" maxlength="40" autocomplete="given-name"></div>
+      </div>
+      <div class="ctrl"><span>When</span><div class="picks" id="whenPicks" role="radiogroup" aria-label="When"></div></div>
+    </div>
+    <div class="quote__r">
+      <div class="est">
+        <span class="mono">Guide price <span class="tbc">sample prices</span></span>
+        <div class="est__v" id="estV">Pick a service</div>
+        <p class="est__note" id="estNote">Incl. VAT. Final price after we've seen the car.</p>
+      </div>
+      <span class="mono">Message preview</span>
+      <div class="bubble" id="bubble" aria-live="polite"></div>
+      <div style="display:grid;gap:10px">
+        <a class="btn btn--wa mag" id="qWa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Send on WhatsApp</a>
+        <div class="calls">
+          <a class="btn btn--ghost" href="tel:+4746228133"><svg><use href="#i-call"/></svg>462 28 133</a>
+          <a class="btn btn--ghost" href="tel:+4746361675"><svg><use href="#i-call"/></svg>463 61 675</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="wrap sec" id="faq" aria-labelledby="faq-h" style="padding-top:0">
+  <div class="faq">
+    <div><h2 id="faq-h" class="rv">Before you book.</h2><span class="rule rv" style="margin-top:24px"></span></div>
+    <div class="qa">
+      <details><summary>PPF or ceramic coating — which do I need?<i></i></summary><p>They do different jobs. PPF is a physical film that stops stone chips and scratches. Ceramic is a hard, glossy layer that makes the car easier to clean and keeps the shine, but it won't stop a chip. A lot of owners do PPF on the front and ceramic over the whole car.</p></details>
+      <details><summary>Will a wrap damage my paint?<i></i></summary><p>On factory paint in good condition, film comes off cleanly when you want it gone. Resprayed or damaged paint can lift during removal, which is why we check the paint at the inspection before quoting.</p></details>
+      <details><summary>How long will my car be with you?<i></i></summary><p>It depends on the car and the job. A polish can be a day, a full colour change or full-body PPF takes longer. We'll give you dates when we confirm the booking. <span class="tbc">add typical times</span></p></details>
+      <details><summary>Can I wrap a leased car?<i></i></summary><p>Usually yes, because the wrap protects the paint and can be removed at the end of the lease. Check your lease agreement first, some ask you to tell them.</p></details>
+      <details><summary>How do I wash it afterwards?<i></i></summary><p>Hand wash with a pH-neutral shampoo and skip automatic washes with brushes. Wait a few days before the first wash so film edges and coatings can settle. We'll give you the exact aftercare at handover.</p></details>
+      <details><summary>Do you work on electric cars?<i></i></summary><p>Yes, a lot of what you'll see on our Instagram is electric. Tell us the model when you message and we'll take it from there.</p></details>
+      <details><summary>Is there a warranty?<i></i></summary><p>Warranty depends on the film or coating used. Ask us when you get your quote and we'll tell you exactly what's covered. <span class="tbc">to confirm</span></p></details>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="wrap sec" id="visit" aria-labelledby="visit-h" style="padding-top:0">
+  <div class="sec-head"><h2 id="visit-h" class="rv">Find the studio.</h2><p class="rv">Strømsveien 324 in Oslo. Message before you come so we can make sure someone is free to show you around.</p></div>
+  <div class="visit__grid">
+    <div class="loc rv">
+      <div style="display:grid;gap:16px">
+        <span class="tag"><span class="dot" id="openDot"></span><span id="openTxt">Opening hours</span></span>
+        <h3>Strømsveien 324<br>1081 Oslo</h3>
+      </div>
+      <dl class="dl">
+        <div><dt>Phone</dt><dd><a href="tel:+4746228133">+47 462 28 133</a><br><a href="tel:+4746361675">+47 463 61 675</a></dd></div>
+        <div><dt>Hours</dt><dd id="hoursTxt">Mon–Fri 08–17 · Sat by appointment <span class="tbc">to confirm</span></dd></div>
+        <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/wrappi_/" target="_blank" rel="noopener">@wrappi_</a></dd></div>
+      </dl>
+      <div class="acts">
+        <a class="btn btn--solid mag" href="https://www.google.com/maps/search/?api=1&amp;query=Str%C3%B8msveien%20324%2C%201081%20Oslo" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Directions</a>
+        <a class="btn btn--ghost" href="tel:+4746228133"><svg><use href="#i-call"/></svg>Call</a>
+      </div>
+    </div>
+    <div class="map rv">
+      <iframe title="Map showing Wrappi at Strømsveien 324, Oslo" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Str%C3%B8msveien%20324%2C%201081%20Oslo&amp;z=15&amp;output=embed"></iframe>
+      <span class="chip map__pin"><svg width="14" height="14"><use href="#i-pin"/></svg>Wrappi · Strømsveien 324</span>
+    </div>
+  </div>
+  <div class="clock rv"><span class="mono">Oslo time now</span><span class="clock__t" id="clock">--:--</span><span class="tag" id="clockState"><span class="dot"></span>Checking hours</span></div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="wrap sec" aria-labelledby="ig-h" style="padding-top:0">
+  <div class="sec-head"><h2 id="ig-h" class="rv">Fresh off<br>the squeegee.</h2>
+    <div class="acts rv"><a class="btn btn--solid" href="https://www.instagram.com/wrappi_/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>Follow @wrappi_</a></div>
+  </div>
+  <div class="ig__grid" id="igGrid"></div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot__big" aria-hidden="true">WRAPPI</div>
+  <div class="foot__rule" aria-hidden="true"><i></i><b>Wrapping art design</b><i></i></div>
+  <div class="wrap">
+    <div class="foot__in">
+      <p style="max-width:44ch">PPF, wrapping, polishing and ceramic coating at Strømsveien 324, 1081 Oslo.</p>
+      <nav class="foot__links" aria-label="Footer">
+        <a href="tel:+4746228133">+47 462 28 133</a>
+        <a href="tel:+4746361675">+47 463 61 675</a>
+        <a href="https://wa.me/4746228133" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.instagram.com/wrappi_/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#top">Top ↑</a>
+      </nav>
+    </div>
+    <div class="foot__legal mono"><span>© <span id="yr">2026</span> Wrappi · Wrapping Art Design · Oslo, Norway</span><a href="https://nexlyr.solutions" target="_blank" rel="noopener">Site by Nexlyr Solutions</a></div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb__btn lb__close" aria-label="Close photo"><svg><use href="#i-x"/></svg></button>
+  <button class="lb__btn lb__prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <figure class="lb__fig"><div class="lb__media" id="lbMedia"></div><figcaption><span id="lbCap"></span><span class="mono" id="lbNum"></span></figcaption></figure>
+  <button class="lb__btn lb__next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<button class="bot-fab" id="botFab" aria-expanded="false" aria-controls="bot"><span class="bot-fab__label">Ask Wrappi</span><img src="favicon.png" alt=""></button>
+<section class="bot" id="bot" role="dialog" aria-label="Wrappi assistant">
+  <header class="bot__head">
+    <img src="favicon.png" alt="">
+    <div class="bot__title"><strong>Wrappi assistant</strong><span><span class="dot dot--blue"></span>Quick answers · replies from the team on WhatsApp</span></div>
+    <a class="bot__icon" id="botWa" href="https://wa.me/4746228133" target="_blank" rel="noopener" aria-label="WhatsApp Wrappi"><svg><use href="#i-wa"/></svg></a>
+    <button class="bot__icon" id="botClose" aria-label="Close chat"><svg><use href="#i-x"/></svg></button>
+  </header>
+  <div class="bot__log" id="botLog" aria-live="polite"></div>
+  <div class="bot__chips" id="botChips"></div>
+  <form class="bot__form" id="botForm"><input id="botIn" type="text" placeholder="Ask about PPF, prices, hours…" aria-label="Your question" autocomplete="off"><button aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></form>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   EDIT HERE — everything the client still has to confirm lives in this block
+   ════════════════════════════════════════════════════════════════ */
+const WRAPPI = {
+  wa: '4746228133',                       // WhatsApp number (no +, no spaces)
+  phones: ['+47 462 28 133', '+47 463 61 675'],
+  address: 'Strømsveien 324, 1081 Oslo',
+  instagram: 'https://www.instagram.com/wrappi_/',
+  // placeholder prices in NOK incl. VAT — replace with Wrappi's real numbers, then set PRICES_CONFIRMED to true
+  PRICES_CONFIRMED: false,
+  sizes: {
+    small: { label: 'Small car', hint: 'Golf, ID.3, i3', k: .85 },
+    mid:   { label: 'Sedan / estate', hint: 'Model 3, A4, V60', k: 1 },
+    suv:   { label: 'SUV', hint: 'Model Y, XC60, Enyaq', k: 1.2 },
+    xl:    { label: 'Large SUV / van', hint: 'Model X, EQS SUV', k: 1.45 }
+  },
+  services: {
+    ppfFront: { label: 'PPF · full front', from: 14000, to: 19000 },
+    ppfTrack: { label: 'PPF · track pack', from: 22000, to: 30000 },
+    ppfFull:  { label: 'PPF · full body', from: 48000, to: 65000 },
+    wrap:     { label: 'Full colour wrap', from: 32000, to: 42000 },
+    partial:  { label: 'Partial wrap', hint: 'roof, mirrors, chrome delete', from: 4500, to: 12000 },
+    polish1:  { label: 'Polish · one-step', from: 3500, to: 5000 },
+    polish2:  { label: 'Paint correction', from: 7500, to: 11000 },
+    ceramic:  { label: 'Ceramic coating', from: 6500, to: 12000 }
+  },
+  // opening hours placeholder (24h clock, Oslo time). null = closed
+  hours: { Mon: [8, 17], Tue: [8, 17], Wed: [8, 17], Thu: [8, 17], Fri: [8, 17], Sat: null, Sun: null }
+};
+/* ════════════════════════════════════════════════════════════════ */
+
+const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const wa = t => `https://wa.me/${WRAPPI.wa}?text=${encodeURIComponent(t)}`;
+const nok = n => 'NOK ' + Math.round(n).toLocaleString('nb-NO');
+const r500 = n => Math.round(n / 500) * 500;
+if (WRAPPI.PRICES_CONFIRMED) document.documentElement.classList.add('no-tbc');
+
+/* ---------- the car: one hand-built SVG, used in the hero and the wrap bay ---------- */
+const BODY = 'M58 262C50 245 48 228 56 214C64 200 92 188 140 182L330 168C360 165 380 160 405 150C450 120 500 92 560 84C640 76 720 82 770 100C830 122 880 140 920 150C945 156 955 168 955 190L952 238C950 256 940 266 920 268L850 268A60 60 0 0 0 730 268L270 268A60 60 0 0 0 150 268L80 268C68 268 60 266 58 262Z';
+const WIN = 'M440 150C478 122 518 101 566 94C636 87 704 90 750 104C782 114 808 128 828 141C800 146 760 148 700 149Z';
+const SPEC = 'M122 195C300 179 520 171 700 167C800 165 880 163 932 161L933 166C880 168 800 170 700 172C520 176 300 184 123 200ZM562 90C640 82 720 86 768 102L762 108C716 94 640 91 566 98Z';
+function wheel(u, cx) {
+  let spokes = '';
+  for (let k = 0; k < 5; k++) spokes += `<path d="M-5 -35L5 -35L3.5 -10L-3.5 -10Z" fill="#c4c7cc" transform="rotate(${k * 72})"/>`;
+  return `<g transform="translate(${cx} 268)"><circle r="54" fill="#09090a"/><circle r="49" fill="none" stroke="#1e1f22" stroke-width="3"/><circle r="38" fill="url(#${u}-rim)"/>
+  <path class="brake" d="M-31 -12A34 34 0 0 1 -12 -31L-8 -23A25 25 0 0 0 -23 -8Z"/><g class="rimrot">${spokes}<circle r="38" fill="none" stroke="#5c6066" stroke-width="2"/></g><circle r="9" fill="#232428" stroke="#8b8d92" stroke-width="1.5"/></g>`;
+}
+function beads(seed) {
+  let s = seed, out = '';
+  const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 46; i++) {
+    const x = 130 + rnd() * 800, y = (i < 8 ? 92 + rnd() * 8 : 172 + rnd() * 76), rx = 2.2 + rnd() * 4.2, ry = rx * (.62 + rnd() * .2);
+    if (i >= 8 && x > 430 && x < 830 && y < 158) continue;
+    out += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" fill="#fff" fill-opacity=".14" stroke="#fff" stroke-opacity=".45" stroke-width=".7" style="transition-delay:${(rnd() * .5).toFixed(2)}s"/><circle cx="${(x - rx * .35).toFixed(1)}" cy="${(y - ry * .35).toFixed(1)}" r="${(rx * .22).toFixed(1)}" fill="#fff" fill-opacity=".9" style="transition-delay:${(rnd() * .5).toFixed(2)}s"/>`;
+  }
+  return out;
+}
+function carSVG(u, label) {
+  const Z = (cls, x, y, w, h) => `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${u}-hatch)"/><rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}" fill="#bfe3ff" fill-opacity=".1" stroke="#fff" stroke-opacity=".7" stroke-width="1.5" stroke-dasharray="6 5"/>`;
+  return `<svg class="car" id="car-${u}" viewBox="0 40 1000 410" data-finish="gloss" data-mode="wrap" data-ppf="ffront" data-ceramic="0" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>
+  <defs>
+    <clipPath id="${u}-b"><path d="${BODY}"/></clipPath>
+    <clipPath id="${u}-w"><rect id="${u}-wipe" x="0" y="0" width="0" height="460"/></clipPath>
+    <linearGradient id="${u}-sh" x1="0" y1="80" x2="0" y2="272" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".32" stop-color="#fff" stop-opacity=".06"/><stop offset=".52" stop-color="#000" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".38"/><stop offset="1" stop-color="#000" stop-opacity=".75"/></linearGradient>
+    <linearGradient id="${u}-cr" x1="0" y1="80" x2="0" y2="272" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#a2a7ae"/><stop offset=".36" stop-color="#1c1e22"/><stop offset=".5" stop-color="#eef0f2"/><stop offset=".64" stop-color="#555a61"/><stop offset=".8" stop-color="#d4d7db"/><stop offset="1" stop-color="#2a2d31"/></linearGradient>
+    <linearGradient id="${u}-gl" x1="0" y1="88" x2="0" y2="152" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a5262"/><stop offset=".45" stop-color="#14171c"/><stop offset="1" stop-color="#050607"/></linearGradient>
+    <radialGradient id="${u}-rim"><stop offset="0" stop-color="#3c3f45"/><stop offset="1" stop-color="#121315"/></radialGradient>
+    <linearGradient id="${u}-rf" x1="0" y1="322" x2="0" y2="440" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <mask id="${u}-rm"><rect x="0" y="322" width="1000" height="130" fill="url(#${u}-rf)"/></mask>
+    <linearGradient id="${u}-sn" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <pattern id="${u}-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="9" stroke="#fff" stroke-opacity=".2" stroke-width="2"/></pattern>
+    <filter id="${u}-blur" x="-10%" y="-80%" width="120%" height="260%"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="${u}-glow" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="4"/></filter>
+  </defs>
+  <ellipse cx="500" cy="323" rx="462" ry="14" fill="#000" opacity=".8"/>
+  <path d="M120 330L40 448M880 330L960 448" stroke="var(--color-red)" stroke-width="2" opacity=".35"/>
+  <g id="${u}-car">
+    <g clip-path="url(#${u}-b)">
+      <rect class="paint-old" x="0" y="40" width="1000" height="300" fill="#2a2c30"/>
+      <rect class="paint-new" x="0" y="40" width="1000" height="300" fill="#2a2c30" clip-path="url(#${u}-w)"/>
+      <rect class="chrome" x="0" y="40" width="1000" height="300" fill="url(#${u}-cr)" style="mix-blend-mode:hard-light" opacity="0"/>
+      <rect class="shade" x="0" y="40" width="1000" height="300" fill="url(#${u}-sh)"/>
+      <path class="spec-soft" d="${SPEC}" fill="#fff" filter="url(#${u}-blur)" opacity=".25"/>
+      <path class="spec" d="${SPEC}" fill="#fff" opacity=".9"/>
+      <g fill="none" stroke="#000" stroke-opacity=".5" stroke-width="2"><path d="M434 156C430 196 430 236 438 266"/><path d="M648 152C650 196 650 236 646 266"/><path d="M806 146C796 176 782 198 764 214"/><path d="M270 248L730 248" stroke-opacity=".3"/></g>
+      <path d="M150 216C400 205 700 199 944 190" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width="1.5"/>
+      <rect x="574" y="186" width="38" height="6" rx="3" fill="#000" fill-opacity=".45"/><rect x="738" y="182" width="34" height="6" rx="3" fill="#000" fill-opacity=".45"/>
+      <g class="ppf">${Z('z1', 40, 120, 230, 160)}${Z('z2', 270, 120, 164, 160)}${Z('z3', 150, 234, 700, 40)}${Z('z4', 400, 60, 250, 100)}${Z('z5', 700, 196, 180, 80)}${Z('z6', 0, 40, 1000, 300)}</g>
+      <rect class="ppf-sheen" x="0" y="40" width="260" height="300" fill="url(#${u}-sn)"/>
+      <g class="beads">${beads(u === 'h' ? 7 : 19)}</g>
+    </g>
+    <path d="${WIN}" fill="url(#${u}-gl)"/>
+    <path d="M470 132C520 108 600 96 680 98" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="3" stroke-linecap="round"/>
+    <path d="M652 90L646 150" stroke="#050506" stroke-width="10"/>
+    <path d="M452 151C455 139 476 133 494 138C499 146 492 156 470 158Z" fill="#0e0f11"/><path d="M460 144C468 139 480 138 490 140" stroke="#fff" stroke-opacity=".3" stroke-width="2" fill="none"/>
+    <path d="M62 206C96 196 140 190 184 188C166 198 120 208 70 214Z" fill="#e4eeff" filter="url(#${u}-glow)" opacity=".7"/>
+    <path d="M62 206C96 196 140 190 184 188C166 198 120 208 70 214Z" fill="#eef4ff"/>
+    <path d="M66 248C100 252 128 253 148 252" stroke="#000" stroke-opacity=".55" stroke-width="6" stroke-linecap="round"/>
+    <path class="tail" d="M898 154C926 160 946 170 953 184L951 194C934 180 914 170 890 163Z" filter="url(#${u}-glow)"/>
+    <path class="tail" d="M898 154C926 160 946 170 953 184L951 194C934 180 914 170 890 163Z"/>
+    ${wheel(u, 210)}${wheel(u, 790)}
+  </g>
+  <g mask="url(#${u}-rm)" opacity=".55"><use href="#${u}-car" transform="translate(0 646) scale(1 -1)"/></g>
+  <g class="sq" opacity="0"><rect x="-10" y="60" width="20" height="270" fill="#fff" opacity=".18" filter="url(#${u}-glow)"/><rect x="-2" y="60" width="4" height="135" fill="var(--color-red)"/><rect x="-2" y="195" width="4" height="135" fill="var(--color-blue)"/><rect x="-1" y="60" width="2" height="270" fill="#fff" opacity=".8"/></g>
+</svg>`;
+}
+$('#heroCar').innerHTML = carSVG('h');
+$('#studioCar').innerHTML = carSVG('s', 'Preview of the car with the chosen wrap');
+
+/* lay a colour on like film: the squeegee drags it from nose to tail */
+function wrapTo(u, color, finish, dur = 1.15) {
+  const svg = $('#car-' + u), wipe = $('#' + u + '-wipe'), sq = $('.sq', svg), nw = $('.paint-new', svg), old = $('.paint-old', svg);
+  svg.dataset.finish = finish;
+  cancelAnimationFrame(svg._raf);
+  if (old.getAttribute('fill') === color && !svg._busy) return;
+  nw.setAttribute('fill', color);
+  if (RM) { old.setAttribute('fill', color); return; }
+  svg._busy = true;
+  const t0 = performance.now();
+  sq.setAttribute('opacity', 1);
+  const step = t => {
+    const p = Math.min(1, (t - t0) / (dur * 1000)), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2, x = 30 + e * 940;
+    wipe.setAttribute('width', x); sq.setAttribute('transform', `translate(${x} 0)`);
+    if (p < 1) svg._raf = requestAnimationFrame(step);
+    else { old.setAttribute('fill', color); wipe.setAttribute('width', 0); sq.setAttribute('opacity', 0); svg._busy = false; }
+  };
+  wipe.setAttribute('width', 0);
+  svg._raf = requestAnimationFrame(step);
+}
+
+/* ---------- data ---------- */
+const COLORS = [
+  { n: 'Wrappi red', c: '#c62832' }, { n: 'Oslo blue', c: '#1f5d96' }, { n: 'Nardo grey', c: '#7d8085' }, { n: 'Midnight black', c: '#17181b' }, { n: 'Arctic white', c: '#e6e7e9' },
+  { n: 'Racing green', c: '#1f4a38' }, { n: 'Lava orange', c: '#d4561d' }, { n: 'Desert sand', c: '#b5a383' }, { n: 'Deep purple', c: '#3c2652' }, { n: 'Liquid silver', c: '#a9aeb5' }
+];
+const FINISH = { gloss: 'Gloss', satin: 'Satin', matte: 'Matte', chrome: 'Chrome' };
+const PPF = {
+  front:  { l: 'Front pack', s: 'ppfFront', c: ['Front bumper', 'Leading edge of the bonnet', 'Front of the wings', 'Mirror caps'] },
+  ffront: { l: 'Full front', s: 'ppfFront', c: ['Full bonnet and front wings', 'Front bumper', 'Mirrors and headlights', 'No film lines across the bonnet'] },
+  track:  { l: 'Track pack', s: 'ppfTrack', c: ['Everything in full front', 'A-pillars and front roof edge', 'Side sills', 'Rear arch impact zone'] },
+  full:   { l: 'Full body', s: 'ppfFull', c: ['Every painted panel', 'Self-healing all the way round', 'Can be gloss or matte', 'Pairs well with ceramic on top'] }
+};
+
+/* ---------- WhatsApp links everywhere ---------- */
+$('#heroWa').href = wa("Hi Wrappi! I found you on your website and I'd like to ask about my car.");
+$$('[data-wa]').forEach(a => a.href = wa(a.dataset.wa));
+$$('[data-price]').forEach(el => { const s = WRAPPI.services[el.dataset.price]; if (s) el.textContent = 'from ' + nok(s.from); });
+
+/* ---------- marquee ---------- */
+(() => {
+  const words = ['PPF', 'Wrapping', 'Polishing', 'Ceramic coating', 'Turn your car into art', 'Strømsveien 324 · Oslo'];
+  const one = words.map(w => `<span class="marquee__item">${w}<i></i></span>`).join('');
+  $('#mq').innerHTML = one + one + one + one;
+})();
+
+/* ---------- hero: the car keeps getting re-wrapped ---------- */
+const HERO = [['#c62832', 'gloss', 'Wrappi red'], ['#7d8085', 'satin', 'Nardo grey'], ['#1f5d96', 'gloss', 'Oslo blue'], ['#a9aeb5', 'chrome', 'Liquid silver'], ['#1f4a38', 'matte', 'Racing green'], ['#17181b', 'satin', 'Midnight black'], ['#d4561d', 'gloss', 'Lava orange']];
+let heroI = -1, heroTimer = null, heroVisible = true;
+function heroNext() {
+  heroI = (heroI + 1) % HERO.length;
+  const [c, f, n] = HERO[heroI];
+  wrapTo('h', c, f, 1.3);
+  $('#heroSw').style.setProperty('--sw', c);
+  $('#heroLbl').textContent = FINISH[f] + ' · ' + n;
+}
+function startHero() {
+  if (heroTimer) return;
+  heroNext();
+  if (RM) return;
+  heroTimer = setInterval(() => { if (heroVisible && !document.hidden) heroNext(); }, 3600);
+}
+new IntersectionObserver(es => es.forEach(e => heroVisible = e.isIntersecting)).observe($('.hero'));
+(() => { // optional hero reel
+  const v = $('.hero__video'), src = $('source', v);
+  src.addEventListener('error', () => v.remove());
+  v.addEventListener('loadeddata', () => { $('.hero').classList.add('has-video'); v.play().catch(() => {}); });
+  v.load();
+})();
+
+/* ---------- menu ---------- */
+const burger = $('.nav__burger'), menu = $('#menu');
+function setMenu(open) {
+  burger.setAttribute('aria-expanded', open); menu.classList.toggle('is-open', open);
+  burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  if (window.lenis) open ? lenis.stop() : lenis.start();
+}
+burger.addEventListener('click', () => setMenu(burger.getAttribute('aria-expanded') !== 'true'));
+$$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
+
+/* ---------- service tabs ---------- */
+const tabs = $$('.tab');
+function openTab(id, focus) {
+  tabs.forEach(t => { const on = t.id === 'tab-' + id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; if (on && focus) t.focus(); });
+  $$('.spanel').forEach(p => p.hidden = p.id !== 'sp-' + id);
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => openTab(t.id.slice(4)));
+  t.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!d) return; e.preventDefault();
+    openTab(tabs[(i + d + tabs.length) % tabs.length].id.slice(4), true);
+  });
+});
+$$('.slab[data-tab]').forEach(s => s.addEventListener('click', () => openTab(s.dataset.tab)));
+
+/* ---------- wrap bay ---------- */
+const S = { mode: 'wrap', color: COLORS[0], finish: 'gloss', ppf: 'ffront', ceramic: false };
+const sCar = $('#car-s');
+$('#finishPicks').innerHTML = Object.entries(FINISH).map(([k, v]) => `<button class="pick" data-f="${k}" aria-pressed="${k === S.finish}">${v}</button>`).join('');
+$('#swatches').innerHTML = COLORS.map((c, i) => `<button class="sw" style="--sw:${c.c}" data-c="${i}" aria-pressed="${i === 0}" aria-label="${c.n}" title="${c.n}"></button>`).join('');
+$('#ppfPicks').innerHTML = Object.entries(PPF).map(([k, v]) => `<button class="pick" data-p="${k}" aria-pressed="${k === S.ppf}">${v.l}</button>`).join('');
+function buildText() {
+  const cer = S.ceramic ? ' + ceramic coating' : '';
+  return S.mode === 'wrap' ? `${FINISH[S.finish]} ${S.color.n} full wrap${cer}` : `PPF ${PPF[S.ppf].l.toLowerCase()}${cer}`;
+}
+function renderBay(paint) {
+  sCar.dataset.mode = S.mode; sCar.dataset.ppf = S.ppf; sCar.dataset.ceramic = S.ceramic ? 1 : 0;
+  $$('[data-m]').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === S.mode));
+  $('#ctrlFinish').hidden = $('#ctrlColour').hidden = S.mode !== 'wrap';
+  $('#ctrlPpf').hidden = S.mode !== 'ppf';
+  $$('[data-f]').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === S.finish));
+  $$('[data-c]').forEach(b => b.setAttribute('aria-pressed', COLORS[b.dataset.c] === S.color));
+  $$('[data-p]').forEach(b => b.setAttribute('aria-pressed', b.dataset.p === S.ppf));
+  $('#ppfList').innerHTML = PPF[S.ppf].c.map(x => `<li>${x}</li>`).join('');
+  $('#colName').textContent = S.color.n;
+  $('#ceramicSw').setAttribute('aria-checked', S.ceramic);
+  if (paint) wrapTo('s', S.mode === 'wrap' ? S.color.c : '#17181b', S.mode === 'wrap' ? S.finish : 'gloss');
+  const txt = buildText();
+  $('#bayName').textContent = S.mode === 'wrap' ? `${FINISH[S.finish]} · ${S.color.n}` : `PPF · ${PPF[S.ppf].l}`;
+  $('#bayHint').textContent = S.mode === 'wrap' ? 'Full colour wrap' : 'Hatched area = film';
+  $('#buildTxt').textContent = txt.charAt(0).toUpperCase() + txt.slice(1);
+  $('#buildWa').href = wa(`Hi Wrappi! I built this on your website: ${txt}.\nCar: \nCould I get a price?`);
+  sCar.setAttribute('aria-label', 'Preview: ' + txt);
+}
+$$('[data-m]').forEach(b => b.addEventListener('click', () => { S.mode = b.dataset.m; renderBay(true); }));
+$('#finishPicks').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; S.finish = b.dataset.f; renderBay(true); });
+$('#swatches').addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (!b) return; S.color = COLORS[b.dataset.c]; renderBay(true); });
+$('#ppfPicks').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (!b) return; S.ppf = b.dataset.p; renderBay(false); });
+$('#ceramicSw').addEventListener('click', () => { S.ceramic = !S.ceramic; renderBay(false); });
+$$('.acts [data-mode]').forEach(a => a.addEventListener('click', () => { S.mode = a.dataset.mode; renderBay(true); }));
+$$('.acts [data-ceramic]').forEach(a => a.addEventListener('click', () => { S.ceramic = true; renderBay(false); }));
+let bayPainted = false;
+new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !bayPainted) { bayPainted = true; renderBay(true); o.disconnect(); } }), { threshold: .3 }).observe($('.bay'));
+renderBay(false);
+
+/* ---------- before / after ---------- */
+(() => {
+  const ba = $('#ba'), r = $('#baRange');
+  const set = v => ba.style.setProperty('--x', v + '%');
+  r.addEventListener('input', () => { ba._touched = true; set(r.value); });
+  if (RM) return;
+  new IntersectionObserver((es, o) => es.forEach(e => {
+    if (!e.isIntersecting) return; o.disconnect();
+    const seq = [50, 22, 78, 50]; let i = 0, from = 50, t0 = 0;
+    const go = t => {
+      if (ba._touched) return;
+      if (!t0) t0 = t;
+      const p = Math.min(1, (t - t0) / 900), e2 = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2, v = from + (seq[i + 1] - from) * e2;
+      set(v); r.value = v;
+      if (p >= 1) { i++; from = seq[i]; t0 = 0; if (i >= seq.length - 1) return; }
+      requestAnimationFrame(go);
+    };
+    setTimeout(() => requestAnimationFrame(go), 400);
+  }), { threshold: .6 }).observe(ba);
+})();
+
+/* ---------- work gallery + lightbox ---------- */
+const WORK = [
+  { f: 'work_01.webp', c: 'wrap', t: 'Colour change', s: 'w2 h2' }, { f: 'work_02.webp', c: 'ppf', t: 'Front-end PPF', s: '' },
+  { f: 'work_03.webp', c: 'polish', t: 'Paint correction', s: '' }, { f: 'work_04.webp', c: 'ceramic', t: 'Ceramic coating', s: 'h2' },
+  { f: 'work_05.webp', c: 'wrap', t: 'Satin wrap', s: '' }, { f: 'work_06.webp', c: 'ppf', t: 'Full-body PPF', s: 'w2' },
+  { f: 'work_07.webp', c: 'wrap', t: 'Chrome delete', s: '' }, { f: 'work_08.webp', c: 'polish', t: 'One-step polish', s: '' },
+  { f: 'work_09.webp', c: 'ppf', t: 'PPF install', s: 'w2' }, { f: 'work_10.webp', c: 'ceramic', t: 'Wheels & glass', s: '' },
+  { f: 'work_11.webp', c: 'wrap', t: 'Roof & mirrors', s: '' }, { f: 'work_12.webp', c: 'wrap', t: 'In the studio', s: 'w2' }
+];
+const CAT = { all: 'All', ppf: 'PPF', wrap: 'Wrapping', polish: 'Polishing', ceramic: 'Ceramic' };
+const grid = $('#workGrid');
+grid.innerHTML = WORK.map((w, i) => `<figure class="shot ${w.s}" data-cat="${w.c}" data-i="${i}" data-ph="${w.f}" data-cursor="view"><img src="${w.f}" alt="${w.t}" loading="lazy" onerror="ph(this)"><figcaption><b>${w.t}</b><span>${CAT[w.c]}</span></figcaption><button aria-label="Open photo: ${w.t}"></button></figure>`).join('');
+$('#workFilters').innerHTML = Object.entries(CAT).map(([k, v]) => `<button class="pick" data-w="${k}" aria-pressed="${k === 'all'}">${v}</button>`).join('');
+function filterWork(cat) {
+  $$('[data-w]').forEach(b => b.setAttribute('aria-pressed', b.dataset.w === cat));
+  let n = 0;
+  $$('.shot', grid).forEach(s => { const on = cat === 'all' || s.dataset.cat === cat; s.classList.toggle('is-out', !on); if (on) n++; });
+  $('#workN').textContent = n;
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
+}
+$('#workFilters').addEventListener('click', e => { const b = e.target.closest('[data-w]'); if (b) filterWork(b.dataset.w); });
+filterWork('all');
+const lb = $('#lb'); let lbList = [], lbI = 0, lbFrom = null;
+function lbShow() {
+  const w = WORK[lbList[lbI]];
+  $('#lbMedia').innerHTML = `<div class="media" style="aspect-ratio:auto;position:absolute;inset:0" data-ph="${w.f} · add this photo to the folder"><img src="${w.f}" alt="${w.t}" onerror="ph(this)"></div>`;
+  $('#lbCap').textContent = w.t + ' · ' + CAT[w.c];
+  $('#lbNum').textContent = (lbI + 1) + ' / ' + lbList.length;
+}
+function lbOpen(i) {
+  lbFrom = document.activeElement;
+  lbList = $$('.shot:not(.is-out)', grid).map(s => +s.dataset.i); lbI = Math.max(0, lbList.indexOf(i));
+  lbShow(); lb.hidden = false; $('.lb__close').focus(); if (window.lenis) lenis.stop();
+}
+function lbClose() { lb.hidden = true; if (window.lenis) lenis.start(); if (lbFrom) lbFrom.focus(); }
+grid.addEventListener('click', e => { const s = e.target.closest('.shot'); if (s) lbOpen(+s.dataset.i); });
+$('.lb__close').addEventListener('click', lbClose);
+$('.lb__prev').addEventListener('click', () => { lbI = (lbI - 1 + lbList.length) % lbList.length; lbShow(); });
+$('.lb__next').addEventListener('click', () => { lbI = (lbI + 1) % lbList.length; lbShow(); });
+lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+addEventListener('keydown', e => {
+  if (lb.hidden) return;
+  if (e.key === 'Escape') lbClose(); else if (e.key === 'ArrowLeft') $('.lb__prev').click(); else if (e.key === 'ArrowRight') $('.lb__next').click();
+  else if (e.key === 'Tab') { const f = $$('.lb__btn'), a = f.indexOf(document.activeElement); e.preventDefault(); f[(a + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus(); }
+});
+
+/* ---------- Instagram tiles ---------- */
+$('#igGrid').innerHTML = [1, 2, 3, 4, 5, 6].map(n => `<a href="${WRAPPI.instagram}" target="_blank" rel="noopener" aria-label="Wrappi on Instagram" data-ph="ig_0${n}.webp"><img src="ig_0${n}.webp" alt="" loading="lazy" onerror="ph(this)"></a>`).join('');
+
+/* ---------- quote builder ---------- */
+const Q = { size: 'mid', svc: new Set(), when: 'This month', build: '' };
+const WHEN = ['As soon as possible', 'This month', 'Just checking prices'];
+$('#sizePicks').innerHTML = Object.entries(WRAPPI.sizes).map(([k, v]) => `<button class="pick" role="radio" data-s="${k}" aria-checked="${k === Q.size}">${v.label}<small>${v.hint}</small></button>`).join('');
+$('#svcPicks').innerHTML = Object.entries(WRAPPI.services).map(([k, v]) => `<button class="pick" data-v="${k}" aria-pressed="false">${v.label}${v.hint ? `<small>${v.hint}</small>` : ''}</button>`).join('');
+$('#whenPicks').innerHTML = WHEN.map(w => `<button class="pick" role="radio" data-n="${w}" aria-checked="${w === Q.when}">${w}</button>`).join('');
+function renderQuote() {
+  $$('[data-s]').forEach(b => b.setAttribute('aria-checked', b.dataset.s === Q.size));
+  $$('[data-v]').forEach(b => b.setAttribute('aria-pressed', Q.svc.has(b.dataset.v)));
+  $$('[data-n]').forEach(b => b.setAttribute('aria-checked', b.dataset.n === Q.when));
+  const k = WRAPPI.sizes[Q.size].k, list = [...Q.svc].map(s => WRAPPI.services[s]);
+  const lo = r500(list.reduce((a, s) => a + s.from, 0) * k), hi = r500(list.reduce((a, s) => a + s.to, 0) * k);
+  $('#estV').textContent = list.length ? `${nok(lo)} – ${Math.round(hi).toLocaleString('nb-NO')}` : 'Pick a service';
+  $('#estNote').textContent = WRAPPI.PRICES_CONFIRMED ? 'Incl. VAT. Final price after we\'ve seen the car.' : 'Sample prices for the demo — Wrappi confirms the real price after seeing the car.';
+  const car = $('#qCar').value.trim(), name = $('#qName').value.trim();
+  const msg = [
+    'Hi Wrappi! I\'d like a quote.',
+    `Car: ${car || '(make & model)'} · ${WRAPPI.sizes[Q.size].label}`,
+    `Services: ${list.length ? list.map(s => s.label).join(', ') : '(not sure yet)'}`,
+    Q.build ? `Build from your site: ${Q.build}` : '',
+    `Timing: ${Q.when}`,
+    name ? `— ${name}` : ''
+  ].filter(Boolean).join('\n');
+  $('#bubble').textContent = msg;
+  $('#qWa').href = wa(msg);
+}
+$('#sizePicks').addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) { Q.size = b.dataset.s; renderQuote(); } });
+$('#svcPicks').addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; const v = b.dataset.v; Q.svc.has(v) ? Q.svc.delete(v) : Q.svc.add(v); renderQuote(); });
+$('#whenPicks').addEventListener('click', e => { const b = e.target.closest('[data-n]'); if (b) { Q.when = b.dataset.n; renderQuote(); } });
+['#qCar', '#qName'].forEach(s => $(s).addEventListener('input', renderQuote));
+$('#buildQuote').addEventListener('click', () => {
+  Q.svc.add(S.mode === 'wrap' ? 'wrap' : PPF[S.ppf].s);
+  if (S.ceramic) Q.svc.add('ceramic');
+  Q.build = buildText(); renderQuote();
+});
+renderQuote();
+
+/* ---------- Oslo clock + open status ---------- */
+function osloNow() {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Oslo', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+  return { d: p.weekday, h: +p.hour, m: +p.minute, t: `${p.hour}:${p.minute}` };
+}
+function tick() {
+  const n = osloNow(), hrs = WRAPPI.hours[n.d], open = hrs && (n.h + n.m / 60) >= hrs[0] && (n.h + n.m / 60) < hrs[1];
+  $('#clock').textContent = n.t;
+  const txt = open ? `Open now · until ${String(hrs[1]).padStart(2, '0')}:00` : 'Closed now · message us any time';
+  $('#clockState').innerHTML = `<span class="dot ${open ? 'dot--blue' : ''}"></span>${txt}`;
+  $('#openTxt').textContent = open ? 'Open now' : 'Closed now';
+  $('#openDot').className = 'dot' + (open ? ' dot--blue' : '');
+}
+tick(); setInterval(tick, 20000);
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------- assistant (rule-based, only Wrappi's own info) ---------- */
+(() => {
+  const fab = $('#botFab'), bot = $('#bot'), log = $('#botLog');
+  const P = WRAPPI.services, f = k => nok(P[k].from);
+  const tbc = WRAPPI.PRICES_CONFIRMED ? '' : ' (sample prices for now)';
+  const A = [
+    { k: ['price', 'cost', 'how much', 'pris', 'koster', 'kost'], a: `Starting points${tbc}: PPF full front ${f('ppfFront')}, full wrap ${f('wrap')}, ceramic ${f('ceramic')}, polish ${f('polish1')}. Try the <a href="#quote">price builder</a> for your car.` },
+    { k: ['ppf', 'protection', 'film', 'chip', 'stone', 'lakkbeskyttelse', 'folie'], a: `PPF is a clear self-healing film that takes stone chips and scratches. Packages go from front pack to full body. <a href="#studio">See the coverage</a> on the car.` },
+    { k: ['wrap', 'colour', 'color', 'foliering', 'farge', 'chrome delete'], a: `We do full colour changes and partial wraps (roof, mirrors, chrome delete) in gloss, satin, matte or chrome. <a href="#studio">Try colours here</a>.` },
+    { k: ['polish', 'swirl', 'scratch', 'correction', 'polering', 'riper'], a: `Polishing takes out swirls, haze and light scratches. One-step from ${f('polish1')}${tbc}. <a href="#polish">See before / after</a>.` },
+    { k: ['ceramic', 'coating', 'keramisk', 'coat', 'bead'], a: `Ceramic coating adds gloss and makes the car much easier to wash. It goes on paint, PPF, wraps, wheels and glass. From ${f('ceramic')}${tbc}.` },
+    { k: ['where', 'address', 'location', 'map', 'hvor', 'adresse'], a: `We're at ${WRAPPI.address}. <a href="https://www.google.com/maps/search/?api=1&query=Str%C3%B8msveien%20324%2C%201081%20Oslo" target="_blank" rel="noopener">Open directions</a>.` },
+    { k: ['open', 'hour', 'time', 'when', 'åpent', 'åpningstid'], a: `Hours are ${$('#hoursTxt').textContent.replace('to confirm', '').trim()}. Message before you come so someone is free.` },
+    { k: ['phone', 'call', 'number', 'ring', 'telefon'], a: `Call ${WRAPPI.phones[0]} or ${WRAPPI.phones[1]}.` },
+    { k: ['book', 'appointment', 'booking', 'bestill', 'time'], a: `Easiest is WhatsApp: <a href="${wa("Hi Wrappi! I'd like to book a time.")}" target="_blank" rel="noopener">message us here</a>, and we'll find a day.` },
+    { k: ['warranty', 'garanti', 'guarantee'], a: `Warranty depends on the film or coating used. Ask us with your quote and we'll tell you exactly what's covered.` },
+    { k: ['tesla', 'electric', 'ev', 'elbil'], a: `Yes, we work on electric cars all the time. Tell us the model and we'll take it from there.` }
+  ];
+  const say = (h, me) => { const d = document.createElement('div'); d.className = 'msg ' + (me ? 'msg--me' : 'msg--bot'); d[me ? 'textContent' : 'innerHTML'] = h; log.appendChild(d); log.scrollTop = log.scrollHeight; };
+  const answer = q => {
+    const s = q.toLowerCase(), hit = A.find(r => r.k.some(k => s.includes(k)));
+    setTimeout(() => say(hit ? hit.a : `Good question for the team. <a href="${wa('Hi Wrappi! ' + q)}" target="_blank" rel="noopener">Send it on WhatsApp</a> and they'll reply.`), 350);
+  };
+  const chips = ['Prices', 'PPF', 'Wraps', 'Ceramic', 'Where are you?', 'Opening hours', 'Book a time'];
+  $('#botChips').innerHTML = chips.map(c => `<button type="button">${c}</button>`).join('');
+  $('#botChips').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; say(b.textContent, true); answer(b.textContent); });
+  $('#botForm').addEventListener('submit', e => { e.preventDefault(); const v = $('#botIn').value.trim(); if (!v) return; say(v, true); $('#botIn').value = ''; answer(v); });
+  log.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'); if (a) toggle(false); });
+  let started = false;
+  function toggle(open) {
+    bot.classList.toggle('is-open', open); fab.setAttribute('aria-expanded', open);
+    if (open) { if (!started) { started = true; say('Hi! Ask me about PPF, wraps, polishing, ceramic coating, prices or where we are.'); } setTimeout(() => $('#botIn').focus(), 200); } else fab.focus();
+  }
+  fab.addEventListener('click', () => toggle(true));
+  $('#botClose').addEventListener('click', () => toggle(false));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && bot.classList.contains('is-open')) toggle(false); });
+})();
+
+/* ════════ motion (GSAP + Lenis). If the CDN fails, the page still works without it. ════════ */
+addEventListener('load', () => {
+  const finishLoader = () => { $$('.loader,.loader__n,.loader__blade').forEach(e => e.remove()); startHero(); };
+  if (!window.gsap || !window.ScrollTrigger || RM) { finishLoader(); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* smooth scroll */
+  if (window.Lenis) {
+    window.lenis = new Lenis({ lerp: .1 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+  }
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); if (id.length < 2) return;
+    const t = $(id); if (!t || !window.lenis) return;
+    e.preventDefault(); lenis.scrollTo(t, { offset: id === '#top' ? 0 : -86, duration: 1.4 });
+  }));
+
+  /* loader: WRAPPI rises, the red/blue rule draws, then the squeegee pulls the sheet off */
+  const kw = $('.loader__w'), lc = $('#lc'), cnt = { v: 0 };
+  kw.innerHTML = [...kw.textContent].map(c => `<span>${c}</span>`).join('');
+  gsap.set($$('span', kw), { yPercent: 112 });
+  gsap.set('.loader__s i', { scaleX: 0 }); gsap.set('.loader__s b', { autoAlpha: 0 });
+  gsap.set('.loader', { clipPath: 'inset(0% 0% 0% 0%)' });
+  gsap.set(['.nav', '.bot-fab', '.hero__now'], { autoAlpha: 0 });
+  gsap.set('.hero__title .line > span', { yPercent: 112 });
+  gsap.set(['.hero__eyebrow', '.hero__row'], { autoAlpha: 0, y: 24 });
+  gsap.set('.hero__stage', { autoAlpha: 0, x: -60 });
+  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  tl.to($$('span', kw), { yPercent: 0, duration: 1, stagger: .06 })
+    .to(cnt, { v: 100, duration: 1.7, ease: 'power2.inOut', onUpdate: () => lc.textContent = String(Math.round(cnt.v)).padStart(3, '0') }, 0)
+    .to('.loader__s i', { scaleX: 1, duration: 1.1, ease: 'expo.inOut' }, .35)
+    .to('.loader__s b', { autoAlpha: 1, duration: .6 }, .9)
+    .set('.loader__blade', { autoAlpha: 1, x: 0 }, 1.85)
+    .to('.loader__blade', { x: () => innerWidth, duration: 1.05, ease: 'power3.inOut' }, 1.85)
+    .to('.loader', { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.05, ease: 'power3.inOut' }, 1.85)
+    .to('.loader__n', { autoAlpha: 0, duration: .3 }, 1.85)
+    .add(() => startHero(), 2.2)
+    .to('.hero__title .line > span', { yPercent: 0, duration: 1.2, stagger: .1 }, 2.3)
+    .to(['.hero__eyebrow', '.hero__row'], { autoAlpha: 1, y: 0, duration: 1, stagger: .08 }, 2.45)
+    .to('.hero__stage', { autoAlpha: 1, x: 0, duration: 1.6 }, 2.2)
+    .to(['.nav', '.bot-fab', '.hero__now'], { autoAlpha: 1, duration: .8 }, 2.7)
+    .add(() => { $$('.loader,.loader__n,.loader__blade').forEach(e => e.remove()); if (window.lenis) lenis.start(); });
+
+  /* nav hide/show + progress */
+  const nav = $('#nav'); let lastY = 0;
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => {
+    const y = s.scroll(); nav.classList.toggle('is-hidden', y > 300 && y > lastY && !menu.classList.contains('is-open')); lastY = y;
+    gsap.set('.progress', { scaleX: s.progress });
+  } });
+  $$('.nav__links a').forEach(a => { const t = $(a.getAttribute('href')); if (t) ScrollTrigger.create({ trigger: t, start: 'top 50%', end: 'bottom 50%', onToggle: s => a.classList.toggle('is-on', s.isActive) }); });
+
+  /* hero: the copy lifts away, the car rolls forward with its wheels turning */
+  const rims = $$('#car-h .rimrot');
+  gsap.to('.hero__inner', { yPercent: -18, autoAlpha: .2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero__car', { xPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true, onUpdate: s => rims.forEach(r => r.setAttribute('transform', `rotate(${s.progress * 540})`)) } });
+
+  /* reveals */
+  $$('.rv').forEach(el => gsap.fromTo(el, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } }));
+
+  /* finishes: earlier cards sink back as the next one lands */
+  const fins = $$('.fin');
+  fins.forEach((f, i) => { if (i < fins.length - 1) gsap.to(f, { scale: .94, filter: 'brightness(.55)', ease: 'none', scrollTrigger: { trigger: fins[i + 1], start: 'top bottom', end: 'top 20%', scrub: true } }); });
+
+  /* process: horizontal on desktop */
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 900px)', () => {
+    const tr = $('#track'), pin = document.createElement('div');
+    tr.parentNode.insertBefore(pin, tr); pin.appendChild(tr);
+    const dist = () => Math.max(0, tr.scrollWidth - innerWidth);
+    const tw = gsap.to(tr, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: pin, start: 'center center', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true } });
+    $$('.step__bar', tr).forEach(b => gsap.to(b, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: b.parentNode, containerAnimation: tw, start: 'left 85%', end: 'left 35%', scrub: true } }));
+    return () => { pin.parentNode.insertBefore(tr, pin); pin.remove(); gsap.set(tr, { clearProps: 'transform' }); };
+  });
+
+  /* desktop toys: cursor + magnetic buttons */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.body.classList.add('has-cursor');
+    const c = $('.cursor'), d = $('.cursor-dot');
+    const cx = gsap.quickTo(c, 'x', { duration: .45, ease: 'power3' }), cy = gsap.quickTo(c, 'y', { duration: .45, ease: 'power3' });
+    addEventListener('mousemove', e => { c.style.opacity = d.style.opacity = 1; cx(e.clientX); cy(e.clientY); gsap.set(d, { x: e.clientX, y: e.clientY }); });
+    document.addEventListener('mouseover', e => c.classList.toggle('is-view', !!e.target.closest('[data-cursor="view"]')));
+    $$('.mag').forEach(b => {
+      b.addEventListener('mousemove', e => { const r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .22, y: (e.clientY - r.top - r.height / 2) * .3, duration: .4, ease: 'power3' }); });
+      b.addEventListener('mouseleave', () => gsap.to(b, { x: 0, y: 0, duration: .6, ease: 'power3.out' }));
+    });
+  }
+  ScrollTrigger.refresh();
+});
+</script>
+</body>
+</html>
