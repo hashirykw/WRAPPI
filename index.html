@@ -676,8 +676,12 @@ html.is-3d .bay__hint{display:inline-flex}
 .qbar__t .mono{font-size:9px}
 .qbar__t b{font-family:var(--font-display);font-stretch:125%;font-weight:800;font-size:14px;color:var(--color-glow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
 .qbar .btn{height:44px;padding:0 16px;flex:none}
-.toast{position:fixed;z-index:160;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,150%);padding:12px 18px;background:var(--color-glow);color:var(--color-ink);font-size:var(--text-sm);font-weight:650;transition:transform var(--dur-base) var(--ease-out);pointer-events:none;max-width:calc(100vw - 32px)}
-.toast.is-on{transform:translate(-50%,0)}
+.toast{position:fixed;z-index:160;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 48px));opacity:0;visibility:hidden;padding:12px 18px;background:var(--color-glow);color:var(--color-ink);font-size:var(--text-sm);font-weight:650;transition:transform var(--dur-base) var(--ease-out),opacity var(--dur-base),visibility var(--dur-base);pointer-events:none;max-width:calc(100% - 32px)}
+.toast.is-on{transform:translate(-50%,0);opacity:1;visibility:visible}
+.hero__title .split{white-space:nowrap}
+.work__more{display:none}
+.nw{white-space:nowrap}
+.work__more b{font-weight:500;opacity:.6;margin-left:2px}
 
 /* ════════ PHONES ════════ */
 @media (max-width:760px){
@@ -741,6 +745,173 @@ html.is-3d .bay__hint{display:inline-flex}
   .foot__legal{flex-direction:column}
   .mosaic{margin-top:var(--space-xl)}
 }
+/* ════════ PHONES · polish pass — tighter type, smaller cards, nothing split mid-word ════════ */
+@media (max-width:760px){
+  body{font-size:15px}
+  .sec{padding-block:clamp(48px,13vw,64px)}
+  .sec-head{gap:12px;margin-bottom:22px}
+  .sec-head .tag{margin-bottom:12px}
+  .sec-head .rule{margin-top:16px}
+  .sec-head h2,.panel h2,.ba__copy h2,.faq h2{font-size:clamp(1.85rem,8.8vw,2.6rem)}
+  .btn{height:48px;word-spacing:.18em}
+  .btn--sm{height:38px}
+  .mono,.tag{letter-spacing:.12em}
+
+  /* nav + menu: labels never run off the screen */
+  .menu > a{font-size:clamp(1.3rem,6.6vw,2rem);padding:10px 0}
+  .menu > a > span{flex:none}
+  .menu > a small{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .menu__acts .btn{padding:0 8px;gap:8px;letter-spacing:.04em}
+
+  /* hero: headline sized so the longest word fits (JS fine-tunes after fonts load) */
+  .hero__title{font-size:calc((100vw - 2 * var(--gutter)) / 7.9);letter-spacing:-.01em}
+  .hero__title .line:first-child > span{font-size:1.5em}
+  .hero__sub{font-size:14.5px;line-height:1.55}
+  .hero__motto{font-size:10px}
+  .mosaic__title h2{font-size:clamp(1.9rem,9vw,3rem)}
+  .mosaic__title p{font-size:14px}
+
+  /* services: all five tabs visible as a 3 + 2 grid instead of a cut-off scroller */
+  .tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;overflow:visible;margin:0 0 18px;padding:0}
+  .tab{grid-column:span 2;min-width:0;justify-content:center;padding:12px 6px;text-align:center}
+  .tab:nth-child(n+4){grid-column:span 3}
+  .tab i,.tab span span{display:none}
+  .tab b{font-size:clamp(.68rem,3.2vw,.82rem);letter-spacing:.01em}
+  .spanel{gap:18px}
+  .spanel__info{gap:14px}
+  .spanel__info h3{font-size:clamp(1.7rem,8vw,2.1rem)}
+  .spanel__info h3 small{font-size:14px;margin-top:8px}
+  .spanel__info > p{font-size:14.5px}
+  .media figcaption{font-size:9.5px;left:8px;bottom:8px}
+  .spanel__media .media:first-child{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+  .dl > div{grid-template-columns:92px minmax(0,1fr);gap:10px;padding:10px 0}
+  .dl dt{font-size:10px}
+  .dl dd{font-size:14.5px;line-height:1.45}
+  .dl dd small{font-size:11.5px;margin-top:2px}
+
+  /* wrap studio: shorter sticky stage leaves more room for the controls */
+  .bay{padding:24px 4px 8px}
+  html.can3d .bay__view{aspect-ratio:16/9}
+  .bay__read{margin-top:4px}
+  .bay__views .chip{height:26px;padding:0 8px;font-size:9.5px}
+  .panel{gap:20px}
+  .panel > p{font-size:14.5px}
+  .pane{gap:18px}
+  .preset span{padding:6px 7px 7px;font-size:10.5px}
+  .preset span small{font-size:9px}
+  .skin{font-size:10.5px}
+  .summary{padding:16px}
+
+  /* before / after: the photo first, then a compact 2 × 2 picker */
+  .ba__grid{display:flex;flex-direction:column;align-items:stretch;gap:16px}
+  .ba__copy{display:contents}
+  .ba__grid > div:last-child{order:2}
+  .ba__list{order:3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;border:0}
+  .ba__list button{grid-template-columns:minmax(0,1fr);gap:2px;padding:10px 12px;border:1px solid var(--color-line);min-width:0}
+  .ba__list button i{display:none}
+  .ba__list button b{font-size:.74rem;line-height:1.15}
+  .ba__list button small{font-size:11px}
+  .ba__list button[aria-pressed="true"]{background:var(--color-glow);border-color:var(--color-glow)}
+  .ba__list button[aria-pressed="true"] b{color:var(--color-ink)}
+  .ba__list button[aria-pressed="true"] small{color:var(--color-steel)}
+  .ba__list button[aria-pressed="true"] b::after{display:none}
+  .ba__knob{width:42px;height:42px;margin:-21px 0 0 -21px}
+  .ba__label{top:10px}.ba__label--l{left:10px}.ba__label--r{right:24px}
+  .ba__cap{margin-top:8px;font-size:10px}
+
+  /* featured jobs: smaller cards, more of the next one peeks in */
+  .card{flex-basis:66vw;aspect-ratio:4/5;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+  .card__n{top:12px;left:12px;font-size:2.1rem}
+  .card__cap{padding:48px 14px 14px}
+  .card__cap .mono{font-size:10px}
+  .card__cap h3{font-size:1.15rem}
+  .card__cap p{font-size:13px;margin-top:4px}
+  .card--end{padding:18px}
+
+  /* gallery: one-row filter strip, tighter tiles, first 8 photos then "show all" */
+  .work__bar{flex-direction:column;align-items:stretch;gap:10px;margin-bottom:14px}
+  #workFilters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+  #workFilters::-webkit-scrollbar{display:none}
+  #workFilters .pick{flex:none;min-height:36px;padding:0 14px;font-size:13px;white-space:nowrap}
+  .grid{grid-auto-rows:36vw;gap:5px}
+  .shot figcaption{left:8px;right:8px;bottom:7px}
+  .shot figcaption b{font-size:.6rem;letter-spacing:.02em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .shot.h2{grid-row:auto}
+  .shot.w2{grid-row:span 1}
+  .shot.is-more{display:none}
+  .work__more{display:flex;width:100%;margin-top:12px}
+
+  /* prices: a clean price list — name left, price right — instead of tall cards */
+  .board-head{margin-bottom:10px;gap:8px}
+  .board-head h3{font-size:1.25rem}
+  .board-head .mono{font-size:10px}
+  .camp{font-size:10px;padding:7px 10px;line-height:1.4}
+  .board,.board--3,.pkgs{grid-template-columns:minmax(0,1fr)}
+  .tier{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 14px;padding:14px 16px}
+  .tier::before{right:auto;bottom:0;width:3px;height:auto;transform:scaleY(0);transform-origin:top}
+  .tier.is-in::before,.tier:hover::before{transform:scaleY(1)}
+  .tier h3{grid-column:1;grid-row:1;font-size:.92rem;line-height:1.1}
+  .tier ul{grid-column:1;grid-row:2;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:var(--color-mute)}
+  .tier ul li{display:inline}
+  .tier ul li::before{content:" · "}
+  .tier ul li:first-child::before{content:none}
+  .tier .tier__p,.pkg .tier__p{grid-column:2;grid-row:1 / span 2;font-size:1.4rem;text-align:right;white-space:nowrap}
+  .tier__p small{display:block;margin:0 0 3px;font-size:9.5px;line-height:1}
+  .tier__p sub{font-size:.5em}
+  .pkg{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 14px;padding:14px 16px}
+  .pkg h4{grid-column:1;grid-row:1;font-size:.88rem}
+  .pkg p{grid-column:1;grid-row:2;font-size:12px;line-height:1.4}
+  .pkg .tier__p{font-size:1.25rem}
+  .req{font-size:13px;line-height:1.55;margin-top:12px}
+
+  /* price builder: edge-to-edge panel, options in a tidy 2-column grid */
+  .quote__box{margin:36px calc(-1 * var(--gutter)) 0;border-inline:0}
+  .quote__l,.quote__r{padding:22px var(--gutter)}
+  .quote__l{gap:24px}
+  .quote__l h3{font-size:clamp(1.55rem,7.4vw,2rem)}
+  .quote__l p{font-size:14.5px}
+  .quote__l .picks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .quote__l .pick{min-height:46px;min-width:0;padding:8px 12px;font-size:13px;line-height:1.3}
+  .quote__l .pick small{font-size:10.5px;margin-top:2px}
+  .grp > small{font-size:11px}
+  .bubble{font-size:13.5px;min-height:0}
+  .est__v{font-size:1.55rem}
+  .calls{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .calls .btn{padding:0 8px;gap:8px;letter-spacing:.04em}
+  .qbar{left:8px;right:8px;padding:8px 8px 8px 14px}
+  .qbar__t .mono{font-size:10px}
+
+  /* film: slimmer cross-section */
+  .xsec{padding:14px;gap:5px}
+  .layer{padding:0 12px;font-size:10px}
+  .layer b{font-size:.95rem}
+  .layer--top{--h:38px}.layer--tpu{--h:92px}.layer--adh{--h:42px}.layer--paint{--h:36px}
+  .xsec__total{align-items:end}
+  .xsec__total b{font-size:clamp(1rem,4.6vw,1.25rem);text-align:right;white-space:nowrap}
+  .specs > div{gap:10px;padding:10px 0}
+  .specs dt{font-size:13.5px}
+  .specs dd{font-size:12.5px}
+
+  /* process: photo sits under the text column, not full-bleed */
+  .step{gap:10px 16px;padding:22px 0}
+  .step__n{font-size:2.1rem}
+  .step h3{font-size:1.12rem;margin-bottom:6px}
+  .step p{font-size:14.5px;line-height:1.55}
+  .step img{grid-column:2;aspect-ratio:16/10}
+  .quote-line{font-size:1.15rem}
+
+  /* faq + visit */
+  .qa summary{font-size:.98rem;padding:16px 0;line-height:1.35}
+  .qa summary i{width:26px;height:26px}
+  .qa summary i::before,.qa summary i::after{left:7px;right:7px;top:11.5px}
+  .qa details p{font-size:14.5px;padding-bottom:18px}
+  .loc{padding:20px 16px;gap:18px}
+  .loc h3{font-size:clamp(1.35rem,6.4vw,1.7rem)}
+  .shop{min-height:220px}
+  .map{min-height:240px}
+  .ig__grid{gap:5px}
+  .foot__links{gap:8px 18px}
+}
 @media (max-width:360px){
   .hero__ctas{grid-template-columns:minmax(0,1fr)}
   .presets,.skins{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -757,6 +928,8 @@ html.is-3d .bay__hint{display:inline-flex}
 }
 
 html:not(.is-3d) #snapBtn{display:none}
+/* measuring pass for fitHeads(): no transitions, so sizes read back immediately */
+.is-fitting,.is-fitting *{transition:none!important}
 
 </style>
 </head>
@@ -1138,6 +1311,7 @@ html:not(.is-3d) #snapBtn{display:none}
     <span class="work__count"><b id="workN">0</b> <span data-no="bilder">photos</span></span>
   </div>
   <div class="grid" id="workGrid"></div>
+  <button class="btn btn--ghost work__more" id="workMore" type="button" aria-controls="workGrid" hidden><span data-no="Vis alle bildene">Show all photos</span><b id="workMoreN"></b></button>
 </section>
 
 <!-- PRICES -->
@@ -1172,8 +1346,8 @@ html:not(.is-3d) #snapBtn{display:none}
       <div class="pkg"><h4>Front PPF</h4><p data-no="Panser, frontfanger, forskjermer, A-stolper, speil, lykter">Bonnet, bumper, front wings, A-pillars, mirrors, headlights</p><div class="tier__p"><small data-no="fra">from</small><span class="cnt" data-v="12900">12 900</span></div></div>
       <div class="pkg"><h4>Full Shine</h4><p data-no="Lakkorrigering, interiør, felger og dekk">Paint correction, interior, wheels and tyres</p><div class="tier__p"><span class="cnt" data-v="5999">5 999</span></div></div>
       <div class="pkg"><h4 data-no="Full Shine + keramisk">Full Shine + ceramic</h4><p data-no="Alt over, pluss keramisk coating">All of the above, plus ceramic coating</p><div class="tier__p"><span class="cnt" data-v="6999">6 999</span></div></div>
-      <div class="pkg"><h4 data-no="Polering 1-trinn">1-step polish</h4><p data-no="Lakkforbedring">Paint enhancement</p><div class="tier__p"><small data-no="fra">from</small><span class="cnt" data-v="2990">2 990</span></div></div>
-      <div class="pkg"><h4 data-no="Polering 2-trinn">2-step polish</h4><p data-no="Lakkorrigering">Paint correction</p><div class="tier__p"><small data-no="fra">from</small><span class="cnt" data-v="4990">4 990</span></div></div>
+      <div class="pkg"><h4 data-no="Polering <span class=&quot;nw&quot;>1-trinn</span>">1-step polish</h4><p data-no="Lakkforbedring">Paint enhancement</p><div class="tier__p"><small data-no="fra">from</small><span class="cnt" data-v="2990">2 990</span></div></div>
+      <div class="pkg"><h4 data-no="Polering <span class=&quot;nw&quot;>2-trinn</span>">2-step polish</h4><p data-no="Lakkorrigering">Paint correction</p><div class="tier__p"><small data-no="fra">from</small><span class="cnt" data-v="4990">4 990</span></div></div>
     </div>
     <p class="req rv"><b data-no="Pris på forespørsel:">On request:</b> <span data-no="fargebytte med folie · chrome delete og detaljer · striper og bokstaver · firmabiler · vindusfilm · keramisk coating alene">full colour-change wrap · chrome delete &amp; details · stripes &amp; lettering · fleet graphics · window tint · ceramic coating on its own</span></p>
   </div>
@@ -1887,7 +2061,8 @@ const WORK = [
   ['ix-grille.webp', 'bay', 'BMW iX · grille', 'BMW iX · grill', ''],
   ['lime-mirror-close.webp', 'colour', 'Lime, up close', 'Lime, helt nært', '']
 ];
-const grid = $('#workGrid'); let wCat = 'all';
+const grid = $('#workGrid'); let wCat = 'all', wAll = false;
+const W_LIMIT = 8; /* phones show the first 8, then "Show all" (CSS hides .is-more only under 760px) */
 function gallery() {
   grid.innerHTML = WORK.map((w, i) => `<figure class="shot ${w[4]}" data-cat="${w[1]}" data-i="${i}" data-cursor="view"><img src="${w[0]}" alt="${tx(w[2], w[3])}" loading="lazy"><figcaption><b>${tx(w[2], w[3])}</b><span>${tx(...CAT[w[1]])}</span></figcaption><button aria-label="${tx('Open photo', 'Åpne bilde')}: ${tx(w[2], w[3])}"></button></figure>`).join('');
   $('#workFilters').innerHTML = Object.entries(CAT).map(([k, v]) => `<button class="pick" data-w="${k}" aria-pressed="${k === wCat}">${tx(...v)}</button>`).join('');
@@ -1897,12 +2072,23 @@ function filterWork(cat) {
   wCat = cat;
   $$('[data-w]').forEach(b => b.setAttribute('aria-pressed', b.dataset.w === cat));
   let n = 0;
-  $$('.shot', grid).forEach(s => { const on = cat === 'all' || s.dataset.cat === cat; s.classList.toggle('is-out', !on); if (on) n++; });
+  let shown = 0, cells = 0, cut = false;
+  $$('.shot', grid).forEach(s => {
+    const on = cat === 'all' || s.dataset.cat === cat; s.classList.toggle('is-out', !on);
+    if (on && !cut && !wAll && shown >= W_LIMIT && cells % 2 === 0) cut = true;
+    s.classList.toggle('is-more', on && cut);
+    if (on) { n++; if (!cut) { shown++; cells += s.classList.contains('w2') ? 2 : 1; } }
+  });
   $('#workN').textContent = n;
+  $('#workMore').hidden = wAll || !cut; $('#workMoreN').textContent = '· ' + n;
   if (window.gsap && !RM) gsap.fromTo($$('.shot:not(.is-out)', grid), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .6, stagger: .025, ease: 'expo.out' });
   if (window.ScrollTrigger) ScrollTrigger.refresh();
 }
-$('#workFilters').addEventListener('click', e => { const b = e.target.closest('[data-w]'); if (b) filterWork(b.dataset.w); });
+$('#workFilters').addEventListener('click', e => { const b = e.target.closest('[data-w]'); if (b) { wAll = false; filterWork(b.dataset.w); } });
+$('#workMore').addEventListener('click', () => {
+  const first = $('.shot.is-more', grid); wAll = true; filterWork(wCat);
+  if (first) { const btn = $('button', first); if (btn) btn.focus({ preventScroll: true }); }
+});
 const lb = $('#lb'); let lbList = [], lbI = 0, lbFrom = null;
 function lbShow() {
   const f = lbList[lbI], w = WORK.find(x => x[0] === f);
@@ -2029,6 +2215,46 @@ if (FROM_LINK) drawDecal();
 /* split headings into lines for the reveal (done once, in the starting language) */
 $$('.split-lines').forEach(h => { h.innerHTML = h.innerHTML.split(/<br\s*\/?>/i).map(l => `<span class="h-line"><span>${l}</span></span>`).join(''); });
 $$('.hero__title .split').forEach(s => { s.innerHTML = [...s.textContent].map(c => `<span class="ch">${c === ' ' ? '&nbsp;' : c}</span>`).join(''); });
+
+/* ---------- display headings: if the longest word can't fit the column, scale that heading down
+   (never split a word mid-letter; hyphenated words may still break at the hyphen) ---------- */
+const FIT_SEL = '.hero__title,.mosaic__title h2,.sec-head h2,.ba__copy h2,.panel h2,#film-h,.faq h2,.spanel__info h3,.quote__l h3,.loc h3,.step h3,.card__cap h3,.board-head h3,.tier h3,.pkg h4';
+const fitM = document.createElement('span');
+fitM.setAttribute('aria-hidden', 'true');
+fitM.style.cssText = 'position:absolute;left:-9999px;top:0;white-space:nowrap;visibility:hidden;pointer-events:none';
+document.body.appendChild(fitM);
+function fitHeads() {
+  const root = document.documentElement; root.classList.add('is-fitting');
+  $$(FIT_SEL).forEach(h => {
+    if (h.dataset.fs === undefined) h.dataset.fs = h.style.fontSize;
+    h.style.fontSize = h.dataset.fs;
+    const cs = getComputedStyle(h);
+    const room = h.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    if (room <= 0) return;
+    ['fontFamily', 'fontWeight', 'fontSize', 'fontStretch', 'fontStyle', 'letterSpacing', 'textTransform', 'fontVariationSettings'].forEach(k => fitM.style[k] = cs[k]);
+    const c = h.cloneNode(true); $$('small', c).forEach(x => x.remove());
+    let widest = 0;
+    c.textContent.split(/[\s\u00a0]+/).flatMap(w => w.replace(/([-–])/g, '$1\n').split('\n')).forEach(w => { if (!w) return; fitM.textContent = w; widest = Math.max(widest, fitM.getBoundingClientRect().width); });
+    if (widest > room) h.style.fontSize = (parseFloat(cs.fontSize) * room / widest * .97).toFixed(2) + 'px';
+  });
+  /* phones: "DRIVE" scales up so both hero lines run the full width — a lockup, not a gap */
+  const l1 = $('.hero__title .line:first-child > span'), l2 = $('.hero__title .line:last-child > span');
+  if (l1 && l2) {
+    l1.style.fontSize = '';
+    if (matchMedia('(max-width:760px)').matches) {
+      l1.style.fontSize = '1em';
+      const k = Math.min(2, l2.offsetWidth / (l1.offsetWidth || 1));
+      l1.style.fontSize = (k * .99).toFixed(3) + 'em';
+    }
+  }
+  void root.offsetWidth; root.classList.remove('is-fitting');
+}
+fitHeads();
+ON_LANG.push(fitHeads);
+const refit = () => { fitHeads(); if (window.ScrollTrigger) ScrollTrigger.refresh(); };
+if (document.fonts) { document.fonts.ready.then(refit); document.fonts.addEventListener && document.fonts.addEventListener('loadingdone', refit); }
+addEventListener('load', refit);
+{ let fT, fW = innerWidth; addEventListener('resize', () => { if (innerWidth === fW) return; fW = innerWidth; clearTimeout(fT); fT = setTimeout(fitHeads, 150); }); }
 
 /* ════════ motion (GSAP + Lenis). Without them the page still works, just still. ════════ */
 addEventListener('load', () => {
