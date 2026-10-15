@@ -1,65 +1,54 @@
-# Wrappi — website
+# Wrappi – Wrapping Art Design
 
-Site for **Wrappi · Wrapping Art Design**, a PPF, Color PPF, wrapping, polishing, ceramic coating and window tint studio in Oslo.
+Website for **Wrappi – Wrapping Art Design**, a car wrapping and paint-protection studio at Strømsveien 324, Furuset, Oslo.
+Norwegian is the main language; every page has an English twin (`en-…`).
 
-- Strømsveien 324, 1081 Oslo (Furuset, by IKEA Furuset)
-- +47 462 28 133 · +47 463 61 675
-- Instagram [@wrappi__](https://www.instagram.com/wrappi__/) · Facebook: Wrapping Art Design
+Website built by [Nexlyr Solutions](https://nexlyr.solutions/).
+
+## Pages
+
+| Norwegian | English | What it is |
+|---|---|---|
+| `index.html` | `en.html` | Home: every page as a button, rotating 3D car |
+| `ppf.html` | `en-ppf.html` | PPF — full PPF and front PPF, with its own 3D studio |
+| `farget-ppf.html` | `en-color-ppf.html` | Color PPF, with its own 3D studio |
+| `bilfoliering.html` | `en-car-wrapping.html` | Car wrapping (vinyl and PET), with its own 3D studio |
+| `polering-og-keramisk-coating.html` | `en-polishing-and-ceramic-coating.html` | Polishing (1-/2-step) and ceramic coating, with its own 3D studio |
+| `design-din-bil.html` | `en-wrap-studio.html` | Full 3D wrap studio |
+| `prosjekter.html` | `en-projects.html` | Projects and gallery |
+| `priser.html` | `en-prices.html` | Prices (all starting prices) and price builder |
+| `om-oss.html` | `en-about-us.html` | About the team and company |
+| `kontakt.html` | `en-contact.html` | Contact |
+| `404.html` | | Not-found page |
 
 ## Files
 
-Everything sits flat in one folder. `index.html` links every file directly by name.
-
-- `index.html` — the whole site (HTML, CSS and JS in one file)
-- `car.glb` + `car_ao.png` — the 3D car and its contact shadow (unchanged)
-- `logo.png` / `logo.webp` / `favicon.png` / `apple-touch-icon.png` — unchanged
-- `og.jpg` — link preview for WhatsApp, Instagram and Facebook
-- `th-*.webp` — small thumbnails for the "From our bay" presets in the wrap studio
-- every other `*.webp` — photos from Wrappi's own Instagram, cropped and compressed. Readable number plates are blurred. AI-made posters were left out
-
-## Language
-
-Norwegian browsers get Norwegian, everyone else gets English, and the NO / EN switch in the nav remembers the choice. Every translated line sits next to the English one in the HTML as a `data-no="…"` attribute, so a wording change is a single edit.
-
-## Prices
-
-All prices come from Wrappi's own posts. They live in the `WRAPPI` block at the top of the main `<script>` (search for `EDIT HERE`) and in the price section of the HTML.
-
-- PPF, full car: 30 000 (small) · 33 000 (mid-size) · 36 000 (large / SUV) · from 45 000 (XL / van)
-- Color PPF autumn campaign: from 33 000 (car) · from 38 000 (SUV) · from 45 000 (van), booking for November and December
-- Front PPF from 12 900 · Full Shine 5 999 · Full Shine + ceramic 6 999 · 1-step polish from 2 990 · 2-step polish from 4 990
-- Colour-change wraps, chrome delete, stripes, fleet graphics, window tint and ceramic on its own: price on request
-
-When the autumn campaign ends, change the Color PPF block in the price section and the `colorPpf` line in `WRAPPI.services`.
-
-## The wrap studio (3D)
-
-One WebGL canvas moves between the hero and the studio, so only one car is ever loaded and rendered.
-
-- **From our bay:** nine presets copied from Wrappi's real jobs (Taycan teal chrome, Urus purple, lime Model Y, rose-gold Leaf, satin titanium Model Y, satin red Tesla, Touareg side bands, Gladiator two-tone, BMW twin stripes)
-- **Finishes:** gloss, metallic (with flake), satin, matte, chrome, plus an optional colour shift that changes colour with the viewing angle
-- **Skins:** twin stripes, side bands, contrast roof and bonnet, Wrappi split, carbon, pixel camo, distressed, colour fade. Each one takes the visitor's own colours
-- **Door decal:** type a company name or upload a logo and it goes on both doors, reading the right way on each side. Uploaded logos never leave the visitor's browser
-- **Details:** wheel colour, brake calipers, window tint level, chrome delete
-- **PPF:** shows what Front PPF and full-car PPF cover, with the prices; ceramic coating shows water beading
-- **Save image:** renders the build into a branded 1080×1350 poster to download or share
-- **Copy link:** a link that reopens the exact build (it's also added to the WhatsApp message)
-
-Demo car: Ferrari 458 Italia by vicent091036 (CC BY 4.0), credited in the footer. Check the licence on Sketchfab before launch, or swap `car.glb` for another model. The body mesh must be named `body`.
+- `styles.css` — all styles (dark and light theme)
+- `site.js` — shared site script; **prices, phone numbers and WhatsApp number are at the top** (`window.WRAPPI`)
+- `studio.js` — 3D engine and wrap studio (loads after the page is up)
+- `films.js` — the 3M 2080 and Avery Dennison film colour library
+- `boot.js` — runs first: theme, language and clean links
+- `gsap.min.js`, `ScrollTrigger.min.js`, `lenis.min.js` — animation and smooth scroll
+- `car-*.glb` — 3D car models (credits in the footer of every page)
+- `*.webp`, `*.jpg`, `*.png` — photos, share images and icons
+- `*.woff2` — self-hosted fonts
+- `vercel.json` — clean URLs, redirects, security and cache headers
+- `sitemap.xml`, `robots.txt` — for search engines
 
 ## Deploy
 
-Upload every file to the root of the GitHub repo, then import it on Vercel (Framework preset: **Other**, no build command) or turn on GitHub Pages for the `main` branch.
+1. Create a new GitHub repository and upload **everything in this folder** to its root (keep the flat layout — no subfolders).
+2. In Vercel: **Add New → Project**, import the repository, framework preset **Other**, no build command, output directory `./`.
+3. Deploy. Clean URLs (`/ppf`, `/priser`, `/en-ppf` …) work automatically through `vercel.json`.
 
-## To confirm with the client
+If the site moves to its own domain, replace `https://wrappii.vercel.app` in the HTML `<head>` tags, `sitemap.xml` and `robots.txt`.
 
-- Opening hours (the site says "ask on WhatsApp" until they confirm)
-- Whether prices include MVA (the April post said "+ MVA"; the price list posts don't say)
-- Whether the second number, +47 463 61 675, should stay
-- The Facebook page link (only the page name is shown for now)
-- Original logo file (SVG/PNG) — the current one is cut from the profile picture
-- A short reel for the hero, if they want one
+## Run locally
 
-Left out on purpose: the XPEL / STEK comparison from their film post (comparative claims about other brands are risky on a website), the expired summer, September and April offers, and every AI-made poster.
+Any static server works, for example:
 
-Site by Nexlyr Solutions — nexlyr.solutions
+```
+python3 -m http.server 8000
+```
+
+Then open http://localhost:8000. Links get `.html` added automatically when the site runs locally.
