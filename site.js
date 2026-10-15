@@ -615,7 +615,12 @@ let refitT = 0; const refit = () => { clearTimeout(refitT); refitT = setTimeout(
   let from = null, src = null, anim = null, closing = false;
   const phone = () => matchMedia('(max-width: 760px)').matches;
   const SHEET = 'cubic-bezier(.32,.72,0,1)';   /* the curve phones use for sheets: quick off the mark, long soft landing */
-  const stop = () => { if (anim) { anim.forEach(a => a.cancel()); anim = null; } };
+  /* cancel every animation on the sheet and its backdrop, including a finished close that is still holding
+     its end frame (fill: forwards). Left in place, that held frame pulled the next sheet back down out of view. */
+  const stop = () => {
+    if (anim) { anim.forEach(a => a.cancel()); anim = null; }
+    [box, $('.pop__scrim', pop)].forEach(el => el && el.getAnimations && el.getAnimations().forEach(a => a.cancel()));
+  };
   const open = (card, trigger) => {
     from = document.activeElement; src = trigger || card; stop(); closing = false;
     const h = card.querySelector('h1,h2,h3,h4');
@@ -656,7 +661,7 @@ let refitT = 0; const refit = () => { clearTimeout(refitT); refitT = setTimeout(
   const close = (fromY = 0) => {
     if (pop.hidden || closing) return; closing = true; stop();
     document.documentElement.classList.remove('pop-open'); if (window.lenis) lenis.start();
-    const end = () => { pop.hidden = true; pop.classList.remove('is-on'); body.textContent = ''; box.style.transform = ''; anim = null; closing = false; };
+    const end = () => { pop.hidden = true; pop.classList.remove('is-on'); body.textContent = ''; box.style.transform = ''; stop(); closing = false; };
     if (RM || !box.animate) end();
     else {
       const scrim = $('.pop__scrim', pop);
