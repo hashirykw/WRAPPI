@@ -882,6 +882,39 @@ $$('[data-deck]').forEach(root => {
   if (!RM) new IntersectionObserver((es, o) => es.forEach(e => { if (!e.isIntersecting) return; o.disconnect(); setTimeout(() => { const c = cards[i]; if (c.animate && !busy) c.animate([{ transform: 'none' }, { transform: 'translate3d(-26px,-2px,0) rotate(-1.6deg)' }, { transform: 'none' }], { duration: 900, easing: 'cubic-bezier(.65,0,.35,1)' }); }, 700); }), { threshold: .6 }).observe(stack);
 });
 
+/* ---------- questions: tap a question and its answer slides open under it (service pages + FAQ).
+   One open at a time in each column. Without this script the rows still open, just without the slide. ---------- */
+{
+  const rows = $$('details.svq, .qa details');
+  const anim = new WeakMap();
+  let rfT = 0; const refresh = () => { clearTimeout(rfT); rfT = setTimeout(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }, 60); };
+  const shutH = d => { const s = $('summary', d), cs = getComputedStyle(d); return s.offsetHeight + parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth) + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom); };
+  const keepInView = s => { const top = s.getBoundingClientRect().top; if (top > 70) return;
+    const y = scrollY + top - 96; if (window.lenis) lenis.scrollTo(y, { duration: .7 }); else scrollTo({ top: y, behavior: 'smooth' }); };
+  const set = (d, open, after) => {
+    if (open === (d.open && !d.classList.contains('is-closing'))) return;
+    const from = d.offsetHeight; /* measured mid-slide, so a quick second tap reverses smoothly */
+    const run = anim.get(d); if (run) run.cancel();
+    d.classList.toggle('is-closing', !open);
+    if (open) d.open = true;
+    const to = open ? d.offsetHeight : shutH(d);
+    if (RM || from === to || !d.animate) { anim.delete(d); d.style.overflow = ''; if (!open) d.open = false; d.classList.remove('is-closing'); refresh(); if (after) after(); return; }
+    d.style.overflow = 'hidden';
+    const a = d.animate({ height: [from + 'px', to + 'px'] }, { duration: open ? 560 : 440, easing: 'cubic-bezier(.16,1,.3,1)' });
+    anim.set(d, a);
+    a.onfinish = () => { if (anim.get(d) !== a) return; anim.delete(d); if (!open) d.open = false; d.classList.remove('is-closing'); d.style.overflow = ''; refresh(); if (after) after(); };
+  };
+  rows.forEach(d => {
+    const s = $('summary', d); if (!s) return;
+    s.addEventListener('click', e => {
+      e.preventDefault();
+      const open = !(d.open && !d.classList.contains('is-closing'));
+      if (open) { const col = d.parentElement; $$(':scope > details', col).forEach(o => { if (o !== d && o.open) set(o, false); }); }
+      set(d, open, open ? () => keepInView(s) : null);
+    });
+  });
+}
+
 /* ════════ motion (GSAP + Lenis). Without them the page still works, just still. ════════ */
 const pre = () => document.documentElement.classList.remove('wr-pre');
 const fontsIn = new Promise(r => { if (!document.fonts || document.fonts.status === 'loaded') return r(); document.fonts.ready.then(r); setTimeout(r, 700); });

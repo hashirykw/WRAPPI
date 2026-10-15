@@ -306,3 +306,68 @@ html[data-theme="light"] .req{background:none;box-shadow:none}
 .tier__p--range{flex-wrap:nowrap;white-space:nowrap}
 .tier__to{font:inherit;letter-spacing:inherit}
 @media (max-width:760px){.tier__p--range{font-size:clamp(1.5rem,7.4vw,2rem)}}
+
+/* ===================== service pages: questions open on tap (Oct 2026) ===================== */
+/* each block is a question row; its answer slides open under it (site.js), one open per column */
+.txt__b:has(>.svq){gap:0}
+.svq{--svq-n:30px;--svq-gap:18px;display:block;box-sizing:border-box;position:relative;padding:0;border-top:1px solid var(--color-line);border-bottom:0}
+.svq:first-child{border-top:1px solid var(--color-line);padding-top:0}
+.svq:last-child{border-bottom:1px solid var(--color-line)}
+/* the red → blue rule draws across the row on hover and stays while it is open */
+.svq::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--stripe);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease-out);pointer-events:none;z-index:1}
+.svq:hover::before,.svq[open]:not(.is-closing)::before{transform:scaleX(1)}
+.svq__q{list-style:none;display:grid;grid-template-columns:var(--svq-n) minmax(0,1fr) auto;align-items:center;gap:var(--svq-gap);padding:clamp(18px,1.8vw,24px) 0;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+.svq__q::-webkit-details-marker{display:none}
+.svq__q::marker{content:""}
+.svq__q:focus-visible{outline:2px solid var(--color-blue);outline-offset:4px}
+.svq__n{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;color:var(--color-mute);font-variant-numeric:tabular-nums;transition:color .35s var(--ease-out)}
+.svq__q h3{margin:0;font-size:clamp(1.06rem,.96rem + .45vw,1.36rem);line-height:1.25;color:var(--color-soft);transition:color .35s var(--ease-out),transform .55s var(--ease-out)}
+.svq__q:hover h3,.svq[open]:not(.is-closing) .svq__q h3{color:var(--color-glow)}
+.svq[open]:not(.is-closing) .svq__n{color:var(--color-red-tx)}
+@media (hover:hover) and (pointer:fine){.svq__q:hover h3{transform:translateX(6px)}}
+/* plus → minus, in the site's slanted chip */
+.svq__q i{--sl:6px;flex:none;position:relative;width:36px;height:28px;background:var(--color-ink-3);clip-path:polygon(var(--sl) 0,100% 0,calc(100% - var(--sl)) 100%,0 100%);transition:background-color .3s var(--ease-out)}
+.svq__q i::before,.svq__q i::after{content:"";position:absolute;left:12px;right:12px;top:13.25px;height:1.5px;background:var(--color-glow);transition:transform .5s var(--ease-out),background-color .3s var(--ease-out)}
+.svq__q i::after{transform:rotate(90deg)}
+.svq__q:hover i{background:var(--color-steel)}
+.svq[open]:not(.is-closing) .svq__q i{background:var(--color-glow)}
+.svq[open]:not(.is-closing) .svq__q i::before,.svq[open]:not(.is-closing) .svq__q i::after{background:var(--color-ink)}
+.svq[open]:not(.is-closing) .svq__q i::after{transform:rotate(0)}
+/* the answer, lined up under the question text */
+.svq__in{display:grid;gap:12px;padding:0 0 clamp(22px,2.2vw,30px) calc(var(--svq-n) + var(--svq-gap));max-width:calc(64ch + var(--svq-n) + var(--svq-gap))}
+.svq__in>p{margin:0;color:var(--color-soft);font-size:var(--text-md);line-height:1.7}
+.svq__in .covers{gap:9px}
+.svq__in .txt__note{margin-top:4px}
+/* the answer's lines rise in one after another as it opens */
+@keyframes svqIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.svq[open]:not(.is-closing) .svq__in>*{animation:svqIn .6s var(--ease-out) both}
+.svq[open]:not(.is-closing) .svq__in>:nth-child(2){animation-delay:.07s}
+.svq[open]:not(.is-closing) .svq__in>:nth-child(3){animation-delay:.14s}
+.svq[open]:not(.is-closing) .svq__in .covers li{animation:svqIn .55s var(--ease-out) both}
+.svq[open]:not(.is-closing) .svq__in .covers li:nth-child(2){animation-delay:.04s}
+.svq[open]:not(.is-closing) .svq__in .covers li:nth-child(3){animation-delay:.08s}
+.svq[open]:not(.is-closing) .svq__in .covers li:nth-child(4){animation-delay:.12s}
+.svq[open]:not(.is-closing) .svq__in .covers li:nth-child(5){animation-delay:.16s}
+.svq[open]:not(.is-closing) .svq__in .covers li:nth-child(6){animation-delay:.2s}
+.svq[open]:not(.is-closing) .svq__in .covers li:nth-child(7){animation-delay:.24s}
+.svq[open]:not(.is-closing) .svq__in .covers li:nth-child(n+8){animation-delay:.28s}
+.svq.is-closing .svq__in{opacity:0;transition:opacity .25s var(--ease-out)}
+@media (max-width:760px){
+  .svq{--svq-n:24px;--svq-gap:12px}
+  .svq__q{padding:17px 0}
+  .svq__q h3{font-size:1.04rem}
+  .svq__q i{width:32px;height:26px}
+  .svq__q i::before,.svq__q i::after{left:11px;right:11px;top:12.25px}
+  .svq__in{padding-left:0;padding-bottom:22px}
+}
+@media (prefers-reduced-motion:reduce){.svq__in>*,.svq__in .covers li{animation:none!important}.svq::before{transition:none}}
+html[data-theme="light"] .svq__q i{background:var(--color-ink-4)}
+html[data-theme="light"] .svq__q:hover i{background:var(--color-steel)}
+html[data-theme="light"] .svq[open]:not(.is-closing) .svq__q i{background:var(--color-glow)}
+/* FAQ rows slide the same way; keep their box sizing predictable for the slide */
+.qa details{box-sizing:border-box}
+.qa details.is-closing p{opacity:0;transition:opacity .25s var(--ease-out)}
+.qa details.is-closing summary i{background:var(--color-ink-3)}
+.qa details.is-closing summary i::before,.qa details.is-closing summary i::after{background:var(--color-glow)}
+.qa details.is-closing summary i::after{transform:rotate(90deg)}
+.qa details[open]:not(.is-closing) p{animation:svqIn .55s var(--ease-out) both}
