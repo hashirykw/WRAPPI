@@ -557,6 +557,57 @@ function fitHeads() {
 let refitT = 0; const refit = () => { clearTimeout(refitT); refitT = setTimeout(() => { fitHeads(); if (window.ScrollTrigger) ScrollTrigger.refresh(); }, 80); };
 { let fT, fW = innerWidth; addEventListener('resize', () => { if (innerWidth === fW) return; fW = innerWidth; clearTimeout(fT); fT = setTimeout(fitHeads, 150); }); }
 
+/* ---------- full 3D studio: pick the car type first (Supercar · Sedan · SUV), then one of its cars.
+   Sits on top of the studio's own car buttons, which studio.js draws (and redraws) inside #carPicks. ---------- */
+(() => {
+  const picks = document.getElementById('carPicks'); if (!picks) return;
+  const TYPES = [['sports', 'Supercar', 'Superbil'], ['sedan', 'Sedan', 'Sedan'], ['suv', 'SUV', 'SUV']];
+  const TYPE_OF = { sports: 'sports', r8: 'sports', gt3: 'sports', sedan: 'sedan', s90: 'sedan', eclass: 'sedan', m3: 'sedan', suv: 'suv', rrs: 'suv' };
+  const seg = document.createElement('div');
+  seg.className = 'seg ctype'; seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', tx('Car type', 'Biltype'));
+  seg.innerHTML = TYPES.map(([t, en, no]) => `<button type="button" data-ctype="${t}" aria-pressed="false">${tx(en, no)}</button>`).join('');
+  picks.before(seg); picks.classList.add('is-typed');
+  let chosen = null, lastCar = null, expect = null;
+  const pressedCar = () => { const b = picks.querySelector('[data-car][aria-pressed="true"]'); return b ? b.dataset.car : null; };
+  const apply = () => {
+    const car = pressedCar();
+    if (car !== lastCar) { lastCar = car; if (car && car !== expect && chosen && TYPE_OF[car] !== chosen) chosen = null; expect = null; }
+    const t = chosen || TYPE_OF[car] || 'suv';
+    seg.querySelectorAll('[data-ctype]').forEach(b => b.setAttribute('aria-pressed', b.dataset.ctype === t));
+    let i = 0;
+    picks.querySelectorAll('.carpicks__grp').forEach(g => { const b = g.querySelector('[data-car]'); const on = !!b && TYPE_OF[b.dataset.car] === t; g.hidden = !on; if (on) g.querySelectorAll('[data-car]').forEach(x => x.style.setProperty('--i', i++)); });
+  };
+  new MutationObserver(apply).observe(picks, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
+  seg.addEventListener('click', e => {
+    const b = e.target.closest('[data-ctype]'); if (!b) return;
+    chosen = b.dataset.ctype; apply();
+    picks.classList.remove('is-in'); void picks.offsetWidth; picks.classList.add('is-in');
+    if (TYPE_OF[pressedCar()] !== chosen) { const first = picks.querySelector('.carpicks__grp:not([hidden]) [data-car]:not([disabled])'); if (first) { expect = first.dataset.car; first.click(); } }
+  });
+  apply();
+})();
+
+/* ---------- overlays: a tap that lands on the dark backdrop right after a sheet, the menu, the lightbox or the
+   poster opens is the same tap (a double tap, or a second tap while the sheet is still sliding up) — not a "close".
+   Without this the sheet appeared and vanished again. Also lets a finger scroll inside them while the page is held. ---------- */
+(() => {
+  const SEL = '#pop, #menuScrim, .lb, #poster';
+  const openedAt = new WeakMap();
+  const watch = el => {
+    let was = !el.hidden; if (was) openedAt.set(el, performance.now());
+    new MutationObserver(() => { const now = !el.hidden; if (now && !was) openedAt.set(el, performance.now()); was = now; })
+      .observe(el, { attributes: true, attributeFilter: ['hidden'] });
+  };
+  $$(SEL).forEach(watch);
+  $$('#pop, #menu, #poster').forEach(el => el.setAttribute('data-lenis-prevent', ''));
+  const GUARD = 650;
+  document.addEventListener('click', e => {
+    const ov = e.target.closest && e.target.closest(SEL); if (!ov) return;
+    const backdrop = e.target === ov || !!e.target.closest('[data-pop-close], .lb__close, #posterX');
+    if (backdrop && performance.now() - (openedAt.get(ov) || 0) < GUARD) { e.preventDefault(); e.stopImmediatePropagation(); }
+  }, true);
+})();
+
 /* ---------- detail pop-ups: long card content opens in a sheet (phones) instead of stretching the page ---------- */
 (() => {
   const pop = $('#pop'); if (!pop) return;
@@ -915,6 +966,44 @@ $$('[data-deck]').forEach(root => {
   });
 }
 
+/* ---------- service pages: a long paragraph shows its first lines and a "Read more"; the rest slides open on request.
+   Only where the words really run past the lines (re-checked when the width changes). The text stays in the page. ---------- */
+if (document.body.matches('.pg-ppf, .pg-wrap, .pg-polish')) {
+  const SKIP = 'details, .pop, [data-more], .qa, .board, .cta-band, .quote-line, .step, .morebar, figure, .mstu, .sband, .tier, .dl, .nudge, .foot';
+  const count = el => el.textContent.trim().split(/\s+/).length;
+  const label = open => open ? tx('Show less', 'Vis mindre') : tx('Read more', 'Les mer');
+  let rfT = 0; const refresh = () => { clearTimeout(rfT); rfT = setTimeout(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }, 60); };
+  const items = [];
+  $$('main p').filter(p => !p.closest(SKIP) && count(p) >= 22).forEach((p, n) => {
+    const t = document.createElement('span'); t.className = 'rm__t';
+    while (p.firstChild) t.appendChild(p.firstChild);
+    p.appendChild(t); p.classList.add('rm');
+    t.id = t.id || 'rm' + n;
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'rm__btn'; b.hidden = true;
+    b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', t.id);
+    b.innerHTML = `<span>${label(false)}</span><i aria-hidden="true"></i>`;
+    p.appendChild(b);
+    const it = { p, t, b, run: null }; items.push(it);
+    b.addEventListener('click', () => {
+      const open = !p.classList.contains('is-open');
+      const from = t.offsetHeight; if (it.run) it.run.cancel();
+      p.classList.add('is-open'); const full = t.offsetHeight;
+      let to = full; if (!open) { p.classList.remove('is-open'); to = t.offsetHeight; p.classList.add('is-open'); }
+      b.setAttribute('aria-expanded', open); b.firstElementChild.textContent = label(open);
+      const done = () => { it.run = null; t.style.overflow = ''; if (!open) p.classList.remove('is-open'); refresh(); };
+      if (RM || !t.animate || from === to) return done();
+      t.style.overflow = 'hidden';
+      it.run = t.animate({ height: [from + 'px', to + 'px'] }, { duration: open ? 560 : 420, easing: 'cubic-bezier(.16,1,.3,1)' });
+      it.run.onfinish = done;
+    });
+  });
+  /* show the button only when the paragraph is actually cut short at this width */
+  const check = () => items.forEach(({ p, t, b }) => { if (p.classList.contains('is-open')) return; b.hidden = !(t.scrollHeight > t.clientHeight + 2); });
+  check();
+  if (window.ResizeObserver) { let w = 0; new ResizeObserver(() => { cancelAnimationFrame(w); w = requestAnimationFrame(check); }).observe(document.querySelector('main')); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+}
+
 /* ════════ motion (GSAP + Lenis). Without them the page still works, just still. ════════ */
 const pre = () => document.documentElement.classList.remove('wr-pre');
 const fontsIn = new Promise(r => { if (!document.fonts || document.fonts.status === 'loaded') return r(); document.fonts.ready.then(r); setTimeout(r, 700); });
@@ -1047,7 +1136,12 @@ function motion() {
   const pickRow = (name, items, cur) => `<div class="mstu__row" role="group" data-g="${name}">${items.map(([v, t]) => `<button type="button" class="pick" data-v="${v}" aria-pressed="${v === cur}">${t}</button>`).join('')}</div>`;
   const sws = (name, items, cur) => `<div class="mstu__sws" role="group" data-g="${name}">${items.map(([v, c, fl, t]) => `<button type="button" class="sw" data-v="${v}" style="--sw:${c}${fl ? ';--fl:' + fl : ''}"${fl ? ' data-flip' : ''} aria-label="${t}" title="${t}" aria-pressed="${String(v) === String(cur)}"></button>`).join('')}</div>`;
   const ctr = $('.mstu__ctrls');
-  const carRow = pickRow('car', Object.entries(CARS).map(([k, v]) => [k, L(v)]), st.car);
+  /* cars come in three types: the visitor picks the type first, then one of its cars */
+  const TYPES = [['sports', ['Supercar', 'Superbil']], ['sedan', ['Sedan', 'Sedan']], ['suv', ['SUV', 'SUV']]];
+  const TYPE_OF = { sports: 'sports', r8: 'sports', sedan: 'sedan', s90: 'sedan', eclass: 'sedan', suv: 'suv', rrs: 'suv' };
+  const type0 = TYPE_OF[st.car] || 'suv';
+  const carRow = `<div class="seg ctype" role="group" data-g="ctype" aria-label="${tx('Car type', 'Biltype')}">${TYPES.map(([t, n]) => `<button type="button" data-v="${t}" aria-pressed="${t === type0}">${L(n)}</button>`).join('')}</div>`
+    + `<div class="mstu__row ctype__cars" role="group" data-g="car" aria-label="${tx('Car', 'Bil')}">${Object.entries(CARS).map(([k, v]) => `<button type="button" class="pick" data-v="${k}" data-t="${TYPE_OF[k]}" aria-pressed="${k === st.car}"${TYPE_OF[k] === type0 ? '' : ' hidden'}>${L(v)}</button>`).join('')}</div>`;
   let h = '';
   if (kind === 'ppf') {
     h += grp(tx('Coverage', 'Dekning'), `<div class="seg" role="group" data-g="cover" style="grid-template-columns:repeat(2,minmax(0,1fr))"><button type="button" data-v="full" aria-pressed="true">${tx('Full PPF', 'Hel bil')}</button><button type="button" data-v="front" aria-pressed="false">Front PPF</button></div>`);
@@ -1131,6 +1225,13 @@ function motion() {
     const g = btn.closest('[data-g]').dataset.g, v = btn.dataset.v;
     if (g === 'chrome' || g === 'cer') { const on = btn.getAttribute('aria-pressed') !== 'true'; btn.setAttribute('aria-pressed', on); st[g === 'chrome' ? 'chrome' : 'cer'] = on; apply(); return; }
     $$('[data-v]', btn.closest('[data-g]')).forEach(x => x.setAttribute('aria-pressed', x === btn));
+    if (g === 'ctype') {   /* show this type's cars (they slide in one after another) and put its first car on the stage */
+      const row = $('[data-g="car"]'); let i = 0;
+      $$('[data-v]', row).forEach(x => { x.hidden = x.dataset.t !== v; if (!x.hidden) x.style.setProperty('--i', i++); });
+      row.classList.remove('is-in'); void row.offsetWidth; row.classList.add('is-in');
+      if (TYPE_OF[st.car] !== v) { const first = $(`[data-g="car"] [data-t="${v}"]`); if (first) first.click(); }
+      return;
+    }
     if (g === 'car') { st.car = v; const c3 = C(); if (c3) c3.setCar(v); }
     else if (g === 'col') { st.col = +v; st.fin = CPPF[+v][4]; $$('[data-g="fin"] [data-v]').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === st.fin)); }
     else if (g === 'brand') { st.brand = v; st.wfin = 'all'; shown = 30; drawFilms(); return; }

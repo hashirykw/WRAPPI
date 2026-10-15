@@ -371,3 +371,36 @@ html[data-theme="light"] .svq[open]:not(.is-closing) .svq__q i{background:var(--
 .qa details.is-closing summary i::before,.qa details.is-closing summary i::after{background:var(--color-glow)}
 .qa details.is-closing summary i::after{transform:rotate(90deg)}
 .qa details[open]:not(.is-closing) p{animation:svqIn .55s var(--ease-out) both}
+
+/* ===================== cars: pick the type first (Supercar · Sedan · SUV), then the car (Oct 2026) ===================== */
+.seg.ctype{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.mstu .seg.ctype button,.ctrl .seg.ctype button{height:40px;letter-spacing:.08em}
+.ctype__cars{margin-top:6px}
+.ctype__cars .pick[hidden],.carpicks.is-typed .carpicks__grp[hidden]{display:none!important}
+/* the type's label already sits on the switch above */
+.carpicks.is-typed .carpicks__grp>.mono{display:none}
+.carpicks.is-typed{margin-top:6px}
+.ctrl .seg.ctype+.carpicks:empty{min-height:44px!important}
+/* the chosen type's cars slide in one after another */
+@keyframes ctypeIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.ctype__cars.is-in .pick:not([hidden]),.carpicks.is-in .carpicks__grp:not([hidden]) [data-car]{animation:ctypeIn .5s var(--ease-out) both;animation-delay:calc(var(--i,0) * 55ms)}
+@media (prefers-reduced-motion:reduce){.ctype__cars.is-in .pick,.carpicks.is-in [data-car]{animation:none}}
+
+/* ===================== service pages: long paragraphs open on "Read more" (Oct 2026) ===================== */
+.rm{--rm-lines:3}
+.rm__t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:var(--rm-lines);line-clamp:var(--rm-lines);overflow:hidden}
+.rm.is-open .rm__t{display:block;-webkit-line-clamp:unset;line-clamp:none;overflow:visible}
+.rm__btn{display:flex;align-items:center;gap:10px;width:max-content;margin-top:12px;padding:0 0 7px;position:relative;background:none;border:0;cursor:pointer;font-family:var(--font-mono);font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;line-height:1.2;color:var(--color-glow);-webkit-tap-highlight-color:transparent}
+.rm__btn[hidden]{display:none}
+/* a short red → blue rule under the words; it runs the full width on hover and while open */
+.rm__btn::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--stripe);transform:scaleX(.32);transform-origin:left;transition:transform .55s var(--ease-out)}
+.rm__btn:hover::after,.rm__btn[aria-expanded="true"]::after{transform:scaleX(1)}
+.rm__btn i{position:relative;flex:none;width:9px;height:9px}
+.rm__btn i::before,.rm__btn i::after{content:"";position:absolute;left:0;right:0;top:3.75px;height:1.5px;background:currentColor;transition:transform .45s var(--ease-out)}
+.rm__btn i::after{transform:rotate(90deg)}
+.rm__btn[aria-expanded="true"] i::after{transform:rotate(0)}
+.rm__btn:focus-visible{outline:2px solid var(--color-blue);outline-offset:4px}
+.txt__note.rm .rm__btn{color:var(--color-soft)}
+@media (max-width:760px){.rm{--rm-lines:2}}
+/* the film brands: two cards share the full width on desktop instead of leaving an empty third column */
+@media (min-width:1061px){.fbrands:has(>:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}}
