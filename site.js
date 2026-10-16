@@ -351,6 +351,9 @@ if (grid) {
   const WORK = [
     ['taycan-teal-top.webp', 'wrap', 'Porsche Taycan · teal chrome', 'Porsche Taycan · turkis krom', 'w2 h2'],
     ['urus-purple.webp', 'colour', 'Lamborghini Urus · Color PPF', 'Lamborghini Urus · farget PPF', 'w2'],
+    ['pink-modely.webp', 'colour', 'Model Y · pink Color PPF', 'Model Y · rosa farget PPF', 'w2'],
+    ['lime-modely-bay.webp', 'colour', 'Model Y · lime Color PPF', 'Model Y · limegrønn farget PPF', ''],
+    ['bronze-modely.webp', 'colour', 'Model Y · bronze Color PPF', 'Model Y · bronse farget PPF', 'w2'],
     ['lime-mirror-before.webp', 'colour', 'Halfway: white to lime', 'Halvveis: hvit til lime', ''],
     ['lime-hood.webp', 'colour', 'Model Y · lime', 'Model Y · lime', ''],
     ['ba-explorer-before.webp', 'ppf', 'Ford Explorer · taped for PPF', 'Ford Explorer · teipet for PPF', 'h2'],
