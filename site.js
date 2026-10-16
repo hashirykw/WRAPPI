@@ -7,15 +7,15 @@ window.WRAPPI = {
   phones: ['+47 462 28 133', '+47 463 61 675'],
   address: 'Strømsveien 324, 1081 Oslo',
   instagram: 'https://www.instagram.com/wrappi__/',
-  sizes: { // starting prices by car size (NOK) — null = price on request
+  sizes: { // prices by car size (NOK) — PPF and Color PPF are set prices, car wrapping is a starting price · null = on request
     sedan: { en: 'Sedan / car', no: 'Sedan / personbil', hint: 'Model 3, i4, ID.3', ppf: 39000, color: 45000, wrap: 27000 },
     suv:   { en: 'SUV', no: 'SUV', hint: 'Model Y, ID.4, Q4 e-tron', ppf: 45000, color: 53000, wrap: 33000 },
     van:   { en: 'Van', no: 'Varebil', hint: 'ID. Buzz, Transporter', ppf: 50000, color: 58000, wrap: null }
   },
   services: { // g = only one per group · p = price (number, 'size:ppf', 'size:color') · null = on request
-    ppfFull:  { g: 'ppf', en: 'PPF · full car', no: 'PPF · hel bil', p: 'size:ppf', from: true },
-    colorPpf: { g: 'ppf', en: 'Color PPF', no: 'Farget PPF', p: 'size:color', from: true },
-    ppfFront: { g: 'ppf', en: 'Front PPF (16 000–22 000)', no: 'Front PPF (16 000–22 000)', p: 16000, from: true },
+    ppfFull:  { g: 'ppf', en: 'PPF · full car', no: 'PPF · hel bil', p: 'size:ppf' },
+    colorPpf: { g: 'ppf', en: 'Color PPF', no: 'Farget PPF', p: 'size:color' },
+    ppfFront: { g: 'ppf', en: 'Front PPF', no: 'Front PPF', p: 16000, to: 22000 },   // depends on the car
     shine:    { g: 'shine', en: 'Full Shine', no: 'Full Shine', p: 5999, from: true },
     shineCer: { g: 'shine', en: 'Full Shine + ceramic', no: 'Full Shine + keramisk', p: 6999, from: true },
     polish1:  { g: 'shine', en: '1-step polish', no: 'Polering 1-steg', p: 2990, from: true },
@@ -463,7 +463,7 @@ if (qBox) {
   const priceOf = s => typeof s.p === 'string' && s.p.startsWith('size:') ? WRAPPI.sizes[Q.size][s.p.slice(5)] : s.p;
   const quoteUI = () => {
     $('#sizePicks').innerHTML = Object.entries(WRAPPI.sizes).map(([k, v]) => `<button class="pick" role="radio" data-sz="${k}" aria-checked="${k === Q.size}">${tx(v.en, v.no)}<small>${v.hint}</small></button>`).join('');
-    const grp = (title, keys) => `<small>${title}</small><div class="picks">${keys.map(k => { const s = WRAPPI.services[k]; return `<button class="pick" data-v="${k}" aria-pressed="false">${tx(s.en, s.no)}<small>${priceOf(s) == null ? tx('on request', 'på forespørsel') : tx('from ', 'fra ') + nf(priceOf(s))}</small></button>`; }).join('')}</div>`;
+    const grp = (title, keys) => `<small>${title}</small><div class="picks">${keys.map(k => { const s = WRAPPI.services[k]; return `<button class="pick" data-v="${k}" aria-pressed="false">${tx(s.en, s.no)}<small>${priceOf(s) == null ? tx('on request', 'på forespørsel') : (s.from ? tx('from ', 'fra ') : '') + nf(priceOf(s)) + (s.to ? '–' + nf(s.to) : '')}</small></button>`; }).join('')}</div>`;
     $('#svcPicks').innerHTML = grp(tx('Protection · pick one', 'Beskyttelse · velg én'), ['ppfFull', 'colorPpf', 'ppfFront']) + grp(tx('Polish · pick one', 'Polering · velg én'), ['shine', 'shineCer', 'polish1', 'polish2']) + grp(tx('Car wrapping', 'Bilwrapping'), ['wrap']) + grp(tx('Priced after we see the car', 'Prises etter at vi har sett bilen'), ['details', 'fleet', 'tint', 'ceramic']);
     $('#whenPicks').innerHTML = WHEN.map((w, i) => `<button class="pick" role="radio" data-n="${i}" aria-checked="${i === Q.when}">${tx(...w)}</button>`).join('');
     renderQuote();
@@ -473,9 +473,10 @@ if (qBox) {
     $$('#svcPicks [data-v]').forEach(b => b.setAttribute('aria-pressed', Q.svc.has(b.dataset.v)));
     $$('#whenPicks [data-n]').forEach(b => b.setAttribute('aria-checked', +b.dataset.n === Q.when));
     const list = [...Q.svc].map(k => WRAPPI.services[k]), priced = list.filter(s => priceOf(s) != null), req = list.length - priced.length;
-    const from = priced.length > 0, sum = priced.reduce((a, s) => a + priceOf(s), 0);
-    $('#estV').textContent = !list.length ? tx('Pick a service', 'Velg en tjeneste') : priced.length ? `${from ? tx('from ', 'fra ') : ''}${nok(sum)}${req ? ' +' : ''}` : tx('On request', 'På forespørsel');
-    $('#estNote').textContent = req ? tx(`Plus ${req} item${req > 1 ? 's' : ''} priced after we've seen the car. Price depends on model and design.`, `Pluss ${req} ting som prises etter at vi har sett bilen. Pris avhenger av bilmodell og utforming.`) : tx('Price depends on the car model and design. We confirm the exact price for your car.', 'Pris avhenger av bilmodell og utforming. Vi bekrefter nøyaktig pris for din bil.');
+    const from = priced.some(s => s.from), sum = priced.reduce((a, s) => a + priceOf(s), 0), top = priced.reduce((a, s) => a + (s.to || priceOf(s)), 0);
+    const span = !from && top > sum ? '–' + nf(top) : '';   /* front PPF: 16 000–22 000, depending on the car */
+    $('#estV').textContent = !list.length ? tx('Pick a service', 'Velg en tjeneste') : priced.length ? `${from ? tx('from ', 'fra ') : ''}${nok(sum)}${span}${req ? ' +' : ''}` : tx('On request', 'På forespørsel');
+    $('#estNote').textContent = !req && !from ? (span ? tx('Front PPF depends on the car — we confirm the price for yours.', 'Front PPF avhenger av bilen — vi bekrefter prisen for din.') : tx('Price for your car size, from our price list.', 'Pris for din bilstørrelse, fra prislisten vår.')) : req ? tx(`Plus ${req} item${req > 1 ? 's' : ''} priced after we've seen the car. Price depends on model and design.`, `Pluss ${req} ting som prises etter at vi har sett bilen. Pris avhenger av bilmodell og utforming.`) : tx('Price depends on the car model and design. We confirm the exact price for your car.', 'Pris avhenger av bilmodell og utforming. Vi bekrefter nøyaktig pris for din bil.');
     const car = $('#qCar').value.trim(), name = $('#qName').value.trim(), sz = WRAPPI.sizes[Q.size];
     const msg = [tx("Hi Wrappi! I'd like a price.", 'Hei Wrappi! Jeg vil gjerne ha en pris.'), `${tx('Car', 'Bil')}: ${car || tx('(make & model)', '(merke og modell)')} · ${tx(sz.en, sz.no)}`, `${tx('Services', 'Tjenester')}: ${list.length ? list.map(s => tx(s.en, s.no)).join(', ') : tx('(not sure yet)', '(usikker ennå)')}`, `${tx('When', 'Når')}: ${tx(...WHEN[Q.when])}`, name ? `— ${name}` : ''].filter(Boolean).join('\n');
     $('#bubble').textContent = msg; $('#qWa').href = $('#qbarWa').href = wa(msg); $('#qbarV').textContent = $('#estV').textContent;
@@ -500,9 +501,9 @@ const footLegal = $('.foot__legal'); if (footLegal) new IntersectionObserver(es 
   /* size of the Carlise TPU colour card (films.js is not loaded on every page, so it falls back to the card's count) */
   const CARLISE_N = (((window.FILMS && FILMS.brands) || []).find(b => b.k === 'carlise') || { list: { length: 112 } }).list.length;
   const A = () => [
-    { k: ['price', 'cost', 'how much', 'pris', 'koster', 'kost'], a: tx(`All prices are starting prices. Full PPF from ${nok(39000)} (sedan), ${nok(45000)} (SUV), ${nok(50000)} (van). Front PPF package ${nok(16000)}–${nok(22000)}. Color PPF from ${nok(45000)}. Car wrapping from ${nok(27000)}. Polishing from ${nok(2990)}. See <a href="${R('prices')}">all prices</a>.`, `Alle priser er fra-priser. PPF hel bil fra ${nok(39000)} (sedan), ${nok(45000)} (SUV), ${nok(50000)} (varebil). Front PPF-pakke ${nok(16000)}–${nok(22000)}. Farget PPF fra ${nok(45000)}. Bilwrapping fra ${nok(27000)}. Polering fra ${nok(2990)}. Se <a href="${R('prices')}">alle priser</a>.`) },
+    { k: ['price', 'cost', 'how much', 'pris', 'koster', 'kost'], a: tx(`Full PPF ${nok(39000)} (sedan), ${nok(45000)} (SUV), ${nok(50000)} (van). Front PPF package ${nok(16000)}–${nok(22000)}, depending on the car. Color PPF ${nok(45000)} (sedan), ${nok(53000)} (SUV), ${nok(58000)} (van). Car wrapping from ${nok(27000)} (sedan) and ${nok(33000)} (SUV) — a starting price. Polishing from ${nok(2990)}. See <a href="${R('prices')}">all prices</a>.`, `PPF hel bil ${nok(39000)} (sedan), ${nok(45000)} (SUV), ${nok(50000)} (varebil). Front PPF-pakke ${nok(16000)}–${nok(22000)}, avhengig av bilen. Farget PPF ${nok(45000)} (sedan), ${nok(53000)} (SUV), ${nok(58000)} (varebil). Bilwrapping fra ${nok(27000)} (sedan) og ${nok(33000)} (SUV) — fra-pris. Polering fra ${nok(2990)}. Se <a href="${R('prices')}">alle priser</a>.`) },
     { k: ['carlise', 'kls', 'tpu colo'], a: tx(`Our Color PPF range includes the Carlise TPU colour card: ${CARLISE_N} colours in gloss, metallic, pearl, matte and colour shift. <a href="${R('cppf')}#studio3d">Try them on a car in 3D</a>.`, `Farget PPF-utvalget vårt inkluderer Carlise TPU-fargekartet: ${CARLISE_N} farger i blank, metallic, perle, matt og fargeskift. <a href="${R('cppf')}#studio3d">Prøv dem på en bil i 3D</a>.`) },
-    { k: ['color', 'colour', 'farge', 'farget'], a: tx(`Color PPF changes the colour and protects the paint in one: sedan from ${nok(45000)}, SUV from ${nok(53000)}, van from ${nok(58000)}. <a href="${R('cppf')}">Read more</a> or <a href="${R('cppf')}#studio3d">try ${CARLISE_N} Carlise colours in 3D</a>.`, `Farget PPF gir ny farge og lakkbeskyttelse i én løsning: sedan fra ${nok(45000)}, SUV fra ${nok(53000)}, varebil fra ${nok(58000)}. <a href="${R('cppf')}">Les mer</a> eller <a href="${R('cppf')}#studio3d">prøv ${CARLISE_N} Carlise-farger i 3D</a>.`) },
+    { k: ['color', 'colour', 'farge', 'farget'], a: tx(`Color PPF changes the colour and protects the paint in one: sedan ${nok(45000)}, SUV ${nok(53000)}, van ${nok(58000)}. <a href="${R('cppf')}">Read more</a> or <a href="${R('cppf')}#studio3d">try ${CARLISE_N} Carlise colours in 3D</a>.`, `Farget PPF gir ny farge og lakkbeskyttelse i én løsning: sedan ${nok(45000)}, SUV ${nok(53000)}, varebil ${nok(58000)}. <a href="${R('cppf')}">Les mer</a> eller <a href="${R('cppf')}#studio3d">prøv ${CARLISE_N} Carlise-farger i 3D</a>.`) },
     { k: ['3m', 'avery', '2080', 'swf', 'vinyl', 'pet'], a: tx(`We wrap with vinyl and PET film, including 3M 2080 and Avery Dennison Supreme Wrapping Film. Can't find your colour? We can order it. <a href="${R('wrap')}">Try the colours on a car</a>.`, `Vi folierer med vinyl- og PET-folie, blant annet 3M 2080 og Avery Dennison Supreme Wrapping Film. Finner du ikke fargen? Vi kan bestille den. <a href="${R('wrap')}">Prøv fargene på en bil</a>.`) },
     { k: ['front'], a: tx(`The front PPF package costs ${nok(16000)}–${nok(22000)}, depending on the car: front bumper, bonnet, front wings and side mirrors. <a href="${R('ppf')}#front">More</a>.`, `Front PPF-pakken koster ${nok(16000)}–${nok(22000)}, avhengig av bilen: frontfanger, panser, forskjermene og sidespeil. <a href="${R('ppf')}#front">Les mer</a>.`) },
     { k: ['film', 'brand', 'folie', 'merke'], a: tx(`Our PPF is PPF Art Design: 216 µm (8.5 mil) total, 165 µm TPU, self-healing top coat, −45 to +115 °C. <a href="${R('ppf')}#film">See the specs</a>.`, `PPF-en vår er PPF Art Design: 216 µm (8,5 mil) totalt, 165 µm TPU, selvreparerende toppcoat, −45 til +115 °C. <a href="${R('ppf')}#film">Se dataene</a>.`) },
