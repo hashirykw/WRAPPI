@@ -448,3 +448,9 @@ html[data-theme="light"] .chub__list{background:#fff;box-shadow:var(--lift)}
 #visit .loc .dl>div{grid-template-columns:minmax(0,1fr);gap:4px;padding:12px 0}
 #visit .loc .dl dd small{margin-top:2px}
 @media (max-width:700px){#visit .loc .dl>div:last-child:nth-child(odd){grid-column:1/-1}#visit .map{min-height:300px}}
+
+/* ===================== slideshows: every photo fills its frame (Oct 2026) ===================== */
+/* no blurred side bands: the photo itself covers the whole frame, cropped around the car (--fp per photo).
+   Tapping still opens the full, uncropped photo. */
+.slides__bg{display:none}
+.slides__img{object-fit:cover;object-position:var(--fp,50% 55%)}
