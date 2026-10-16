@@ -2,8 +2,12 @@
    Names and codes are the manufacturers' own:
    · 3M Wrap Film Series 2080 — 3M "2080 Series colour palette"
    · Avery Dennison Supreme Wrapping Film — Avery Dennison "SWF product overview" (EU)
+   · Carlise (CLS) TPU Color PPF — Carlise "CLS Colored TPU PPF" catalogue; codes as printed on the
+     sample cards. Hex values are read from the catalogue photos. Brands with ppf: true are colour PPF,
+     not vinyl, so they show in the Color PPF studio and the full studio, not the wrap-film studio.
    On-screen colours are a guide; the real film sample is in the studio.
-   Row: [code, name, finish, hex, flip hex (colour-shift films only)]
+   Row: [code, name, finish, hex, flip hex (colour-shift films only), key]
+   key — only when the maker uses one code for two colours (Carlise does): a unique id for links.
    finish: g gloss · gm gloss metallic · gp gloss pearl · s satin · sm satin metallic · m matte · mm matte metallic
            fl gloss flip · sf satin flip · ch chrome · cf carbon · br brushed · d diamond · tx textured */
 window.FILMS = {
@@ -124,6 +128,67 @@ window.FILMS = {
         ['AR1350001', 'Textured Brushed Bronze', 'br', '#8a6a45'], ['AR1310001', 'Textured Brushed Black', 'br', '#2b2c2e'], ['AS1880001', 'Textured Carbon Fibre Black', 'cf', '#1b1c1e'],
         ['CL6500001', 'Rugged Onyx Black', 'tx', '#18191a'], ['CL6530001', 'Rugged Bedrock Grey', 'tx', '#5a5d60'], ['CL6510001', 'Rugged Marsh Green', 'tx', '#4d5a3f'],
         ['CL6490001', 'Rugged Combat Green', 'tx', '#3d4632']
+      ]
+    },
+    {
+      k: 'carlise', name: 'Carlise', range: 'TPU Color PPF', short: 'Carlise TPU', ppf: true,
+      list: [
+        ['KLS-3044', 'Metallic Alpine Green', 'gm', '#8e9680'], ['KLS-4063', 'Jaguar British Green', 'gm', '#1e3a30'],
+        ['KLS-2023', 'Oolong Milk Tea Pink', 'g', '#a56d8c'], ['KLS-4067', 'Midnight Purple', 'fl', '#23203a', '#4b3a7a'],
+        ['KLS-2005', 'Starlight Ruby Red', 'gm', '#6e1450'], ['KLS-2004', 'Pepper White', 'g', '#d8caa0'],
+        ['KLS-5109', 'Sunset Violet', 'fl', '#4a3e48', '#9a8696'], ['KLS-4070', 'Shadow Blue', 'gm', '#24456e'],
+        ['KLS-5088', 'Laser White', 'gm', '#d6d8d2'], ['KLS-5104', 'Obsidian Black', 'gm', '#23262f', null, 'KLS-5104-obsidian-black'],
+        ['KLS-3043', 'Liquid Tungsten Steel', 'gm', '#2e323b'], ['KLS-2002', 'Crystal White', 'g', '#eceee9'],
+        ['KLS-2012', 'Sea Breeze Blue', 'g', '#6f97b8'], ['KLS-2003', 'Moonlight White', 'g', '#e8e8de'],
+        ['KLS-2030', 'Crystal Blush Pink', 'g', '#e3929a'], ['KLS-4060', 'Black Rose', 'fl', '#2a1f2a', '#6a2a3a'],
+        ['KLS-1001', 'Carbon Fiber', 'cf', '#1c1d22'], ['KLS-5089', 'Laser Black', 'gm', '#20232a'],
+        ['KLS-2033', 'Audi Nardo Grey', 'g', '#565b65'], ['KLS-5106', 'Fantasy Magenta (Matte)', 'm', '#8f2d50', null, 'KLS-5106-fantasy-magenta-matte'],
+        ['KLS-4061', 'Pearl Black / Havana Black', 'gm', '#262a36'], ['KLS-4053', 'Emerald Green', 'gm', '#1d3a3c'],
+        ['KLS-1003', 'Matte Black', 'm', '#202228'], ['KLS-3049', 'Iceberry Pink', 'gm', '#9c7a6c'],
+        ['KLS-2037', 'Desert Yellow', 'g', '#8f7848'], ['KLS-4056', 'Iridescent Gold Green', 'fl', '#86c214', '#d6c41c'],
+        ['KLS-4084', 'Matte Gemstone Blue', 'm', '#1d218c'], ['KLS-2031', 'Tiffany Blue', 'g', '#84acc1'],
+        ['KLS-5086', 'Matte Chameleon Purple Blue Green', 'sf', '#3b6e8f', '#4a3f8a'], ['KLS-5107', 'Violet Grey', 'fl', '#57526e', '#9a92c4'],
+        ['KLS-4077', 'Diamond White to Purple', 'fl', '#ecebe6', '#cdbfe0'], ['KLS-3050', 'Somato Blue', 'gm', '#8fa59e'],
+        ['KLS-2001', 'Crystal Black', 'g', '#1c2130'], ['KLS-4068', 'Blossom Pink', 'gp', '#e6d5d3'],
+        ['KLS-2035', 'McLaren Orange', 'g', '#e2801e'], ['KLS-3048', 'Agate Green', 'gm', '#1f3f44'],
+        ['KLS-4079', 'Chameleon Gold White Red', 'fl', '#432a5e', '#b7884e'], ['KLS-5092', 'Dreamy Purple Mist', 'fl', '#686a72', '#8d7cc4'],
+        ['KLS-4055', 'Iridescent Sky Blue', 'gp', '#5ea6dd'], ['KLS-5096', 'Pearl Black (3M Style)', 'sm', '#4a4a48'],
+        ['KLS-4083', 'Chameleon Purple Blue Green', 'fl', '#2b6f93', '#4b3a8e'], ['KLS-2009', 'Porcelain Blue', 'g', '#5e719b'],
+        ['KLS-4062', 'Maple Yellow', 'gm', '#d29e1e'], ['KLS-3040', 'Liquid Barton Gold', 'gm', '#8c8463'],
+        ['KLS-2015', 'Khaki Milan', 'g', '#d8c697'], ['KLS-5106', 'Matte Liquid Metal Silver', 'mm', '#a3a59b', null, 'KLS-5106-matte-liquid-metal-silver'],
+        ['KLS-4081', 'Chameleon Gold Red Purple', 'fl', '#5a2fa8', '#b02a7a'], ['KLS-2006', 'Porsche Ash Grey', 'g', '#7a7d7e'],
+        ['KLS-2025', 'Lizard Green', 'g', '#5fa312'], ['KLS-2011', 'Gloss Khaki Green', 'g', '#8a9472'],
+        ['KLS-5102', 'Pearl Grey', 'gm', '#5b6066', null, 'KLS-5102-pearl-grey'], ['KLS-2010', 'Ferrari Red', 'g', '#c0141e'],
+        ['KLS-2019', 'Deep Orange', 'g', '#b8261c'], ['KLS-3051', 'Dragon Blood Red', 'gm', '#6a1d34'],
+        ['KLS-2021', 'Sao Paulo Yellow', 'g', '#d4d82a'], ['KLS-4064', 'Metallic White', 'gm', '#e4e4dc'],
+        ['KLS-2027', 'Lava Orange', 'g', '#c33a22'], ['KLS-2007', 'Glacier Blue', 'g', '#a8c4d2'],
+        ['KLS-2017', 'Morane Yellow', 'g', '#efb12a'], ['KLS-2038', 'Crystal Sky Blue', 'g', '#4f9fd2'],
+        ['KLS-5110', 'Mystic Midnight Blue', 'gm', '#2b3554'], ['KLS-2024', 'Lizard Green A', 'g', '#4fae0a'],
+        ['KLS-4052', 'Morganite Red', 'g', '#8a4655'], ['KLS-3045', 'Champagne Gold (Deep)', 'gm', '#b2aa90'],
+        ['KLS-2022', 'Beetroot Purple', 'g', '#c0134a'], ['KLS-2029', 'Crystal Tiffany', 'g', '#7cc8bd'],
+        ['KLS-4059', 'Pearl Grey Blue', 'gp', '#7e889a'], ['KLS-4073', 'Diamond White to Green', 'fl', '#ece8ec', '#c7dcc0'],
+        ['KLS-3046', 'GT Silver', 'gm', '#a9aba6'], ['KLS-5105', 'Provence Purple', 'gm', '#4e4870'],
+        ['KLS-4076', 'Diamond White to Blue', 'fl', '#ece8dc', '#bccde0'], ['KLS-5093', 'Silver Phantom Purple', 'gm', '#8580ac'],
+        ['KLS-5094', 'Matte Porsche Ash Grey', 'm', '#8f8f90'], ['KLS-4082', 'Chameleon Blue Gold Green', 'fl', '#6f7a3c', '#2c4a6e'],
+        ['KLS-5103', 'Ultra Matte Phantom Purple', 'sf', '#725468', '#3e3558', 'KLS-5103-ultra-matte-phantom-purple'], ['KLS-2016', 'Sunflower Yellow', 'g', '#e3bf24'],
+        ['KLS-5104', 'Gentian Blue', 'gm', '#1d2b70', null, 'KLS-5104-gentian-blue'], ['KLS-4058', 'Pearl White', 'gp', '#ebebe4'],
+        ['KLS-2018', 'Nardo Grey', 'g', '#4a505c'], ['KLS-5108', 'Matte Dragon Blood Red', 'mm', '#8e3a50'],
+        ['KLS-5103', 'Champagne Gold', 'gm', '#cbb98a', null, 'KLS-5103-champagne-gold'], ['KLS-5113', 'Fantasy Magenta (Gloss)', 'gm', '#861c42'],
+        ['KLS-5098', 'Ultra Matte AMG Mountain Grey', 'mm', '#7f8079'], ['KLS-4071', 'Transparent Pearl', 'gp', '#e6e6e2'],
+        ['KLS-5114', 'Matte Silver Illusion', 'mm', '#9c99c2'], ['KLS-3047', 'Sapphire Blue', 'gm', '#1012a3'],
+        ['KLS-5091', 'Dreamy Green Mist', 'fl', '#62666a', '#7fae7a'], ['KLS-2014', 'Mirror Pink', 'g', '#ab928c'],
+        ['KLS-3039', 'Laser China Red', 'gm', '#93112a'], ['KLS-4072', 'Diamond White to Red', 'fl', '#ecefea', '#e6c3c8'],
+        ['KLS-4069', 'Coal Grey', 'gm', '#4a4f50'], ['KLS-4074', 'Diamond White to Pine Green', 'fl', '#e8e2dc', '#b9cdb7'],
+        ['KLS-5101', 'Ultra Matte Ink Green', 'mm', '#536651', null, 'KLS-5101-ultra-matte-ink-green'], ['KLS-2013', 'Volcano Grey', 'g', '#8b8f8f'],
+        ['KLS-4066', 'Racing Orange', 'gm', '#e8661a'], ['KLS-2020', 'Crimson Red', 'gm', '#7c0f2a'],
+        ['KLS-5097', 'Matte Ceramic White', 'm', '#dfe1dd'], ['KLS-3042', 'Liquid Metal Silver', 'gm', '#9a9c9a'],
+        ['KLS-5101', 'Pearl White', 'gp', '#ecebe2', null, 'KLS-5101-pearl-white'], ['KLS-4078', 'Chameleon Red Blue Green', 'fl', '#234a3f', '#5a2a48'],
+        ['KLS-5102', 'Capri Grey Purple', 'fl', '#5f5d6c', '#8f9bb2', 'KLS-5102-capri-grey-purple'], ['KLS-2008', 'Shell Pink', 'g', '#e3bcc6'],
+        ['KLS-5111', 'Matte Nardo Grey', 'm', '#555a64'], ['KLS-5099', 'Matte Crystal Pearl', 'mm', '#dcdfd8'],
+        ['KLS-2028', 'Deep Abyss Blue', 'g', '#304a70'], ['KLS-2032', 'Crystal Armor Green', 'g', '#66694f'],
+        ['KLS-4054', 'Emerald Green', 'gm', '#18382c'], ['KLS-4065', 'Metallic Black Gold', 'fl', '#23242a', '#6b5a35'],
+        ['KLS-4075', 'Diamond White to Gold', 'fl', '#eceee6', '#dccd9f'], ['KLS-5090', 'Dreamy Volcano Grey', 'fl', '#5b4752', '#b06c8f'],
+        ['KLS-5095', 'Light Sensitive Black Red', 'fl', '#23253a', '#6a1d33'], ['KLS-5112', 'Matte Pearl Black', 'mm', '#2e3240']
       ]
     }
   ]

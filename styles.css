@@ -139,6 +139,10 @@ html:not(.is-3d) .mstu .bay__bar{display:none}
 @media (max-width:1000px){.mstu{grid-template-columns:minmax(0,1fr)}}
 @media (min-width:861px){.pkgs:has(>.pkg:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}}
 .mstu__ctrls{display:grid;gap:16px;width:100%}
+.mstu__pane{display:grid;gap:16px;width:100%}
+.mstu__pane.is-in{animation:paneIn .45s var(--ease-out) both}
+@keyframes paneIn{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){.mstu__pane.is-in{animation:none}}
 @media (min-width:1001px){.mstu{align-items:start}.mstu__stage{position:sticky;top:96px}}
 @media (max-width:760px){.mstu .spin360 span{display:none}.mstu .bay__bar{flex-wrap:nowrap}.mstu .views{min-width:0}}
 /* mini studio follows the light theme too, so the 3D floor matches its panel */

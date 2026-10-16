@@ -26,7 +26,7 @@ Website built by [Nexlyr Solutions](https://nexlyr.solutions/).
 - `styles.css` — all styles (dark and light theme)
 - `site.js` — shared site script; **prices, phone numbers and WhatsApp number are at the top** (`window.WRAPPI`)
 - `studio.js` — 3D engine and wrap studio (loads after the page is up)
-- `films.js` — the 3M 2080 and Avery Dennison film colour library
+- `films.js` — the film colour library: 3M 2080 and Avery Dennison wrap films, plus the Carlise TPU Color PPF range (112 colours, codes as printed on the sample cards)
 - `boot.js` — runs first: theme, language and clean links
 - `gsap.min.js`, `ScrollTrigger.min.js`, `lenis.min.js` — animation and smooth scroll
 - `car-*.glb` — 3D car models (credits in the footer of every page)

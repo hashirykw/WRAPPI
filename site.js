@@ -497,9 +497,12 @@ const footLegal = $('.foot__legal'); if (footLegal) new IntersectionObserver(es 
 /* ---------- assistant: rule-based, Wrappi's own facts only ---------- */
 (() => {
   const fab = $('#botFab'), box = $('#bot'), log = $('#botLog'); if (!fab) return;
+  /* size of the Carlise TPU colour card (films.js is not loaded on every page, so it falls back to the card's count) */
+  const CARLISE_N = (((window.FILMS && FILMS.brands) || []).find(b => b.k === 'carlise') || { list: { length: 112 } }).list.length;
   const A = () => [
     { k: ['price', 'cost', 'how much', 'pris', 'koster', 'kost'], a: tx(`All prices are starting prices. Full PPF from ${nok(39000)} (sedan), ${nok(45000)} (SUV), ${nok(50000)} (van). Front PPF package ${nok(16000)}–${nok(22000)}. Color PPF from ${nok(45000)}. Car wrapping from ${nok(27000)}. Polishing from ${nok(2990)}. See <a href="${R('prices')}">all prices</a>.`, `Alle priser er fra-priser. PPF hel bil fra ${nok(39000)} (sedan), ${nok(45000)} (SUV), ${nok(50000)} (varebil). Front PPF-pakke ${nok(16000)}–${nok(22000)}. Farget PPF fra ${nok(45000)}. Bilwrapping fra ${nok(27000)}. Polering fra ${nok(2990)}. Se <a href="${R('prices')}">alle priser</a>.`) },
-    { k: ['color', 'colour', 'farge', 'farget'], a: tx(`Color PPF changes the colour and protects the paint in one: sedan from ${nok(45000)}, SUV from ${nok(53000)}, van from ${nok(58000)}. <a href="${R('cppf')}">Read more</a>.`, `Farget PPF gir ny farge og lakkbeskyttelse i én løsning: sedan fra ${nok(45000)}, SUV fra ${nok(53000)}, varebil fra ${nok(58000)}. <a href="${R('cppf')}">Les mer</a>.`) },
+    { k: ['carlise', 'kls', 'tpu colo'], a: tx(`Our Color PPF range includes the Carlise TPU colour card: ${CARLISE_N} colours in gloss, metallic, pearl, matte and colour shift. <a href="${R('cppf')}#studio3d">Try them on a car in 3D</a>.`, `Farget PPF-utvalget vårt inkluderer Carlise TPU-fargekartet: ${CARLISE_N} farger i blank, metallic, perle, matt og fargeskift. <a href="${R('cppf')}#studio3d">Prøv dem på en bil i 3D</a>.`) },
+    { k: ['color', 'colour', 'farge', 'farget'], a: tx(`Color PPF changes the colour and protects the paint in one: sedan from ${nok(45000)}, SUV from ${nok(53000)}, van from ${nok(58000)}. <a href="${R('cppf')}">Read more</a> or <a href="${R('cppf')}#studio3d">try ${CARLISE_N} Carlise colours in 3D</a>.`, `Farget PPF gir ny farge og lakkbeskyttelse i én løsning: sedan fra ${nok(45000)}, SUV fra ${nok(53000)}, varebil fra ${nok(58000)}. <a href="${R('cppf')}">Les mer</a> eller <a href="${R('cppf')}#studio3d">prøv ${CARLISE_N} Carlise-farger i 3D</a>.`) },
     { k: ['3m', 'avery', '2080', 'swf', 'vinyl', 'pet'], a: tx(`We wrap with vinyl and PET film, including 3M 2080 and Avery Dennison Supreme Wrapping Film. Can't find your colour? We can order it. <a href="${R('wrap')}">Try the colours on a car</a>.`, `Vi folierer med vinyl- og PET-folie, blant annet 3M 2080 og Avery Dennison Supreme Wrapping Film. Finner du ikke fargen? Vi kan bestille den. <a href="${R('wrap')}">Prøv fargene på en bil</a>.`) },
     { k: ['front'], a: tx(`The front PPF package costs ${nok(16000)}–${nok(22000)}, depending on the car: front bumper, bonnet, front wings and side mirrors. <a href="${R('ppf')}#front">More</a>.`, `Front PPF-pakken koster ${nok(16000)}–${nok(22000)}, avhengig av bilen: frontfanger, panser, forskjermene og sidespeil. <a href="${R('ppf')}#front">Les mer</a>.`) },
     { k: ['film', 'brand', 'folie', 'merke'], a: tx(`Our PPF is PPF Art Design: 216 µm (8.5 mil) total, 165 µm TPU, self-healing top coat, −45 to +115 °C. <a href="${R('ppf')}#film">See the specs</a>.`, `PPF-en vår er PPF Art Design: 216 µm (8,5 mil) totalt, 165 µm TPU, selvreparerende toppcoat, −45 til +115 °C. <a href="${R('ppf')}#film">Se dataene</a>.`) },
@@ -1129,11 +1132,16 @@ function motion() {
   const FIN = { gloss: ['Gloss', 'Blank'], satin: ['Satin', 'Satin'], matte: ['Matte', 'Matt'], metallic: ['Metallic', 'Metallic'] };
   const TINT = { none: ['Factory', 'Fabrikk'], t35: ['35 %', '35 %'], t20: ['20 %', '20 %'], t5: ['5 %', '5 %'] };
   const L = a => tx(a[0], a[1]);
-  const st = { car: box.dataset.car || 'suv', paint: PAINT[0][0], cover: 'full', col: 0, fin: CPPF[0][4], film: null, wfin: 'all', brand: '3m', chrome: false, tint: 'none', stage: 'two', cer: false, spin: true };
+  const st = { car: box.dataset.car || 'suv', paint: PAINT[0][0], cover: 'full', col: 0, fin: CPPF[0][4], film: null, wfin: 'all', brand: '3m', range: 'house', chrome: false, tint: 'none', stage: 'two', cer: false, spin: true };
   const read = $('.mstu__read b'), readK = $('.mstu__read .mono');
-  const films = () => (window.FILMS && FILMS.brands || []).filter(b => b.list && b.list.length);
+  /* film ranges: vinyl wrap films for the wrap studio, colour PPF ranges (ppf: true) for the Color PPF studio */
+  const allFilms = () => (window.FILMS && FILMS.brands || []).filter(b => b.list && b.list.length);
+  const films = () => allFilms().filter(b => !b.ppf);
+  const ppfFilms = () => allFilms().filter(b => b.ppf);
+  const lib = () => kind === 'cppf' ? ppfFilms() : films();
+  const fid = r => r[5] || r[0];   /* a maker can use one code for two colours; those rows carry their own id */
   const fin = k => (window.FILMS && FILMS.finishes[k]) || { pbr: 'gloss' };
-  const filmOf = id => { if (!id) return null; const [b, c] = id.split(':'); const br = films().find(x => x.k === b); const r = br && br.list.find(x => x[0] === c); return r ? { br, code: r[0], name: r[1], fin: r[2], c: r[3], fl: r[4] || null } : null; };
+  const filmOf = id => { if (!id) return null; const [b, c] = id.split(':'); const br = allFilms().find(x => x.k === b); const r = br && br.list.find(x => fid(x) === c); return r ? { br, id: b + ':' + fid(r), code: r[0], name: r[1], fin: r[2], c: r[3], fl: r[4] || null } : null; };
   const deep = h => { const n = parseInt(h.slice(1), 16), f = .82; const r = Math.round((n >> 16 & 255) * f), g = Math.round((n >> 8 & 255) * f), b = Math.round((n & 255) * f); return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join(''); };
 
   /* ---- build the controls this service needs ---- */
@@ -1152,8 +1160,16 @@ function motion() {
     h += grp(tx('Coverage', 'Dekning'), `<div class="seg" role="group" data-g="cover" style="grid-template-columns:repeat(2,minmax(0,1fr))"><button type="button" data-v="full" aria-pressed="true">${tx('Full PPF', 'Hel bil')}</button><button type="button" data-v="front" aria-pressed="false">Front PPF</button></div>`);
     h += grp(tx('Your car\'s paint', 'Bilens lakk'), sws('paint', PAINT.map(p => [p[0], p[0], null, tx(p[1], p[2])]), st.paint));
   } else if (kind === 'cppf') {
-    h += grp(tx('Colour', 'Farge'), sws('col', CPPF.map((p, i) => [i, p[0], p[1], tx(p[2], p[3])]), 0));
-    h += grp(tx('Finish', 'Finish'), `<div class="seg" role="group" data-g="fin">${Object.entries(FIN).map(([k, v]) => `<button type="button" data-v="${k}" aria-pressed="${k === st.fin}">${L(v)}</button>`).join('')}</div>`);
+    const ranges = ppfFilms();
+    if (ranges.length) h += grp(tx('Colour range', 'Fargekart'), `<div class="mstu__row" role="group" data-g="range"><button type="button" class="pick" data-v="house" aria-pressed="true">Wrappi<small>${tx(`Our picks · ${CPPF.length} colours`, `Våre favoritter · ${CPPF.length} farger`)}</small></button>${ranges.map(b => `<button type="button" class="pick" data-v="${b.k}" aria-pressed="false">${b.name}<small>${b.range} · ${b.list.length} ${tx('colours', 'farger')}</small></button>`).join('')}</div>`);
+    h += `<div class="mstu__pane" data-pane="house">`
+      + grp(tx('Colour', 'Farge'), sws('col', CPPF.map((p, i) => [i, p[0], p[1], tx(p[2], p[3])]), 0))
+      + grp(tx('Finish', 'Finish'), `<div class="seg" role="group" data-g="fin">${Object.entries(FIN).map(([k, v]) => `<button type="button" data-v="${k}" aria-pressed="${k === st.fin}">${L(v)}</button>`).join('')}</div>`)
+      + `</div>`;
+    if (ranges.length) h += `<div class="mstu__pane" data-pane="film" hidden>`
+      + grp(tx('Finish', 'Finish'), `<div class="mstu__row" role="group" data-g="wfin"></div>`)
+      + grp(tx('Colours', 'Farger'), `<div class="mstu__sws" role="group" data-g="film"></div><button type="button" class="mstu__more" hidden>${tx('Show more colours', 'Vis flere farger')}</button>`)
+      + `</div>`;
   } else if (kind === 'wrap') {
     h += grp(tx('Film', 'Folie'), `<div class="mstu__row" role="group" data-g="brand">${films().map(b => `<button type="button" class="pick" data-v="${b.k}" aria-pressed="${b.k === st.brand}">${b.name}<small>${b.range}</small></button>`).join('')}</div>`);
     h += grp(tx('Finish', 'Finish'), `<div class="mstu__row" role="group" data-g="wfin"></div>`);
@@ -1172,12 +1188,12 @@ function motion() {
   const WF = [['all', tx('All', 'Alle'), null], ['g', tx('Gloss', 'Blank'), /^(g|gp)$/], ['s', 'Satin', /^(s|sm|sf)$/], ['m', tx('Matte', 'Matt'), /^(m|mm)$/], ['gm', 'Metallic', /^(gm|sm|mm)$/], ['ch', tx('Chrome', 'Krom'), /^ch$/], ['fl', tx('Colour flip', 'Fargeskift'), /^(fl|sf)$/]];
   let shown = 30;
   function drawFilms() {
-    const br = films().find(b => b.k === st.brand) || films()[0]; if (!br) return;
+    const br = lib().find(b => b.k === st.brand) || lib()[0]; if (!br) return;
     const f = WF.find(x => x[0] === st.wfin) || WF[0];
     const list = br.list.filter(r => !f[2] || f[2].test(r[2]));
     const fr = $('[data-g="wfin"]'); if (fr) fr.innerHTML = WF.filter(w => !w[2] || br.list.some(r => w[2].test(r[2]))).map(w => `<button type="button" class="pick" data-v="${w[0]}" aria-pressed="${w[0] === st.wfin}">${w[1]}</button>`).join('');
     const g = $('[data-g="film"]'); if (!g) return;
-    g.innerHTML = list.slice(0, shown).map(r => { const id = br.k + ':' + r[0]; return `<button type="button" class="sw" data-v="${id}" style="--sw:${r[3]}${r[4] ? ';--fl:' + r[4] : ''}"${r[4] ? ' data-flip' : ''} aria-label="${br.short || br.name} ${r[0]} ${r[1]}" title="${r[1]} · ${r[0]}" aria-pressed="${id === st.film}"></button>`; }).join('');
+    g.innerHTML = list.slice(0, shown).map(r => { const id = br.k + ':' + fid(r); return `<button type="button" class="sw" data-v="${id}" style="--sw:${r[3]}${r[4] ? ';--fl:' + r[4] : ''}"${r[4] ? ' data-flip' : ''} aria-label="${br.short || br.name} ${r[0]} ${r[1]}" title="${r[1]} · ${r[0]}" aria-pressed="${id === st.film}"></button>`; }).join('');
     const m = $('.mstu__more'); if (m) m.hidden = list.length <= shown;
   }
 
@@ -1191,6 +1207,10 @@ function motion() {
       s = Object.assign(s, { mode: 'ppf', ppf: st.cover === 'front' ? 1 : 4 });
       name = st.cover === 'front' ? 'Front PPF' : tx('Full PPF · every painted panel', 'PPF på hele bilen');
       code = tx('Clear self-healing film', 'Klar, selvreparerende folie');
+    } else if (kind === 'cppf' && st.range !== 'house' && filmOf(st.film)) {
+      const fm = filmOf(st.film), fi = fin(fm.fin);
+      b = { c: fm.c, f: fi.pbr || 'gloss', fl: fm.fl, s: fi.skin || 'solid', dec: false };
+      name = fm.name; code = `${fm.br.short || fm.br.name} · ${fm.code} · ${tx(fi.en || '', fi.no || '')}`;
     } else if (kind === 'cppf') {
       const p = CPPF[st.col];
       b = { c: p[0], f: st.fin, fl: p[1], s: 'solid', dec: false };
@@ -1216,7 +1236,7 @@ function motion() {
     const wa = $('.mstu__wa'); if (wa) wa.href = `https://wa.me/${WA}?text=${encodeURIComponent(tx('Hi Wrappi! I tried this in the 3D studio: ', 'Hei Wrappi! Jeg prøvde dette i 3D-studioet: ') + name + ' (' + code + ') — ' + L(CARS[st.car]) + '. ' + tx('Could I get a price?', 'Kan jeg få en pris?'))}`;
     const op = $('.mstu__open'); if (op) {
       const q = new URLSearchParams({ car: st.car });
-      if (kind === 'ppf') q.set('mode', 'ppf'); if (kind === 'wrap' && st.film) q.set('film', st.film); if (kind === 'polish' && st.cer) q.set('ceramic', '1');
+      if (kind === 'ppf') q.set('mode', 'ppf'); if ((kind === 'wrap' || (kind === 'cppf' && st.range !== 'house')) && st.film) q.set('film', st.film); if (kind === 'polish' && st.cer) q.set('ceramic', '1');
       op.href = (WR.routes.studio || 'design-din-bil') + '?' + q.toString();
     }
     if (!c3) return;
@@ -1239,6 +1259,19 @@ function motion() {
     }
     if (g === 'car') { st.car = v; const c3 = C(); if (c3) c3.setCar(v); }
     else if (g === 'col') { st.col = +v; st.fin = CPPF[+v][4]; $$('[data-g="fin"] [data-v]').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === st.fin)); }
+    else if (g === 'range') {   /* Color PPF: Wrappi's picks or a maker's full range */
+      st.range = v;
+      const hp = $('[data-pane="house"]'), fp = $('[data-pane="film"]');
+      if (hp) hp.hidden = v !== 'house';
+      if (fp) fp.hidden = v === 'house';
+      const on = v === 'house' ? hp : fp; if (on) { on.classList.remove('is-in'); void on.offsetWidth; on.classList.add('is-in'); }
+      if (v !== 'house') {
+        if (st.brand !== v) { st.brand = v; st.wfin = 'all'; shown = 30; }
+        const br = lib().find(x => x.k === v);
+        if (br && !(st.film && st.film.startsWith(v + ':'))) st.film = v + ':' + fid(br.list[0]);
+        drawFilms();
+      }
+    }
     else if (g === 'brand') { st.brand = v; st.wfin = 'all'; shown = 30; drawFilms(); return; }
     else if (g === 'wfin') { st.wfin = v; shown = 30; drawFilms(); return; }
     else st[g] = v;
