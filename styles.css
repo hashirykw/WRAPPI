@@ -471,9 +471,21 @@ html[data-theme="light"] .cert__doc{box-shadow:var(--lift)}
 @media (max-width:900px){.cert{grid-template-columns:minmax(0,1fr)}.cert__doc{order:2}}
 @media (max-width:520px){.cert__doc{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}.cert .specs>div{grid-template-columns:minmax(0,1fr);gap:2px}.cert .specs dd{text-align:left}}
 
-/* ===================== home: small WhatsApp button under the page buttons (Oct 2026) ===================== */
-.hero__wa{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-self:start}
-.hero__wa small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute)}
-.hero__wa small::before{content:"";display:inline-block;width:6px;height:6px;margin-right:8px;border-radius:50%;background:#25d366;vertical-align:1px;box-shadow:0 0 0 3px rgb(37 211 102 / .18)}
+/* ===================== home: WhatsApp strip under the page buttons (Oct 2026) ===================== */
+/* same glass + slanted edges as the page buttons, so it sits in the grid instead of shouting green */
+.hero__wa{justify-self:start}
+.wa-strip{--sl:12px;display:inline-flex;align-items:center;gap:12px;min-height:50px;padding:0 calc(14px + var(--sl)) 0 calc(12px + var(--sl));background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:inset 0 0 0 1px var(--glass-bd);clip-path:polygon(var(--sl) 0,100% 0,calc(100% - var(--sl)) 100%,0 100%);color:var(--color-glow);transition:background .3s var(--ease-out),color .3s var(--ease-out),transform .45s var(--ease-out)}
+.wa-strip b{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.005em}
+.wa-strip small{display:inline-flex;align-items:center;gap:7px;padding-left:12px;border-left:1px solid var(--color-line-2);font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute)}
+.wa-strip small::before{content:"";width:6px;height:6px;border-radius:50%;background:#25d366;box-shadow:0 0 0 3px rgb(37 211 102 / .18)}
+.wa-strip__ic{width:20px;height:20px;flex:none;color:#25d366}
+.wa-strip__go{width:16px;height:16px;flex:none;margin-left:6px;color:var(--color-mute);transition:transform .35s var(--ease-out)}
+.wa-strip:hover,.wa-strip:focus-visible{background:var(--color-glow);color:var(--color-ink);outline:none;transform:translateY(-2px)}
+.wa-strip:hover small,.wa-strip:hover .wa-strip__go,.wa-strip:focus-visible small{color:#55575c}
+.wa-strip:hover .wa-strip__go{transform:translateX(4px)}
+html[data-theme="light"] .wa-strip{background:#fff;box-shadow:var(--lift)}
+html[data-theme="light"] .wa-strip__ic{color:#128a43}
+html[data-theme="light"] .wa-strip:hover{background:var(--color-ink);color:#f2f0ea}
+html[data-theme="light"] .wa-strip:hover small,html[data-theme="light"] .wa-strip:hover .wa-strip__go{color:#c9cacd}
 .wr-pre .hero__wa{opacity:0}
-@media (max-width:760px){.hero__wa{order:3;padding:12px var(--gutter) 0}}
+@media (max-width:760px){.hero__wa{order:3;justify-self:stretch;padding:6px var(--gutter) 0}.wa-strip{--sl:10px;display:grid;grid-template-columns:22px minmax(0,1fr) 16px;column-gap:12px;row-gap:3px;width:100%;min-height:0;padding-top:11px;padding-bottom:11px}.wa-strip__ic{grid-row:1 / 3;align-self:center}.wa-strip b{grid-column:2;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wa-strip small{grid-column:2;grid-row:2;padding-left:0;border-left:0;font-size:9.5px}.wa-strip__go{grid-column:3;grid-row:1 / 3;align-self:center;margin-left:0}}
