@@ -470,3 +470,10 @@ html[data-theme="light"] .chub__list{background:#fff;box-shadow:var(--lift)}
 html[data-theme="light"] .cert__doc{box-shadow:var(--lift)}
 @media (max-width:900px){.cert{grid-template-columns:minmax(0,1fr)}.cert__doc{order:2}}
 @media (max-width:520px){.cert__doc{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}.cert .specs>div{grid-template-columns:minmax(0,1fr);gap:2px}.cert .specs dd{text-align:left}}
+
+/* ===================== home: small WhatsApp button under the page buttons (Oct 2026) ===================== */
+.hero__wa{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-self:start}
+.hero__wa small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-mute)}
+.hero__wa small::before{content:"";display:inline-block;width:6px;height:6px;margin-right:8px;border-radius:50%;background:#25d366;vertical-align:1px;box-shadow:0 0 0 3px rgb(37 211 102 / .18)}
+.wr-pre .hero__wa{opacity:0}
+@media (max-width:760px){.hero__wa{order:3;padding:12px var(--gutter) 0}}
