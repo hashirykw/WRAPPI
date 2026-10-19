@@ -512,8 +512,9 @@ html[data-theme="light"] .wa-strip:hover small{border-left-color:rgb(246 246 244
 html.wr-intro .wl{position:fixed;inset:0;z-index:10000;display:block;isolation:isolate;overflow:hidden;background:#000;animation:wl-safety .01s 9s forwards}
 @keyframes wl-safety{to{opacity:0;visibility:hidden;pointer-events:none}}
 .wl__bg{position:absolute;inset:0}
-.wl__bg i{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transform:scale(1.14)}
-html.wr-intro .wl__bg i:nth-child(1){background-image:url(urus-purple.webp);opacity:1}
+.wl__bg i{position:absolute;inset:-6%;background:center/cover no-repeat;clip-path:inset(0 0 0 100%);will-change:transform,clip-path}
+.wl__bg i:first-child{clip-path:none}
+html.wr-intro .wl__bg i:nth-child(1){background-image:url(urus-purple.webp)}
 html.wr-intro .wl__bg i:nth-child(2){background-image:url(taycan-teal.webp)}
 html.wr-intro .wl__bg i:nth-child(3){background-image:url(pink-modely.webp)}
 html.wr-intro .wl__bg i:nth-child(4){background-image:url(red-satin-split.webp)}

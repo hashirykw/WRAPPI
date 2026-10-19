@@ -1062,18 +1062,23 @@ function motion() {
     const land = () => { if (arrived) return; arrived = true; arrive(); };
     const done = () => { if (gone) return; gone = true; land(); wl.remove(); root.classList.remove('wr-intro'); root.style.overflow = ov; if (window.lenis) lenis.start(); ScrollTrigger.refresh(); };
     const tl = gsap.timeline({ onComplete: done });
-    bgs.forEach((b, k) => { if (k) tl.to(b, { opacity: 1, duration: .45, ease: 'power1.inOut' }, k * .72); });
-    tl.to(bgs, { scale: 1, duration: 4, ease: 'none' }, 0)
+    const step = .62;
+    bgs.forEach((b, k) => {
+      const at = k ? .45 + (k - 1) * step : 0, dir = k % 2 ? 1 : -1;
+      tl.fromTo(b, { xPercent: -4 * dir, scale: 1.24 }, { xPercent: 4 * dir, scale: k === bgs.length - 1 ? 1.02 : 1.1, duration: 2.6, ease: 'none' }, at);
+      if (k) tl.fromTo(b, { clipPath: 'inset(0% 0% 0% 100%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .55, ease: 'expo.inOut' }, at);
+    });
+    tl.fromTo('.wl__w', { scale: .96 }, { scale: 1.05, duration: 2.42, ease: 'none' }, 0)
       .fromTo(L, { yPercent: 115, y: 0 }, { yPercent: 0, y: 0, duration: 1.1, ease: 'expo.out', stagger: .06 }, .1)
       .fromTo('.wl__s', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'expo.out' }, .65)
       .fromTo('.wl__ui', { autoAlpha: 0 }, { autoAlpha: 1, duration: .5 }, .15)
-      .to(cnt, { v: 100, duration: 2.5, ease: 'power1.inOut', onUpdate: () => { n.textContent = String(Math.round(cnt.v)).padStart(3, '0'); } }, 0)
-      .fromTo('.wl__bar i', { scaleX: 0 }, { scaleX: 1, duration: 2.5, ease: 'power1.inOut' }, 0)
-      .add(() => { const r = I.getBoundingClientRect(); gsap.set(mask, { transformOrigin: (r.left + r.width / 2) + 'px ' + (r.top + r.height / 2) + 'px' }); mask.dataset.s = Math.ceil(Math.max(innerWidth, innerHeight) * 2.4 / Math.max(r.width, 1)); }, 2.55)
-      .to(['.wl__ui', '.wl__s'], { autoAlpha: 0, duration: .3, ease: 'power2.in' }, 2.6)
-      .to(mask, { scale: () => +mask.dataset.s || 80, duration: 1.3, ease: 'expo.in' }, 2.6)
-      .add(land, 3.75)
-      .to(wl, { autoAlpha: 0, duration: .55, ease: 'power2.out' }, 3.8);
+      .to(cnt, { v: 100, duration: 2.45, ease: 'power1.inOut', onUpdate: () => { n.textContent = String(Math.round(cnt.v)).padStart(3, '0'); } }, 0)
+      .fromTo('.wl__bar i', { scaleX: 0 }, { scaleX: 1, duration: 2.45, ease: 'power1.inOut' }, 0)
+      .add(() => { const r = I.getBoundingClientRect(); gsap.set(mask, { transformOrigin: (r.left + r.width / 2) + 'px ' + (r.top + r.height / 2) + 'px' }); mask.dataset.s = Math.ceil(Math.max(innerWidth, innerHeight) * 2.4 / Math.max(r.width, 1)); }, 2.42)
+      .to(['.wl__ui', '.wl__s'], { autoAlpha: 0, duration: .3, ease: 'power2.in' }, 2.45)
+      .to(mask, { scale: () => +mask.dataset.s || 80, duration: 1.25, ease: 'expo.in' }, 2.45)
+      .add(land, 3.55)
+      .to(wl, { autoAlpha: 0, duration: .55, ease: 'power2.out' }, 3.6);
     setTimeout(done, 8000); /* never let the preloader hold the page */
   } else { dropIntro(); arrive(); }
 
