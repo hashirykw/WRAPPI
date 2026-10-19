@@ -454,3 +454,19 @@ html[data-theme="light"] .chub__list{background:#fff;box-shadow:var(--lift)}
    Tapping still opens the full, uncropped photo. */
 .slides__bg{display:none}
 .slides__img{object-fit:cover;object-position:var(--fp,50% 55%)}
+
+/* ===================== CARLISE PPF page: official certificate (Oct 2026) ===================== */
+/* the certificate is shown whole (never cropped) on a paper-coloured card; tapping opens it full size */
+.cert{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,80px);align-items:center}
+.cert__info h2{font-size:var(--text-2xl);margin:16px 0 22px}
+.cert__lead{max-width:48ch;margin-bottom:26px}
+.cert .specs dd{text-transform:none}
+.cert__doc{position:relative;padding:clamp(10px,1.6vw,18px);background:#f4efe6;box-shadow:0 30px 60px -30px rgb(0 0 0 / .55);clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%)}
+.cert__doc::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--stripe);z-index:1}
+.cert__doc figure{margin:0;cursor:zoom-in}
+.cert__doc img{display:block;width:100%;height:auto;transition:transform 1s var(--ease-out)}
+.cert__doc figure:hover img{transform:scale(1.015)}
+.cert__doc figcaption{margin-top:10px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#6b655c;text-align:center}
+html[data-theme="light"] .cert__doc{box-shadow:var(--lift)}
+@media (max-width:900px){.cert{grid-template-columns:minmax(0,1fr)}.cert__doc{order:2}}
+@media (max-width:520px){.cert__doc{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}.cert .specs>div{grid-template-columns:minmax(0,1fr);gap:2px}.cert .specs dd{text-align:left}}

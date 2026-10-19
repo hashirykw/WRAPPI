@@ -81,6 +81,11 @@
       "source": "/work",
       "destination": "/prosjekter",
       "permanent": true
+    },
+    {
+      "source": "/carlise",
+      "destination": "/carlise-ppf",
+      "permanent": true
     }
   ],
   "headers": [

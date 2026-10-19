@@ -16,7 +16,8 @@ Website built by [Nexlyr Solutions](https://nexlyr.solutions/).
 | `polering-og-keramisk-coating.html` | `en-polishing-and-ceramic-coating.html` | Polishing (1-/2-step) and ceramic coating, with its own 3D studio |
 | `design-din-bil.html` | `en-wrap-studio.html` | Full 3D wrap studio |
 | `prosjekter.html` | `en-projects.html` | Projects and gallery |
-| `priser.html` | `en-prices.html` | Prices and price builder (PPF, front PPF and Color PPF are set prices by car size; car wrapping and polishing are starting prices) |
+| `priser.html` | `en-prices.html` | Prices and price builder (PPF, front PPF and Color PPF are set prices by car size; car wrapping, polishing and ceramic coating are starting prices) |
+| `carlise-ppf.html` | `en-carlise-ppf.html` | CARLISE PPF — Wrappi as exclusive authorised distributor in Norway, B2B, and the official certificate (`carlise-sertifikat.webp`) |
 | `om-oss.html` | `en-about-us.html` | About the team and company |
 | `kontakt.html` | `en-contact.html` | Contact |
 | `404.html` | | Not-found page |
