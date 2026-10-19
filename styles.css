@@ -494,3 +494,12 @@ html[data-theme="light"] .wa-strip:hover small,html[data-theme="light"] .wa-stri
 html[data-theme="light"] .hub a,html[data-theme="light"] .wa-strip{-webkit-backdrop-filter:none;backdrop-filter:none;-webkit-font-smoothing:antialiased;backface-visibility:hidden}
 html[data-theme="light"] .hub a:hover,html[data-theme="light"] .hub a:focus-visible{transform:translate3d(0,-3px,0)}
 html[data-theme="light"] .wa-strip:hover,html[data-theme="light"] .wa-strip:focus-visible{transform:translate3d(0,-2px,0)}
+/* light theme hover: a solid dark button with light text (the shared hover colour turns pale in light theme,
+   which washed the text out) */
+html[data-theme="light"] .hub a:hover,html[data-theme="light"] .hub a:focus-visible,
+html[data-theme="light"] .wa-strip:hover,html[data-theme="light"] .wa-strip:focus-visible{background:#0e0f11;color:#f6f6f4;box-shadow:0 18px 34px -18px rgb(0 0 0 / .45)}
+html[data-theme="light"] .hub a:hover b,html[data-theme="light"] .hub a:focus-visible b,html[data-theme="light"] .wa-strip:hover b,html[data-theme="light"] .wa-strip:focus-visible b{color:#f6f6f4}
+html[data-theme="light"] .hub a:hover i,html[data-theme="light"] .hub a:hover small,html[data-theme="light"] .hub a:focus-visible i,html[data-theme="light"] .hub a:focus-visible small,
+html[data-theme="light"] .wa-strip:hover small,html[data-theme="light"] .wa-strip:hover .wa-strip__go,html[data-theme="light"] .wa-strip:focus-visible small{color:#c9cacd}
+html[data-theme="light"] .wa-strip:hover .wa-strip__ic{color:#25d366}
+html[data-theme="light"] .wa-strip:hover small{border-left-color:rgb(246 246 244 / .25)}
