@@ -35,6 +35,17 @@
     loc.replace(u.href);
   })();
 
+  /* preloader: plays on the first page of a visit only — not on later pages, not after a language hop,
+     never with reduced motion. site.js runs it and removes it; the CSS hides it on its own if site.js never runs. */
+  (function () {
+    if (html.classList.contains('wr-go')) return;
+    try {
+      if (sessionStorage.getItem('wrappi-intro') || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      sessionStorage.setItem('wrappi-intro', '1');
+    } catch (e) { return; }
+    html.classList.add('wr-intro');
+  })();
+
   try {
     var cv = document.createElement('canvas'), nc = navigator.connection;
     if ((cv.getContext('webgl2') || cv.getContext('webgl')) && !(nc && (nc.saveData || /2g/.test(nc.effectiveType || '')))) html.classList.add('can3d');

@@ -1030,7 +1030,9 @@ function motion() {
       tx0 = (x / r.width - .5) * 2; ty0 = (y / r.height - .5) * 2; heroEl.style.setProperty('--px', tx0.toFixed(3)); heroEl.style.setProperty('--py', ty0.toFixed(3)); }); }, { passive: true });
     heroEl.addEventListener('pointerleave', () => { heroEl.style.setProperty('--px', 0); heroEl.style.setProperty('--py', 0); });
   }
-  if (!window.gsap || !window.ScrollTrigger || RM) { heroGo(); pre(); return; }
+  const wl = $('.wl'), root = document.documentElement;
+  const dropIntro = () => { if (wl) wl.remove(); root.classList.remove('wr-intro'); };
+  if (!window.gsap || !window.ScrollTrigger || RM) { dropIntro(); heroGo(); pre(); return; }
   gsap.registerPlugin(ScrollTrigger);
   if (window.Lenis) {
     window.lenis = new Lenis({ lerp: .12, wheelMultiplier: 1, touchMultiplier: 1.2 });
@@ -1041,6 +1043,7 @@ function motion() {
   if (location.hash && location.hash.length > 1 && !location.hash.startsWith('#build=')) { const t = $(location.hash); if (t && window.lenis) setTimeout(() => lenis.scrollTo(t, { offset: -84, immediate: true }), 60); }
 
   /* arrival: the headline rises line by line, the rest follows */
+  const arrive = () => {
   if (isHome) {
     heroGo();
     gsap.fromTo('.hero__title .ch', { yPercent: 115, rotate: 7 }, { yPercent: 0, rotate: 0, duration: 1.15, stagger: .024, ease: 'expo.out', delay: .1 });
@@ -1048,6 +1051,31 @@ function motion() {
     gsap.fromTo('.hero__stage', { autoAlpha: 0, x: -50 }, { autoAlpha: 1, x: 0, duration: 1.6, ease: 'expo.out', delay: .15, clearProps: 'transform' });
   }
   const ph = $('.phead'); if (ph) gsap.fromTo($$('.phead__crumbs,.phead .tag,.phead h1 .h-line > span,.phead__lead,.phead .acts,.phead__media figure', ph), { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, stagger: .05, ease: 'expo.out', delay: .1 });
+  };
+
+  /* preloader (first page of a visit): wrap photos play inside giant WRAPPI letters while the counter and the
+     red/blue line run to 100, then the camera dives through the I and the page makes its entrance */
+  if (wl && root.classList.contains('wr-intro')) {
+    const mask = $('.wl__mask', wl), I = $('.wl__i', wl), L = $$('.wl__w span', wl), bgs = $$('.wl__bg i', wl), n = $('.wl__n', wl), cnt = { v: 0 };
+    const ov = root.style.overflow; root.style.overflow = 'hidden'; if (window.lenis) lenis.stop();
+    let arrived = false, gone = false;
+    const land = () => { if (arrived) return; arrived = true; arrive(); };
+    const done = () => { if (gone) return; gone = true; land(); wl.remove(); root.classList.remove('wr-intro'); root.style.overflow = ov; if (window.lenis) lenis.start(); ScrollTrigger.refresh(); };
+    const tl = gsap.timeline({ onComplete: done });
+    bgs.forEach((b, k) => { if (k) tl.to(b, { opacity: 1, duration: .45, ease: 'power1.inOut' }, k * .72); });
+    tl.to(bgs, { scale: 1, duration: 4, ease: 'none' }, 0)
+      .fromTo(L, { yPercent: 115, y: 0 }, { yPercent: 0, y: 0, duration: 1.1, ease: 'expo.out', stagger: .06 }, .1)
+      .fromTo('.wl__s', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'expo.out' }, .65)
+      .fromTo('.wl__ui', { autoAlpha: 0 }, { autoAlpha: 1, duration: .5 }, .15)
+      .to(cnt, { v: 100, duration: 2.5, ease: 'power1.inOut', onUpdate: () => { n.textContent = String(Math.round(cnt.v)).padStart(3, '0'); } }, 0)
+      .fromTo('.wl__bar i', { scaleX: 0 }, { scaleX: 1, duration: 2.5, ease: 'power1.inOut' }, 0)
+      .add(() => { const r = I.getBoundingClientRect(); gsap.set(mask, { transformOrigin: (r.left + r.width / 2) + 'px ' + (r.top + r.height / 2) + 'px' }); mask.dataset.s = Math.ceil(Math.max(innerWidth, innerHeight) * 2.4 / Math.max(r.width, 1)); }, 2.55)
+      .to(['.wl__ui', '.wl__s'], { autoAlpha: 0, duration: .3, ease: 'power2.in' }, 2.6)
+      .to(mask, { scale: () => +mask.dataset.s || 80, duration: 1.3, ease: 'expo.in' }, 2.6)
+      .add(land, 3.75)
+      .to(wl, { autoAlpha: 0, duration: .55, ease: 'power2.out' }, 3.8);
+    setTimeout(done, 8000); /* never let the preloader hold the page */
+  } else { dropIntro(); arrive(); }
 
   /* featured jobs: the section holds still and the row of cards slides sideways as you scroll down.
      A sideways swipe on the cards still works: it simply scrolls the page by the same amount. */
