@@ -489,3 +489,8 @@ html[data-theme="light"] .wa-strip:hover{background:var(--color-ink);color:#f2f0
 html[data-theme="light"] .wa-strip:hover small,html[data-theme="light"] .wa-strip:hover .wa-strip__go{color:#c9cacd}
 .wr-pre .hero__wa{opacity:0}
 @media (max-width:760px){.hero__wa{order:3;justify-self:stretch;padding:6px var(--gutter) 0}.wa-strip{--sl:10px;display:grid;grid-template-columns:22px minmax(0,1fr) 16px;column-gap:12px;row-gap:3px;width:100%;min-height:0;padding-top:11px;padding-bottom:11px}.wa-strip__ic{grid-row:1 / 3;align-self:center}.wa-strip b{grid-column:2;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wa-strip small{grid-column:2;grid-row:2;padding-left:0;border-left:0;font-size:9.5px}.wa-strip__go{grid-column:3;grid-row:1 / 3;align-self:center;margin-left:0}}
+/* light theme: the page buttons and the WhatsApp strip are solid white, so the glass blur does nothing there —
+   and on hover it made the text render soft while the button lifts. Drop it and keep the lift crisp. */
+html[data-theme="light"] .hub a,html[data-theme="light"] .wa-strip{-webkit-backdrop-filter:none;backdrop-filter:none;-webkit-font-smoothing:antialiased;backface-visibility:hidden}
+html[data-theme="light"] .hub a:hover,html[data-theme="light"] .hub a:focus-visible{transform:translate3d(0,-3px,0)}
+html[data-theme="light"] .wa-strip:hover,html[data-theme="light"] .wa-strip:focus-visible{transform:translate3d(0,-2px,0)}
