@@ -538,3 +538,12 @@ html.wr-intro .wl__s,html.wr-intro .wl__ui{opacity:0}
 .wl__k{color:#a3a5aa}
 @media (max-width:600px){.wl__w{font-size:19.5vw;letter-spacing:.03em}.wl__ui{grid-template-columns:auto minmax(0,1fr)}.wl__k{display:none}}
 @media (prefers-reduced-motion:reduce){.wl{display:none!important}}
+.hub a.hub--wa{background:linear-gradient(135deg,rgb(37 211 102 / .2),rgb(37 211 102 / .06)),var(--glass)}
+.hub a.hub--wa b{display:flex;align-items:center;gap:8px}
+.hub__wa{width:1.05em;height:1.05em;flex:none;color:var(--color-wa)}
+.hub a.hub--wa:hover{background:var(--color-wa);color:var(--color-wa-ink)}
+.hub a.hub--wa:hover .hub__wa{color:var(--color-wa-ink)}
+.hub a.hub--wa:hover i,.hub a.hub--wa:hover small{color:var(--color-wa-ink)}
+html[data-theme="light"] .hub a.hub--wa{background:linear-gradient(135deg,rgb(37 211 102 / .16),rgb(37 211 102 / .05)),#fff}
+html[data-theme="light"] .hub a.hub--wa:hover{background:var(--color-wa);color:var(--color-wa-ink)}
+html[data-theme="light"] .hub a.hub--wa:hover b,html[data-theme="light"] .hub a.hub--wa:focus-visible b{color:var(--color-wa-ink)}
