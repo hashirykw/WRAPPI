@@ -34,7 +34,7 @@
     },
     {
       "source": "/projects",
-      "destination": "/en-projects",
+      "destination": "/en",
       "permanent": true
     },
     {
@@ -79,12 +79,22 @@
     },
     {
       "source": "/work",
-      "destination": "/prosjekter",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/carlise",
       "destination": "/carlise-ppf",
+      "permanent": true
+    },
+    {
+      "source": "/prosjekter",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en-projects",
+      "destination": "/en",
       "permanent": true
     }
   ],
