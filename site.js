@@ -19,7 +19,7 @@ window.WRAPPI = {
     shine:    { g: 'shine', en: 'Full Shine', no: 'Full Shine', p: 5999, from: true },
     polish1:  { g: 'shine', en: '1-step polish', no: 'Polering 1-steg', p: 2990, from: true },
     polish2:  { g: 'shine', en: '2-step polish', no: 'Polering 2-steg', p: 4990, from: true },
-    wrap:     { en: 'Car wrap · vinyl or PET', no: 'Bilwrapping · vinyl eller PET', p: 'size:wrap', from: true },
+    wrap:     { en: 'Car wrap · vinyl', no: 'Bilwrapping · vinyl', p: 'size:wrap', from: true },
     details:  { en: 'Chrome delete / stripes / details', no: 'Chrome delete / striper / detaljer', p: null },
     fleet:    { en: 'Fleet graphics', no: 'Firmabil / profilering', p: null },
     tint:     { en: 'Window tint', no: 'Vindusfilm', p: null },
@@ -160,7 +160,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && menu && menu.classL
 /* ---------- marquee ---------- */
 const mqEl = $('#mq');
 if (mqEl) {
-  const words = [tx('Paint protection film', 'Lakkbeskyttelse'), tx('Color PPF', 'Farget PPF'), tx('Car wrapping', 'Bilfoliering'), tx('Ceramic coating', 'Keramisk coating'), 'Full Shine', tx('Window tint', 'Vindusfilm'), 'Vinyl · PET · 3M 2080 · Avery Dennison', 'Drive different', 'Strømsveien 324 · Oslo'];
+  const words = [tx('Paint protection film', 'Lakkbeskyttelse'), tx('Color PPF', 'Farget PPF'), tx('Car wrapping', 'Bilfoliering'), tx('Ceramic coating', 'Keramisk coating'), 'Full Shine', tx('Window tint', 'Vindusfilm'), 'Vinyl · 3M 2080 · Avery Dennison', 'Drive different', 'Strømsveien 324 · Oslo'];
   const one = words.map(w => `<span class="marquee__item">${w}<i></i></span>`).join('');
   mqEl.innerHTML = one + one + one;
 }
@@ -349,13 +349,22 @@ if (grid) {
   const CAT = { all: ['All', 'Alle'], ppf: ['PPF', 'PPF'], colour: ['Colour & Color PPF', 'Farge og farget PPF'], wrap: ['Wrap & graphics', 'Folie og grafikk'], polish: ['Polish & ceramic', 'Polering og coating'], fleet: ['Fleet', 'Firmabiler'], bay: ['In the bay', 'I verkstedet'] };
   const WORK = [
     ['taycan-teal-top.webp', 'wrap', 'Porsche Taycan · teal chrome', 'Porsche Taycan · turkis krom', 'w2 h2'],
-    ['urus-purple.webp', 'colour', 'Lamborghini Urus · Color PPF', 'Lamborghini Urus · farget PPF', 'w2'],
+    ['urus-purple.webp', 'wrap', 'Lamborghini Urus · satin purple', 'Lamborghini Urus · satin lilla', 'w2'],
     ['pink-modely.webp', 'colour', 'Model Y · pink Color PPF', 'Model Y · rosa farget PPF', 'w2'],
-    ['lime-modely-bay.webp', 'colour', 'Model Y · lime Color PPF', 'Model Y · limegrønn farget PPF', ''],
+    ['pink-modely-front.webp', 'colour', 'Model Y · pink Color PPF', 'Model Y · rosa farget PPF', 'h2'],
+    ['mache-stripes.webp', 'colour', 'Mustang Mach-E · Color PPF stripes', 'Mustang Mach-E · striper i farget PPF', 'h2'],
+    ['bronze-modely-rear.webp', 'colour', 'Model Y · bronze Color PPF', 'Model Y · bronse farget PPF', 'w2'],
+    ['black-tesla-colour-ppf.webp', 'colour', 'Matte black Color PPF going on', 'Matt svart farget PPF på plass', 'h2'],
+    ['kia-ev6-green.webp', 'wrap', 'Kia EV6 · satin green', 'Kia EV6 · satin grønn', 'w2'],
+    ['red-satin-modely.webp', 'wrap', 'Model Y · satin red', 'Model Y · satin rød', 'w2'],
+    ['lime-modely-front.webp', 'wrap', 'Model Y · lime green', 'Model Y · limegrønn', 'h2'],
+    ['pink-isuzu.webp', 'wrap', 'Isuzu D-Max Arctic Trucks · gloss pink', 'Isuzu D-Max Arctic Trucks · blank rosa', 'w2'],
+    ['bmw-m4-wrap.webp', 'wrap', 'BMW M · matte black going on', 'BMW M · matt svart på plass', 'h2'],
+    ['lime-modely-bay.webp', 'wrap', 'Model Y · lime green', 'Model Y · limegrønn', ''],
     ['bronze-modely.webp', 'colour', 'Model Y · bronze Color PPF', 'Model Y · bronse farget PPF', 'w2'],
-    ['lime-mirror-before.webp', 'colour', 'Halfway: white to lime', 'Halvveis: hvit til lime', ''],
+    ['lime-mirror-before.webp', 'wrap', 'Halfway: white to lime', 'Halvveis: hvit til lime', ''],
     ['ba-explorer-before.webp', 'ppf', 'Ford Explorer · taped for PPF', 'Ford Explorer · teipet for PPF', 'h2'],
-    ['red-satin-split.webp', 'colour', 'Gloss and satin, same red', 'Blank og satin, samme rød', ''],
+    ['red-satin-split.webp', 'wrap', 'Gloss and satin, same red', 'Blank og satin, samme rød', ''],
     ['touareg-rear.webp', 'wrap', 'VW Touareg · Martini livery', 'VW Touareg · Martini-design', 'w2'],
     ['installer-front-ppf.webp', 'ppf', 'Front PPF going on', 'Front PPF på plass', 'h2'],
     ['blossom.webp', 'wrap', 'Pink, cherry-blossom art', 'Rosa, kirsebærblomster', ''],
@@ -381,7 +390,7 @@ if (grid) {
     ['bmw-x5.webp', 'bay', 'BMW X5', 'BMW X5', ''],
     ['akershus-side.webp', 'fleet', 'Akershus Logistikk · side', 'Akershus Logistikk · side', ''],
     ['ix-grille.webp', 'bay', 'BMW iX · grille', 'BMW iX · grill', ''],
-    ['lime-mirror-close.webp', 'colour', 'Lime, up close', 'Lime, helt nært', '']
+    ['lime-mirror-close.webp', 'wrap', 'Lime, up close', 'Lime, helt nært', '']
   ];
   /* the Verzish gallery: one set at a time, laid out as a fanned deck of frames (a swipe deck on touch screens) */
   const fan = grid, fanTabs = $('#fanTabs'), fanN = $('#fanN');
@@ -506,7 +515,7 @@ const footLegal = $('.foot__legal'); if (footLegal) new IntersectionObserver(es 
     { k: ['carlise', 'kls', 'tpu colo'], a: tx(`Wrappi is the exclusive authorised CARLISE PPF distributor in Norway. Our Color PPF range includes the Carlise TPU colour card: ${CARLISE_N} colours in gloss, metallic, pearl, matte and colour shift. <a href="${R('carlise')}">About CARLISE</a> · <a href="${R('cppf')}#studio3d">try them in 3D</a>.`, `Wrappi er eksklusiv autorisert CARLISE PPF-distributør i Norge. Farget PPF-utvalget vårt inkluderer Carlise TPU-fargekartet: ${CARLISE_N} farger i blank, metallic, perle, matt og fargeskift. <a href="${R('carlise')}">Om CARLISE</a> · <a href="${R('cppf')}#studio3d">prøv dem i 3D</a>.`) },
     { k: ['distribut', 'b2b', 'forhandler', 'dealer', 'reseller', 'wholesale', 'grossist', 'samarbeid', 'partner'], a: tx(`We're the exclusive authorised CARLISE PPF distributor in Norway, and we supply clear and colour PPF to wrapping, PPF and detailing businesses too. <a href="${R('carlise')}#b2b">Products and dealer terms</a>.`, `Vi er eksklusiv autorisert CARLISE PPF-distributør i Norge, og leverer også transparent og farget PPF til folierings-, PPF- og bilpleiebedrifter. <a href="${R('carlise')}#b2b">Produkter og forhandlerbetingelser</a>.`) },
     { k: ['color', 'colour', 'farge', 'farget'], a: tx(`Color PPF changes the colour and protects the paint in one: sedan ${nok(45000)}, SUV ${nok(53000)}, van ${nok(58000)}. <a href="${R('cppf')}">Read more</a> or <a href="${R('cppf')}#studio3d">try ${CARLISE_N} Carlise colours in 3D</a>.`, `Farget PPF gir ny farge og lakkbeskyttelse i én løsning: sedan ${nok(45000)}, SUV ${nok(53000)}, varebil ${nok(58000)}. <a href="${R('cppf')}">Les mer</a> eller <a href="${R('cppf')}#studio3d">prøv ${CARLISE_N} Carlise-farger i 3D</a>.`) },
-    { k: ['3m', 'avery', '2080', 'swf', 'vinyl', 'pet'], a: tx(`We wrap with vinyl and PET film, including 3M 2080 and Avery Dennison Supreme Wrapping Film. Can't find your colour? We can order it. <a href="${R('wrap')}">Try the colours on a car</a>.`, `Vi folierer med vinyl- og PET-folie, blant annet 3M 2080 og Avery Dennison Supreme Wrapping Film. Finner du ikke fargen? Vi kan bestille den. <a href="${R('wrap')}">Prøv fargene på en bil</a>.`) },
+    { k: ['3m', 'avery', '2080', 'swf', 'vinyl', 'pet'], a: tx(`We wrap with vinyl film, including 3M 2080 and Avery Dennison Supreme Wrapping Film. Can't find your colour? We can order it. <a href="${R('wrap')}">Try the colours on a car</a>.`, `Vi folierer med vinylfolie, blant annet 3M 2080 og Avery Dennison Supreme Wrapping Film. Finner du ikke fargen? Vi kan bestille den. <a href="${R('wrap')}">Prøv fargene på en bil</a>.`) },
     { k: ['front'], a: tx(`The front PPF package costs ${nok(16000)}–${nok(22000)}, depending on the car: front bumper, bonnet, front wings and side mirrors. <a href="${R('ppf')}#front">More</a>.`, `Front PPF-pakken koster ${nok(16000)}–${nok(22000)}, avhengig av bilen: frontfanger, panser, forskjermene og sidespeil. <a href="${R('ppf')}#front">Les mer</a>.`) },
     { k: ['film', 'brand', 'folie', 'merke'], a: tx(`Our PPF is PPF Art Design: 216 µm (8.5 mil) total, 165 µm TPU, self-healing top coat, −45 to +115 °C. <a href="${R('ppf')}#film">See the specs</a>.`, `PPF-en vår er PPF Art Design: 216 µm (8,5 mil) totalt, 165 µm TPU, selvreparerende toppcoat, −45 til +115 °C. <a href="${R('ppf')}#film">Se dataene</a>.`) },
     { k: ['day', 'long', 'time', 'dager', 'lenge', 'tid'], a: tx('Full PPF normally takes 3–4 days, depending on the car and the scope. The film needs time to dry and settle before handover.', 'Full PPF tar normalt 3–4 dager, avhengig av bilmodell og omfang. Folien trenger tid til å tørke og stabilisere seg før levering.') },
