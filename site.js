@@ -350,19 +350,19 @@ if (grid) {
     ['urus-purple.webp', 'wrap', 'Lamborghini Urus · satin purple', 'Lamborghini Urus · satin lilla', 'w2'],
     ['pink-modely.webp', 'colour', 'Model Y · pink Color PPF', 'Model Y · rosa farget PPF', 'w2'],
     ['pink-modely-front.webp', 'wrap', 'Model Y · satin pink vinyl', 'Model Y · satin rosa vinyl', 'h2'],
-    ['mache-stripes.webp', 'colour', 'Mustang Mach-E · Color PPF stripes', 'Mustang Mach-E · striper i farget PPF', 'h2'],
+    ['mache-stripes.webp', 'wrap', 'Mustang Mach-E · Color PPF stripes', 'Mustang Mach-E · striper i farget PPF', 'h2'],
     ['bronze-modely-rear.webp', 'wrap', 'Model Y · bronze vinyl', 'Model Y · bronse vinyl', 'w2'],
     ['black-tesla-vinyl.webp', 'wrap', 'Matte black vinyl going on', 'Matt svart vinyl på plass', 'h2'],
-    ['kia-ev6-green.webp', 'wrap', 'Kia EV6 · satin green', 'Kia EV6 · satin grønn', 'w2'],
-    ['red-satin-modely.webp', 'wrap', 'Model Y · satin red', 'Model Y · satin rød', 'w2'],
-    ['lime-modely-front.webp', 'wrap', 'Model Y · lime green', 'Model Y · limegrønn', 'h2'],
+    ['kia-ev6-green.webp', 'colour', 'Kia EV6 · satin green', 'Kia EV6 · satin grønn', 'w2'],
+    ['red-satin-modely.webp', 'colour', 'Model Y · satin red', 'Model Y · satin rød', 'w2'],
+    ['lime-modely-front.webp', 'colour', 'Model Y · lime green', 'Model Y · limegrønn', 'h2'],
     ['pink-isuzu.webp', 'wrap', 'Isuzu D-Max Arctic Trucks · gloss pink', 'Isuzu D-Max Arctic Trucks · blank rosa', 'w2'],
     ['bmw-m4-wrap.webp', 'wrap', 'BMW M · matte black going on', 'BMW M · matt svart på plass', 'h2'],
-    ['lime-modely-bay.webp', 'wrap', 'Model Y · lime green', 'Model Y · limegrønn', ''],
+    ['lime-modely-bay.webp', 'colour', 'Model Y · lime Color PPF', 'Model Y · limegrønn farget PPF', ''],
     ['bronze-modely.webp', 'colour', 'Model Y · bronze Color PPF', 'Model Y · bronse farget PPF', 'w2'],
-    ['lime-mirror-before.webp', 'wrap', 'Halfway: white to lime', 'Halvveis: hvit til lime', ''],
+    ['lime-mirror-before.webp', 'colour', 'Halfway: white to lime', 'Halvveis: hvit til lime', ''],
     ['ba-explorer-before.webp', 'ppf', 'Ford Explorer · taped for PPF', 'Ford Explorer · teipet for PPF', 'h2'],
-    ['red-satin-split.webp', 'wrap', 'Gloss and satin, same red', 'Blank og satin, samme rød', ''],
+    ['red-satin-split.webp', 'colour', 'Gloss and satin, same red', 'Blank og satin, samme rød', ''],
     ['touareg-rear.webp', 'wrap', 'VW Touareg · Martini livery', 'VW Touareg · Martini-design', 'w2'],
     ['installer-front-ppf.webp', 'ppf', 'Front PPF going on', 'Front PPF på plass', 'h2'],
     ['blossom.webp', 'wrap', 'Pink, cherry-blossom art', 'Rosa, kirsebærblomster', ''],
@@ -392,7 +392,7 @@ if (grid) {
     ['bmw-x5.webp', 'bay', 'BMW X5', 'BMW X5', ''],
     ['akershus-side.webp', 'fleet', 'Akershus Logistikk · side', 'Akershus Logistikk · side', ''],
     ['ix-grille.webp', 'bay', 'BMW iX · grille', 'BMW iX · grill', ''],
-    ['lime-mirror-close.webp', 'wrap', 'Lime, up close', 'Lime, helt nært', '']
+    ['lime-mirror-close.webp', 'colour', 'Lime, up close', 'Lime, helt nært', '']
   ];
   /* the Verzish gallery: one set at a time, laid out as a fanned deck of frames (a swipe deck on touch screens) */
   const fan = grid, fanTabs = $('#fanTabs'), fanN = $('#fanN');
