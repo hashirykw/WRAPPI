@@ -205,10 +205,10 @@ $$('[data-map]').forEach(b => b.addEventListener('click', () => {
 const baBox = $('#baBox');
 if (baBox) {
   const BA = [
-    { b: 'ba-chrome-before.webp', a: 'ba-chrome-after.webp', m: 'slide', fit: 'contain', cap: ['Tesla Model S · chrome delete', 'Tesla Model S · chrome delete'], l: [['Before', 'Før'], ['After', 'Etter']], alt: [['Tesla rear with chrome trim', 'Tesla bakfra med kromlister'], ['The same Tesla with the chrome trim in black', 'Den samme Teslaen med listene i svart']] },
-    { b: 'ba-bmw-before.webp', a: 'ba-bmw-after.webp', m: 'slide', pos: '50% 52%', cap: ['BMW 3 Series · stripes taped out, then laid', 'BMW 3-serie · striper teipet opp, så lagt'], l: [['Taped', 'Teipet'], ['Striped', 'Ferdig']], alt: [['White BMW with stripe lines taped on the bonnet', 'Hvit BMW med stripene teipet opp på panseret'], ['The same BMW with black twin stripes', 'Den samme BMW-en med doble svarte striper']] },
-    { b: 'ba-explorer-before.webp', a: 'ba-explorer-after.webp', m: 'fade', pos: '50% 64%', cap: ['Ford Explorer · taped for PPF, then finished', 'Ford Explorer · teipet for PPF, så ferdig'], l: [['Taped', 'Teipet'], ['Finished', 'Ferdig']], alt: [['Black Ford Explorer with green tape around the panels', 'Svart Ford Explorer med grønn teip rundt panelene'], ['The same Ford Explorer after PPF', 'Den samme Ford Exploreren etter PPF']] },
-    { b: 'hood-5050.webp', a: 'hood-5050.webp', m: 'still', pos: '50% 50%', cap: ['Left half polished · right half as it came in', 'Venstre halvdel polert · høyre som den kom inn'], l: [['Polished', 'Polert'], ['Untouched', 'Urørt']], alt: [['Black bonnet, left half polished and right half untouched', 'Svart panser, venstre halvdel polert og høyre urørt'], ['', '']] }
+    { b: '/ba-chrome-before.webp', a: '/ba-chrome-after.webp', m: 'slide', fit: 'contain', cap: ['Tesla Model S · chrome delete', 'Tesla Model S · chrome delete'], l: [['Before', 'Før'], ['After', 'Etter']], alt: [['Tesla rear with chrome trim', 'Tesla bakfra med kromlister'], ['The same Tesla with the chrome trim in black', 'Den samme Teslaen med listene i svart']] },
+    { b: '/ba-bmw-before.webp', a: '/ba-bmw-after.webp', m: 'slide', pos: '50% 52%', cap: ['BMW 3 Series · stripes taped out, then laid', 'BMW 3-serie · striper teipet opp, så lagt'], l: [['Taped', 'Teipet'], ['Striped', 'Ferdig']], alt: [['White BMW with stripe lines taped on the bonnet', 'Hvit BMW med stripene teipet opp på panseret'], ['The same BMW with black twin stripes', 'Den samme BMW-en med doble svarte striper']] },
+    { b: '/ba-explorer-before.webp', a: '/ba-explorer-after.webp', m: 'fade', pos: '50% 64%', cap: ['Ford Explorer · taped for PPF, then finished', 'Ford Explorer · teipet for PPF, så ferdig'], l: [['Taped', 'Teipet'], ['Finished', 'Ferdig']], alt: [['Black Ford Explorer with green tape around the panels', 'Svart Ford Explorer med grønn teip rundt panelene'], ['The same Ford Explorer after PPF', 'Den samme Ford Exploreren etter PPF']] },
+    { b: '/hood-5050.webp', a: '/hood-5050.webp', m: 'still', pos: '50% 50%', cap: ['Left half polished · right half as it came in', 'Venstre halvdel polert · høyre som den kom inn'], l: [['Polished', 'Polert'], ['Untouched', 'Urørt']], alt: [['Black bonnet, left half polished and right half untouched', 'Svart panser, venstre halvdel polert og høyre urørt'], ['', '']] }
   ];
   const DWELL = 3300, SLIDE = 820;                        /* time on each comparison · the slide to the next one */
   const SWEEP = [[0, 50], [300, 50], [850, 14], [1600, 86], [2150, 50]];   /* where the line is, over time (ms → %) */
@@ -346,53 +346,53 @@ const grid = $('#fan');
 if (grid) {
   const CAT = { all: ['All', 'Alle'], ppf: ['PPF', 'PPF'], colour: ['Colour & Color PPF', 'Farge og farget PPF'], wrap: ['Wrap & graphics', 'Folie og grafikk'], polish: ['Polish & ceramic', 'Polering og coating'], fleet: ['Fleet', 'Firmabiler'], bay: ['In the bay', 'I verkstedet'] };
   const WORK = [
-    ['taycan-teal-top.webp', 'wrap', 'Porsche Taycan · teal chrome', 'Porsche Taycan · turkis krom', 'w2 h2'],
-    ['urus-purple.webp', 'wrap', 'Lamborghini Urus · satin purple', 'Lamborghini Urus · satin lilla', 'w2'],
-    ['pink-modely.webp', 'colour', 'Model Y · pink Color PPF', 'Model Y · rosa farget PPF', 'w2'],
-    ['pink-modely-front.webp', 'wrap', 'Model Y · satin pink vinyl', 'Model Y · satin rosa vinyl', 'h2'],
-    ['mache-stripes.webp', 'wrap', 'Mustang Mach-E · Color PPF stripes', 'Mustang Mach-E · striper i farget PPF', 'h2'],
-    ['bronze-modely-rear.webp', 'wrap', 'Model Y · bronze vinyl', 'Model Y · bronse vinyl', 'w2'],
-    ['black-tesla-vinyl.webp', 'wrap', 'Matte black vinyl going on', 'Matt svart vinyl på plass', 'h2'],
-    ['kia-ev6-green.webp', 'colour', 'Kia EV6 · satin green', 'Kia EV6 · satin grønn', 'w2'],
-    ['red-satin-modely.webp', 'colour', 'Model Y · satin red', 'Model Y · satin rød', 'w2'],
-    ['lime-modely-front.webp', 'colour', 'Model Y · lime green', 'Model Y · limegrønn', 'h2'],
-    ['pink-isuzu.webp', 'wrap', 'Isuzu D-Max Arctic Trucks · gloss pink', 'Isuzu D-Max Arctic Trucks · blank rosa', 'w2'],
-    ['bmw-m4-wrap.webp', 'wrap', 'BMW M · matte black going on', 'BMW M · matt svart på plass', 'h2'],
-    ['lime-modely-bay.webp', 'colour', 'Model Y · lime Color PPF', 'Model Y · limegrønn farget PPF', ''],
-    ['bronze-modely.webp', 'colour', 'Model Y · bronze Color PPF', 'Model Y · bronse farget PPF', 'w2'],
-    ['lime-mirror-before.webp', 'colour', 'Halfway: white to lime', 'Halvveis: hvit til lime', ''],
-    ['ba-explorer-before.webp', 'ppf', 'Ford Explorer · taped for PPF', 'Ford Explorer · teipet for PPF', 'h2'],
-    ['red-satin-split.webp', 'colour', 'Gloss and satin, same red', 'Blank og satin, samme rød', ''],
-    ['touareg-rear.webp', 'wrap', 'VW Touareg · Martini livery', 'VW Touareg · Martini-design', 'w2'],
-    ['installer-front-ppf.webp', 'ppf', 'Front PPF going on', 'Front PPF på plass', 'h2'],
-    ['blossom.webp', 'wrap', 'Pink, cherry-blossom art', 'Rosa, kirsebærblomster', ''],
-    ['grey-modely-side.webp', 'colour', 'Model Y · satin grey', 'Model Y · satin grå', 'h2'],
-    ['hood-5050.webp', 'polish', 'Half polished', 'Halvt polert', ''],
-    ['dhl-van-bay.webp', 'fleet', 'DHL service-partner van', 'DHL-varebil', 'w2'],
-    ['gladiator-bay.webp', 'wrap', 'Jeep Gladiator', 'Jeep Gladiator', 'h2'],
-    ['ba-chrome-after.webp', 'wrap', 'Model S · chrome delete', 'Model S · chrome delete', 'w2'],
-    ['installer-polish.webp', 'polish', 'Machine polish', 'Maskinpolering', ''],
-    ['grey-modely-polish-front.webp', 'polish', 'Model Y · polished', 'Model Y · polert', 'h2'],
-    ['bmw-x5-polish.webp', 'polish', 'BMW X5 · polished', 'BMW X5 · polert', 'w2'],
-    ['grey-modely-polish-rear.webp', 'polish', 'Model Y · deep gloss', 'Model Y · dyp glans', ''],
-    ['black-tesla-polish.webp', 'polish', 'Final check, black Tesla', 'Sluttkontroll, svart Tesla', 'h2'],
-    ['leaf-rose-front.webp', 'colour', 'Nissan Leaf · rose gold', 'Nissan Leaf · rosegull', 'h2'],
-    ['ceramic-card.webp', 'polish', 'Koch Chemie ceramic certificate', 'Koch Chemie-sertifikat', ''],
-    ['akershus-front.webp', 'fleet', 'Akershus Logistikk', 'Akershus Logistikk', ''],
-    ['models-white.webp', 'wrap', 'Model S · black wheels & trim', 'Model S · svarte felger og lister', 'w2'],
-    ['white-model3-ppf.webp', 'ppf', 'Model 3 in for PPF', 'Model 3 inne for PPF', 'h2'],
-    ['black-modely-ppf.webp', 'ppf', 'Model Y in for PPF', 'Model Y inne for PPF', 'w2'],
-    ['akershus-rear.webp', 'fleet', 'Akershus Logistikk · rear', 'Akershus Logistikk · bak', 'h2'],
-    ['mercedes-c.webp', 'wrap', 'Mercedes C-Class · black grille', 'Mercedes C-klasse · svart grill', ''],
-    ['corvette.webp', 'bay', 'Corvette C7', 'Corvette C7', ''],
-    ['porsche-911.webp', 'bay', 'Porsche 911', 'Porsche 911', 'w2'],
-    ['solstice-rear.webp', 'bay', 'Pontiac Solstice', 'Pontiac Solstice', ''],
-    ['rs5-mirror.webp', 'bay', 'Audi RS5 in the bay', 'Audi RS5 i verkstedet', 'h2'],
-    ['ix-34.webp', 'bay', 'BMW iX', 'BMW iX', ''],
-    ['bmw-x5.webp', 'bay', 'BMW X5', 'BMW X5', ''],
-    ['akershus-side.webp', 'fleet', 'Akershus Logistikk · side', 'Akershus Logistikk · side', ''],
-    ['ix-grille.webp', 'bay', 'BMW iX · grille', 'BMW iX · grill', ''],
-    ['lime-mirror-close.webp', 'colour', 'Lime, up close', 'Lime, helt nært', '']
+    ['/taycan-teal-top.webp', 'wrap', 'Porsche Taycan · teal chrome', 'Porsche Taycan · turkis krom', 'w2 h2'],
+    ['/urus-purple.webp', 'wrap', 'Lamborghini Urus · satin purple', 'Lamborghini Urus · satin lilla', 'w2'],
+    ['/pink-modely.webp', 'colour', 'Model Y · pink Color PPF', 'Model Y · rosa farget PPF', 'w2'],
+    ['/pink-modely-front.webp', 'wrap', 'Model Y · satin pink vinyl', 'Model Y · satin rosa vinyl', 'h2'],
+    ['/mache-stripes.webp', 'wrap', 'Mustang Mach-E · Color PPF stripes', 'Mustang Mach-E · striper i farget PPF', 'h2'],
+    ['/bronze-modely-rear.webp', 'wrap', 'Model Y · bronze vinyl', 'Model Y · bronse vinyl', 'w2'],
+    ['/black-tesla-vinyl.webp', 'wrap', 'Matte black vinyl going on', 'Matt svart vinyl på plass', 'h2'],
+    ['/kia-ev6-green.webp', 'colour', 'Kia EV6 · satin green', 'Kia EV6 · satin grønn', 'w2'],
+    ['/red-satin-modely.webp', 'colour', 'Model Y · satin red', 'Model Y · satin rød', 'w2'],
+    ['/lime-modely-front.webp', 'colour', 'Model Y · lime green', 'Model Y · limegrønn', 'h2'],
+    ['/pink-isuzu.webp', 'wrap', 'Isuzu D-Max Arctic Trucks · gloss pink', 'Isuzu D-Max Arctic Trucks · blank rosa', 'w2'],
+    ['/bmw-m4-wrap.webp', 'wrap', 'BMW M · matte black going on', 'BMW M · matt svart på plass', 'h2'],
+    ['/lime-modely-bay.webp', 'colour', 'Model Y · lime Color PPF', 'Model Y · limegrønn farget PPF', ''],
+    ['/bronze-modely.webp', 'colour', 'Model Y · bronze Color PPF', 'Model Y · bronse farget PPF', 'w2'],
+    ['/lime-mirror-before.webp', 'colour', 'Halfway: white to lime', 'Halvveis: hvit til lime', ''],
+    ['/ba-explorer-before.webp', 'ppf', 'Ford Explorer · taped for PPF', 'Ford Explorer · teipet for PPF', 'h2'],
+    ['/red-satin-split.webp', 'colour', 'Gloss and satin, same red', 'Blank og satin, samme rød', ''],
+    ['/touareg-rear.webp', 'wrap', 'VW Touareg · Martini livery', 'VW Touareg · Martini-design', 'w2'],
+    ['/installer-front-ppf.webp', 'ppf', 'Front PPF going on', 'Front PPF på plass', 'h2'],
+    ['/blossom.webp', 'wrap', 'Pink, cherry-blossom art', 'Rosa, kirsebærblomster', ''],
+    ['/grey-modely-side.webp', 'colour', 'Model Y · satin grey', 'Model Y · satin grå', 'h2'],
+    ['/hood-5050.webp', 'polish', 'Half polished', 'Halvt polert', ''],
+    ['/dhl-van-bay.webp', 'fleet', 'DHL service-partner van', 'DHL-varebil', 'w2'],
+    ['/gladiator-bay.webp', 'wrap', 'Jeep Gladiator', 'Jeep Gladiator', 'h2'],
+    ['/ba-chrome-after.webp', 'wrap', 'Model S · chrome delete', 'Model S · chrome delete', 'w2'],
+    ['/installer-polish.webp', 'polish', 'Machine polish', 'Maskinpolering', ''],
+    ['/grey-modely-polish-front.webp', 'polish', 'Model Y · polished', 'Model Y · polert', 'h2'],
+    ['/bmw-x5-polish.webp', 'polish', 'BMW X5 · polished', 'BMW X5 · polert', 'w2'],
+    ['/grey-modely-polish-rear.webp', 'polish', 'Model Y · deep gloss', 'Model Y · dyp glans', ''],
+    ['/black-tesla-polish.webp', 'polish', 'Final check, black Tesla', 'Sluttkontroll, svart Tesla', 'h2'],
+    ['/leaf-rose-front.webp', 'colour', 'Nissan Leaf · rose gold', 'Nissan Leaf · rosegull', 'h2'],
+    ['/ceramic-card.webp', 'polish', 'Koch Chemie ceramic certificate', 'Koch Chemie-sertifikat', ''],
+    ['/akershus-front.webp', 'fleet', 'Akershus Logistikk', 'Akershus Logistikk', ''],
+    ['/models-white.webp', 'wrap', 'Model S · black wheels & trim', 'Model S · svarte felger og lister', 'w2'],
+    ['/white-model3-ppf.webp', 'ppf', 'Model 3 in for PPF', 'Model 3 inne for PPF', 'h2'],
+    ['/black-modely-ppf.webp', 'ppf', 'Model Y in for PPF', 'Model Y inne for PPF', 'w2'],
+    ['/akershus-rear.webp', 'fleet', 'Akershus Logistikk · rear', 'Akershus Logistikk · bak', 'h2'],
+    ['/mercedes-c.webp', 'wrap', 'Mercedes C-Class · black grille', 'Mercedes C-klasse · svart grill', ''],
+    ['/corvette.webp', 'bay', 'Corvette C7', 'Corvette C7', ''],
+    ['/porsche-911.webp', 'bay', 'Porsche 911', 'Porsche 911', 'w2'],
+    ['/solstice-rear.webp', 'bay', 'Pontiac Solstice', 'Pontiac Solstice', ''],
+    ['/rs5-mirror.webp', 'bay', 'Audi RS5 in the bay', 'Audi RS5 i verkstedet', 'h2'],
+    ['/ix-34.webp', 'bay', 'BMW iX', 'BMW iX', ''],
+    ['/bmw-x5.webp', 'bay', 'BMW X5', 'BMW X5', ''],
+    ['/akershus-side.webp', 'fleet', 'Akershus Logistikk · side', 'Akershus Logistikk · side', ''],
+    ['/ix-grille.webp', 'bay', 'BMW iX · grille', 'BMW iX · grill', ''],
+    ['/lime-mirror-close.webp', 'colour', 'Lime, up close', 'Lime, helt nært', '']
   ];
   /* the Verzish gallery: one set at a time, laid out as a fanned deck of frames (a swipe deck on touch screens) */
   const fan = grid, fanTabs = $('#fanTabs'), fanN = $('#fanN');
@@ -1285,7 +1285,7 @@ function motion() {
     const op = $('.mstu__open'); if (op) {
       const q = new URLSearchParams({ car: st.car });
       if (kind === 'ppf') q.set('mode', 'ppf'); if ((kind === 'wrap' || (kind === 'cppf' && st.range !== 'house')) && st.film) q.set('film', st.film); if (kind === 'polish' && st.cer) q.set('ceramic', '1');
-      op.href = (WR.routes.studio || 'design-din-bil') + '?' + q.toString();
+      op.href = (WR.routes.studio || '/design') + '?' + q.toString();
     }
     if (!c3) return;
     c3.wrap('s', b); c3.setState('s', s);

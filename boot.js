@@ -14,6 +14,9 @@
   var cfg = document.getElementById('wr-data');
   try { window.WR = JSON.parse(cfg ? cfg.textContent : '{}'); } catch (e) { window.WR = { lang: 'no', routes: {} }; }
 
+  /* clean address -> file on disk, for plain local servers: / -> /index.html, /en -> /en/index.html, /en/ppf -> /en/ppf.html */
+  function loc2file(p) { p = p.replace(/\/$/, ''); return p === '' || p === '.' ? '/index.html' : p === '/en' ? '/en/index.html' : p + '.html'; }
+
   /* language: Norwegian by default. Once the visitor has picked a language (header NO/EN or the cookie bar),
      any page opened fresh — a bookmark, a shared link, a search result, the bare address — opens in that language.
      Back/forward and reloads are left alone, and search engines (no saved pick) always get the page as it is. */
@@ -27,7 +30,7 @@
     if (nt === 'reload' || nt === 'back_forward') return;
     try { var last = +sessionStorage.getItem('wrappi-hop') || 0; if (Date.now() - last < 4000) return; sessionStorage.setItem('wrappi-hop', String(Date.now())); } catch (e) {}
     var to = W.other, loc = location;
-    if (loc.protocol === 'file:' || /\.html$/.test(loc.pathname)) to = (to === './' || to === '.' || to === '/') ? 'index.html' : to + '.html';
+    if (loc.protocol === 'file:' || /\.html$/.test(loc.pathname)) to = loc2file(to);
     var u; try { u = new URL(to, loc.href); } catch (e) { return; }
     u.search = loc.search; u.hash = loc.hash;
     html.classList.add('wr-go');
@@ -51,7 +54,7 @@
     if ((cv.getContext('webgl2') || cv.getContext('webgl')) && !(nc && (nc.saveData || /2g/.test(nc.effectiveType || '')))) html.classList.add('can3d');
   } catch (e) {}
 
-  /* links are written clean (ppf, en-ppf, ./). Hosts with clean URLs serve them as they are;
+  /* links are written clean (/ppf, /en/ppf, /). Hosts with clean URLs serve them as they are;
      from disk or a plain local server we add ".html" the moment a link is used. */
   var l = location, h = l.hostname;
   if (!(l.protocol === 'file:' || /\.html$/.test(l.pathname) || !h || /^(localhost|127\.|0\.0\.0\.0|10\.|192\.168\.)/.test(h))) return;
@@ -63,7 +66,7 @@
     if (/^(#|[a-z][a-z0-9+.-]*:|\/\/)/i.test(v)) return;
     var m = v.match(/^([^?#]*)(.*)$/), p = m[1];
     if (!p || /\.[a-z0-9]{2,5}$/i.test(p)) return;
-    p = (p === './' || p === '.' || p === '/') ? 'index.html' : p.replace(/\/$/, '') + '.html';
+    p = loc2file(p);
     a.setAttribute('href', p + m[2]);
   }
   ['pointerdown', 'click', 'auxclick', 'focusin', 'contextmenu'].forEach(function (t) { document.addEventListener(t, fx, true); });

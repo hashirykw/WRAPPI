@@ -14,33 +14,130 @@
       "permanent": true
     },
     {
-      "source": "/en/",
+      "source": "/((?:en/)?[^/]+\\.(?:css|js|glb|woff2|json|md|map))",
+      "has": [
+        {
+          "type": "header",
+          "key": "sec-fetch-dest",
+          "value": "document"
+        }
+      ],
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/README.md",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/README",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/.gitignore",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/polering-og-keramisk-coating",
+      "destination": "/polering",
+      "permanent": true
+    },
+    {
+      "source": "/design-din-bil",
+      "destination": "/design",
+      "permanent": true
+    },
+    {
+      "source": "/en-ppf",
+      "destination": "/en/ppf",
+      "permanent": true
+    },
+    {
+      "source": "/en-color-ppf",
+      "destination": "/en/color-ppf",
+      "permanent": true
+    },
+    {
+      "source": "/en-car-wrapping",
+      "destination": "/en/car-wrapping",
+      "permanent": true
+    },
+    {
+      "source": "/en-polishing-and-ceramic-coating",
+      "destination": "/en/polishing",
+      "permanent": true
+    },
+    {
+      "source": "/en-wrap-studio",
+      "destination": "/en/design",
+      "permanent": true
+    },
+    {
+      "source": "/en-prices",
+      "destination": "/en/prices",
+      "permanent": true
+    },
+    {
+      "source": "/en-about-us",
+      "destination": "/en/about",
+      "permanent": true
+    },
+    {
+      "source": "/en-contact",
+      "destination": "/en/contact",
+      "permanent": true
+    },
+    {
+      "source": "/en-carlise-ppf",
+      "destination": "/en/carlise-ppf",
+      "permanent": true
+    },
+    {
+      "source": "/en-projects",
       "destination": "/en",
       "permanent": true
     },
     {
-      "source": "/en/:slug",
-      "destination": "/en-:slug",
+      "source": "/en/polishing-and-ceramic-coating",
+      "destination": "/en/polishing",
+      "permanent": true
+    },
+    {
+      "source": "/en/wrap-studio",
+      "destination": "/en/design",
+      "permanent": true
+    },
+    {
+      "source": "/en/about-us",
+      "destination": "/en/about",
+      "permanent": true
+    },
+    {
+      "source": "/en/projects",
+      "destination": "/en",
       "permanent": true
     },
     {
       "source": "/about-us",
-      "destination": "/en-about-us",
+      "destination": "/en/about",
       "permanent": true
     },
     {
       "source": "/car-wrapping",
-      "destination": "/en-car-wrapping",
+      "destination": "/en/car-wrapping",
       "permanent": true
     },
     {
       "source": "/contact",
-      "destination": "/en-contact",
+      "destination": "/en/contact",
       "permanent": true
     },
     {
       "source": "/prices",
-      "destination": "/en-prices",
+      "destination": "/en/prices",
       "permanent": true
     },
     {
@@ -50,17 +147,17 @@
     },
     {
       "source": "/wrap-studio",
-      "destination": "/en-wrap-studio",
+      "destination": "/en/design",
       "permanent": true
     },
     {
       "source": "/polishing-and-ceramic-coating",
-      "destination": "/en-polishing-and-ceramic-coating",
+      "destination": "/en/polishing",
       "permanent": true
     },
     {
       "source": "/color-ppf",
-      "destination": "/en-color-ppf",
+      "destination": "/en/color-ppf",
       "permanent": true
     },
     {
@@ -80,12 +177,12 @@
     },
     {
       "source": "/polish",
-      "destination": "/polering-og-keramisk-coating",
+      "destination": "/polering",
       "permanent": true
     },
     {
       "source": "/studio",
-      "destination": "/design-din-bil",
+      "destination": "/design",
       "permanent": true
     },
     {
@@ -104,7 +201,12 @@
       "permanent": true
     },
     {
-      "source": "/en-projects",
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/index",
       "destination": "/en",
       "permanent": true
     }
@@ -168,6 +270,12 @@
           "value": "public, max-age=0, must-revalidate"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/en/([^/]+\\.(?:webp|png|jpg|jpeg|glb|woff2|js|css|svg|ico))",
+      "destination": "/$1"
     }
   ]
 }
