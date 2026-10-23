@@ -1285,7 +1285,13 @@ function motion() {
     const op = $('.mstu__open'); if (op) {
       const q = new URLSearchParams({ car: st.car });
       if (kind === 'ppf') q.set('mode', 'ppf'); if ((kind === 'wrap' || (kind === 'cppf' && st.range !== 'house')) && st.film) q.set('film', st.film); if (kind === 'polish' && st.cer) q.set('ceramic', '1');
-      op.href = (WR.routes.studio || '/design') + '?' + q.toString();
+      /* what the film id can't carry goes in the studio's own #build= state (same encoding as studio.js) */
+      let bd = null;
+      if (kind === 'cppf' && !(st.range !== 'house' && filmOf(st.film))) { const p = CPPF[st.col]; bd = { mode: 'wrap', preset: null, film: null, c: p[0], f: st.fin, fl: p[1], s: 'solid', nm: p[2] + '|' + p[3], nmc: p[0] }; }
+      else if (kind === 'ppf') bd = { mode: 'ppf', ppf: st.cover === 'front' ? 'front' : 'full' };
+      else if (kind === 'wrap' && st.chrome) bd = { chrome: true };
+      const enc = o => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      op.href = (WR.routes.studio || '/design') + '?' + q.toString() + (bd ? '#build=' + enc(Object.assign({ car: st.car }, bd)) : '');
     }
     if (!c3) return;
     c3.wrap('s', b); c3.setState('s', s);
