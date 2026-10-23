@@ -42,7 +42,7 @@ Website built by [Nexlyr Solutions](https://nexlyr.solutions/).
 2. In Vercel: **Add New → Project**, import the repository, framework preset **Other**, no build command, output directory `./`.
 3. Deploy. Clean URLs (`/ppf`, `/priser`, `/en-ppf` …) work automatically through `vercel.json`.
 
-If the site moves to its own domain, replace `https://wrappii.vercel.app` in the HTML `<head>` tags, `sitemap.xml` and `robots.txt`.
+If the site moves to its own domain, replace `https://wrappingartdesign.no` in the HTML `<head>` tags, `sitemap.xml` and `robots.txt`.
 
 ## Run locally
 

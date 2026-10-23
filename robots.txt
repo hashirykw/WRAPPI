@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wrappii.vercel.app/sitemap.xml
+Sitemap: https://wrappingartdesign.no/sitemap.xml
