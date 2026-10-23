@@ -3,8 +3,8 @@
    EDIT HERE — Wrappi's numbers, from their own Instagram posts (Sept–Oct 2026)
    ════════════════════════════════════════════════════════════════ */
 window.WRAPPI = {
-  wa: '4746228133',                       // WhatsApp number (no +, no spaces)
-  phones: ['+47 462 28 133', '+47 463 61 675'],
+  wa: '4746361675',                       // WhatsApp number (no +, no spaces)
+  phones: ['+47 463 61 675'],
   address: 'Strømsveien 324, 1081 Oslo',
   instagram: 'https://www.instagram.com/wrappi__/',
   sizes: { // prices by car size (NOK) — PPF and Color PPF are set prices, car wrapping is a starting price · null = on request
@@ -528,7 +528,7 @@ const footLegal = $('.foot__legal'); if (footLegal) new IntersectionObserver(es 
     { k: ['wrap', 'wrapping', 'chrome', 'stripe', 'striper', 'foliering'], a: tx(`Car wrapping from ${nok(27000)} (sedan) and ${nok(33000)} (SUV) — starting prices. Chrome delete and stripes are priced after we see the car. <a href="${R('wrap')}">Try the colours in 3D</a>.`, `Bilwrapping fra ${nok(27000)} (sedan) og ${nok(33000)} (SUV) — fra-priser. Chrome delete og striper prises etter at vi har sett bilen. <a href="${R('wrap')}">Prøv fargene i 3D</a>.`) },
     { k: ['where', 'address', 'location', 'map', 'hvor', 'adresse'], a: tx(`We're at ${WRAPPI.address}, at Furuset by IKEA Furuset. <a href="${R('contact')}">Directions</a>.`, `Vi holder til i ${WRAPPI.address}, på Furuset ved IKEA Furuset. <a href="${R('contact')}">Veibeskrivelse</a>.`) },
     { k: ['open', 'hour', 'åpent', 'åpningstid'], a: tx(`Message us on <a href="${wa('Hi Wrappi! When can I come by?')}" target="_blank" rel="noopener">WhatsApp</a> and we'll find a time.`, `Send en melding på <a href="${wa('Hei Wrappi! Når kan jeg komme innom?')}" target="_blank" rel="noopener">WhatsApp</a>, så finner vi en tid.`) },
-    { k: ['phone', 'call', 'number', 'ring', 'telefon'], a: tx(`Call ${WRAPPI.phones[0]} or ${WRAPPI.phones[1]}.`, `Ring ${WRAPPI.phones[0]} eller ${WRAPPI.phones[1]}.`) },
+    { k: ['phone', 'call', 'number', 'ring', 'telefon'], a: tx(`Call ${WRAPPI.phones[0]}.`, `Ring ${WRAPPI.phones[0]}.`) },
     { k: ['who', 'owner', 'team', 'hvem', 'eier', 'anestis', 'joanna'], a: tx(`Wrappi is Joanna Gonkiewicz and Anestis Lekas. <a href="${R('about')}">Meet them</a>.`, `Wrappi er Joanna Gonkiewicz og Anestis Lekas. <a href="${R('about')}">Møt dem</a>.`) },
     { k: ['book', 'booking', 'bestill'], a: tx(`Easiest is <a href="${wa("Hi Wrappi! I'd like to book.")}" target="_blank" rel="noopener">WhatsApp</a>.`, `Enklest er <a href="${wa('Hei Wrappi! Jeg vil gjerne booke.')}" target="_blank" rel="noopener">WhatsApp</a>.`) },
     { k: ['tesla', 'electric', 'ev', 'elbil'], a: tx('Yes — most cars on our price list are electric, Teslas included.', 'Ja — de fleste bilene på prislisten vår er elbiler, Tesla også.') }
@@ -1174,7 +1174,7 @@ function motion() {
   const WR = window.WR || { lang: 'no', routes: {} }, NO = WR.lang === 'no';
   const tx = (en, no) => NO ? no : en;
   const $ = (s, c = box) => c.querySelector(s), $$ = (s, c = box) => [...c.querySelectorAll(s)];
-  const kind = box.dataset.mstu, WA = (window.WRAPPI && WRAPPI.wa) || '4746228133';
+  const kind = box.dataset.mstu, WA = (window.WRAPPI && WRAPPI.wa) || '4746361675';
   const CARS = { suv: ['Tesla Model Y', 'Tesla Model Y'], sedan: ['Tesla Model 3', 'Tesla Model 3'], rrs: ['Range Rover Sport', 'Range Rover Sport'], s90: ['Volvo S90', 'Volvo S90'], eclass: ['Mercedes E-Class', 'Mercedes E-klasse'], sports: ['Porsche 911', 'Porsche 911'], r8: ['Audi R8', 'Audi R8'] };
   const PAINT = [['#111214', 'Black', 'Svart'], ['#ecece9', 'White', 'Hvit'], ['#8a8d92', 'Silver', 'Sølv'], ['#55585d', 'Grey', 'Grå'], ['#1d3f7a', 'Blue', 'Blå'], ['#8e1b22', 'Red', 'Rød']];
   const CPPF = [['#86898e', null, 'Satin titanium', 'Satin titan', 'satin'], ['#1e1830', '#7a4fc4', 'Midnight purple', 'Midnattslilla', 'satin'], ['#6cc824', '#d8c21a', 'Lime, gold shimmer', 'Lime, gullskimmer', 'gloss'], ['#a3101a', null, 'Satin red', 'Satin rød', 'satin'], ['#c4846a', null, 'Rose gold', 'Rosegull', 'satin'], ['#7d8084', null, 'Nardo grey', 'Nardo grå', 'gloss'], ['#111214', null, 'Black', 'Svart', 'matte'], ['#eeeeec', null, 'Pearl white', 'Perlehvit', 'gloss'], ['#1340a8', null, 'Deep blue', 'Dyp blå', 'metallic'], ['#1f4a33', null, 'British green', 'Britisk grønn', 'gloss'], ['#c8b48c', null, 'Sand', 'Sand', 'satin'], ['#e2621b', null, 'Orange', 'Oransje', 'gloss'], ['#2b2f6b', '#8b2f7a', 'Purple flip', 'Lilla fargeskift', 'metallic'], ['#d9dbde', null, 'Satin silver', 'Satin sølv', 'satin']];
