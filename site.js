@@ -451,7 +451,8 @@ $$('.filmstrip').forEach(el => {
   const rows = picks.map(id => { const [b, code] = id.split(':'); const br = F.brands.find(x => x.k === b); const r = br && br.list.find(x => x[0] === code); return r ? { id, br, r } : null; }).filter(Boolean);
   el.innerHTML = rows.map(({ id, br, r }) => `<a class="fsw" href="${R('studio')}?film=${encodeURIComponent(id)}" style="--sw:${r[3]}${r[4] ? `;--fl:${r[4]}` : ''}"${r[4] ? ' data-flip' : ''}><i></i><b>${r[1]}</b><small>${br.short} · ${r[0]}</small></a>`).join('');
 });
-$$('[data-filmcount]').forEach(el => { const F = window.FILMS; if (F) el.textContent = F.brands.reduce((a, b) => a + b.list.length, 0); });
+/* vinyl wrap films only (3M + Avery) — the Carlise Color PPF range is counted on its own page, not as wrap film */
+$$('[data-filmcount]').forEach(el => { const F = window.FILMS; if (F) el.textContent = F.brands.filter(b => !b.ppf).reduce((a, b) => a + b.list.length, 0); });
 
 /* ---------- price builder (price-list figures only) ---------- */
 const qBox = $('#quote');
