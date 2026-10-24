@@ -547,3 +547,5 @@ html.wr-intro .wl__s,html.wr-intro .wl__ui{opacity:0}
 html[data-theme="light"] .hub a.hub--wa{background:linear-gradient(135deg,rgb(37 211 102 / .16),rgb(37 211 102 / .05)),#fff}
 html[data-theme="light"] .hub a.hub--wa:hover{background:var(--color-wa);color:var(--color-wa-ink)}
 html[data-theme="light"] .hub a.hub--wa:hover b,html[data-theme="light"] .hub a.hub--wa:focus-visible b{color:var(--color-wa-ink)}
+
+.tier__p--req{font-size:clamp(1.25rem,1rem + .9vw,1.7rem);white-space:normal;line-height:1.05}
