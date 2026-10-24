@@ -254,7 +254,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(webp|png|jpg|glb|woff2)",
+      "source": "/(.*)\\.(webp|png|jpg|glb|woff2|ico)",
       "headers": [
         {
           "key": "Cache-Control",
