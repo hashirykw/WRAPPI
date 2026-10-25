@@ -46,6 +46,12 @@ Old addresses (`/design-din-bil`, `/polering-og-keramisk-coating`, `/en-ppf` …
 
 If the site moves to its own domain, replace `https://wrappingartdesign.no` in the HTML `<head>` tags, `sitemap.xml` and `robots.txt`.
 
+## Caching (keep this in mind when editing)
+
+CSS and JS are cached by browsers for a year (`vercel.json`). Every HTML page loads them with a version, e.g. `/site.js?v=202610260400`.
+**Whenever you change `styles.css`, `site.js`, `studio.js`, `boot.js` or `films.js`, bump that `?v=` number in every page**, or visitors keep the old file.
+`gsap.min.js`, `ScrollTrigger.min.js` and `lenis.min.js` never change; if you ever replace one, give it a new file name.
+
 ## Run locally
 
 Any static server works, for example:

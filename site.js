@@ -1381,11 +1381,15 @@ function motion() {
     const slides = [...box.querySelectorAll('.slides__s')], dots = [...box.querySelectorAll('.slides__dot')], num = box.querySelector('.slides__n b');
     const n = slides.length; if (n < 2) { box.classList.add('is-single'); return; }
     const EVERY = 4200; let i = 0, timer = 0, vis = false, hover = false;
+    /* slides after the first carry their photos as data-src, so they don't compete with the page itself;
+       a slide's photos are fetched just before it is shown (and the next one is primed once the page has loaded) */
+    const wake = sl => sl.querySelectorAll('img').forEach(im => { if (im.dataset.src && !im.getAttribute('src')) im.src = im.dataset.src; if (im.loading === 'lazy') im.loading = 'eager'; });
+    const prime = () => (window.requestIdleCallback || (f => setTimeout(f, 200)))(() => wake(slides[1]), { timeout: 1200 });
+    document.readyState === 'complete' ? prime() : addEventListener('load', prime, { once: true });
     box.style.setProperty('--every', EVERY + 'ms');
     const show = j => {
       j = (j + n) % n; if (j === i) return;
-      slides[j].querySelectorAll('img[loading="lazy"]').forEach(im => im.loading = 'eager');
-      slides[(j + 1) % n].querySelectorAll('img[loading="lazy"]').forEach(im => im.loading = 'eager');
+      wake(slides[j]); wake(slides[(j + 1) % n]);
       slides[i].classList.remove('is-on'); slides[i].classList.add('is-off');
       const prev = slides[i]; setTimeout(() => prev.classList.remove('is-off'), 900);
       slides[j].classList.add('is-on');
